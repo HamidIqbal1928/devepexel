@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevePexel — Code Agency | WordPress, Web Dev, SEO & Digital Marketing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ========================= */
+        /* ROOT & RESET              */
+        /* ========================= */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --deep: #091413;
+            --primary: #285A48;
+            --mid: #408A71;
+            --light: #B0E4CC;
+            --white: #F0FFF8;
+            --text: rgba(176, 228, 204, 0.7);
+            --border: rgba(64, 138, 113, 0.18);
+            --glow: rgba(40, 90, 72, 0.25);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #091413;
+            color: #B0E4CC;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #091413;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(#285A48, #B0E4CC);
+            border-radius: 10px;
+        }
+
+        /* ========================= */
+        /* BACKGROUND SYSTEM         */
+        /* ========================= */
+
+        /* Animated canvas */
+        #hero-canvas {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Grid overlay */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(64, 138, 113, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(64, 138, 113, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        /* Noise texture */
+        .bg-noise {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        /* Glow orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .orb-1 {
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(40, 90, 72, 0.14), transparent 70%);
+            top: -250px;
+            left: -200px;
+            animation: orbDrift 16s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, rgba(64, 138, 113, 0.1), transparent 70%);
+            bottom: -150px;
+            right: -150px;
+            animation: orbDrift 20s ease-in-out infinite reverse;
+        }
+
+        .orb-3 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(176, 228, 204, 0.05), transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: orbDrift 24s ease-in-out infinite;
+        }
+
+        @keyframes orbDrift {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(40px, -30px) scale(1.05);
+            }
+
+            66% {
+                transform: translate(-25px, 20px) scale(0.95);
+            }
+        }
+
+        /* Scan line */
+        .scanline {
+            position: fixed;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(176, 228, 204, 0.08), rgba(64, 138, 113, 0.12), transparent);
+            z-index: 1;
+            pointer-events: none;
+            animation: scanMove 12s linear infinite;
+        }
+
+        @keyframes scanMove {
+            0% {
+                top: -2px;
+            }
+
+            100% {
+                top: 100vh;
+            }
+        }
+
+        /* ========================= */
+        /* TYPOGRAPHY                */
+        /* ========================= */
+
+        .font-syne {
+            font-family: 'Syne', sans-serif;
+        }
+
+        .font-grotesk {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #F0FFF8 0%, #B0E4CC 30%, #408A71 60%, #285A48 80%, #B0E4CC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% auto;
+            animation: textShimmer 5s linear infinite;
+        }
+
+        .gradient-text-2 {
+            background: linear-gradient(135deg, #B0E4CC, #408A71, #B0E4CC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @keyframes textShimmer {
+            0% {
+                background-position: 0% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        /* ========================= */
+        /* GLASSMORPHISM             */
+        /* ========================= */
+
+        .glass {
+            background: rgba(176, 228, 204, 0.02);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(64, 138, 113, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(9, 20, 19, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(64, 138, 113, 0.15);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(64, 138, 113, 0.45);
+            box-shadow: 0 25px 60px rgba(40, 90, 72, 0.18), 0 0 40px rgba(64, 138, 113, 0.06), inset 0 1px 0 rgba(176, 228, 204, 0.06);
+            transform: translateY(-6px);
+        }
+
+        /* ========================= */
+        /* NAVIGATION                */
+        /* ========================= */
+
+        .nav-link {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: rgba(176, 228, 204, 0.55);
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, #285A48, #B0E4CC);
+            transition: width 0.4s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #B0E4CC;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* ========================= */
+        /* BUTTONS                   */
+        /* ========================= */
+
+        .btn-primary {
+            background: linear-gradient(135deg, #285A48, #408A71);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            transition: all 0.4s ease;
+            border-radius: 12px;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #408A71, #B0E4CC);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: 12px;
+        }
+
+        .btn-primary:hover::before {
+            opacity: 1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(40, 90, 72, 0.4);
+        }
+
+        .btn-primary>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(64, 138, 113, 0.45);
+            color: #B0E4CC;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: rgba(40, 90, 72, 0.15);
+            border-color: rgba(64, 138, 113, 0.8);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(40, 90, 72, 0.2);
+            color: #F0FFF8;
+        }
+
+        /* ========================= */
+        /* HERO SECTION              */
+        /* ========================= */
+
+        /* Floating badge */
+        .float-badge {
+            animation: floatBadge 6s ease-in-out infinite;
+        }
+
+        @keyframes floatBadge {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-12px) rotate(2deg);
+            }
+        }
+
+        /* Hero code window */
+        .code-window {
+            background: rgba(9, 20, 19, 0.95);
+            border: 1px solid rgba(64, 138, 113, 0.25);
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .code-window-bar {
+            background: rgba(40, 90, 72, 0.2);
+            border-bottom: 1px solid rgba(64, 138, 113, 0.15);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .code-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        /* Typed cursor */
+        .typed-cursor {
+            color: #B0E4CC;
+        }
+
+        /* Animated counter */
+        .counter-item {
+            position: relative;
+        }
+
+        .counter-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(40, 90, 72, 0.08), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .counter-item:hover::before {
+            opacity: 1;
+        }
+
+        /* Marquee */
+        .marquee-wrap {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-track {
+            display: inline-flex;
+            animation: marqueeScroll 30s linear infinite;
+        }
+
+        @keyframes marqueeScroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ========================= */
+        /* SERVICE CARDS             */
+        /* ========================= */
+
+        .service-card {
+            background: rgba(9, 20, 19, 0.9);
+            border: 1px solid rgba(64, 138, 113, 0.12);
+            border-radius: 20px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #285A48, #B0E4CC, transparent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            border-color: rgba(64, 138, 113, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(40, 90, 72, 0.15), 0 0 30px rgba(64, 138, 113, 0.05);
+        }
+
+        /* Icon box */
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(40, 90, 72, 0.3), rgba(64, 138, 113, 0.15));
+            border: 1px solid rgba(64, 138, 113, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+        }
+
+        .service-card:hover .icon-box {
+            background: linear-gradient(135deg, rgba(40, 90, 72, 0.5), rgba(64, 138, 113, 0.3));
+            border-color: rgba(64, 138, 113, 0.5);
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* ========================= */
+        /* SCROLL REVEALS            */
+        /* ========================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal.visible,
+        .reveal-left.visible,
+        .reveal-right.visible,
+        .reveal-scale.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* ========================= */
+        /* MOBILE MENU               */
+        /* ========================= */
+
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        /* ========================= */
+        /* CURSOR                    */
+        /* ========================= */
+
+        .cursor {
+            width: 18px;
+            height: 18px;
+            border: 1.5px solid #408A71;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.15s ease;
+        }
+
+        .cursor-dot {
+            width: 5px;
+            height: 5px;
+            background: #B0E4CC;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Scroll top */
+        .scroll-top {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #285A48, #408A71);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #F0FFF8;
+            cursor: pointer;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(40, 90, 72, 0.4);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-4px) scale(1.1);
+        }
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(64, 138, 113, 0.25), rgba(176, 228, 204, 0.15), transparent);
+        }
+
+        /* Stats bar */
+        .stat-item {
+            border: 1px solid rgba(64, 138, 113, 0.1);
+            background: rgba(40, 90, 72, 0.04);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            border-color: rgba(64, 138, 113, 0.3);
+            background: rgba(40, 90, 72, 0.08);
+            transform: translateY(-4px);
+        }
+
+        /* CTA section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(40, 90, 72, 0.12) 0%, rgba(64, 138, 113, 0.06) 50%, rgba(40, 90, 72, 0.12) 100%);
+            border: 1px solid rgba(64, 138, 113, 0.15);
+            border-radius: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(176, 228, 204, 0.02) 50%, transparent 70%);
+            animation: cta-shine 4s linear infinite;
+        }
+
+        @keyframes cta-shine {
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(200%) rotate(45deg);
+            }
+        }
+
+        /* Section label */
+        .section-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            letter-spacing: 0.18em;
+            color: #408A71;
+            text-transform: uppercase;
+        }
+
+        /* Number gradient */
+        .num-gradient {
+            background: linear-gradient(135deg, #B0E4CC, #408A71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Glow line */
+        .glow-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #285A48, #408A71, #B0E4CC, #408A71, #285A48, transparent);
+            opacity: 0.5;
+        }
+
+        @media (max-width: 768px) {
+
+            .cursor,
+            .cursor-dot {
+                display: none;
+            }
+
+            .bg-grid {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <!-- Scroll Top -->
+    <div class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fas fa-arrow-up text-sm"></i>
+    </div>
+
+    <!-- Background layers -->
+    <div class="bg-grid"></div>
+    <div class="bg-noise"></div>
+    <div class="scanline"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- ============================================================ -->
+    <!-- NAVBAR                                                        -->
+    <!-- ============================================================ -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center relative overflow-hidden group-hover:scale-110 transition-transform duration-300"
+                        style="background: linear-gradient(135deg, #285A48, #408A71); box-shadow: 0 4px 15px rgba(40,90,72,0.35);">
+                        <span class="font-syne font-bold text-lg" style="color:#B0E4CC;">D</span>
+                        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                            style="background: linear-gradient(135deg, #408A71, #B0E4CC);"></div>
+                    </div>
+                    <div class="hidden sm:block">
+                        <div class="font-syne font-bold text-xl leading-none" style="color:#F0FFF8;">
+                            Deve<span style="color:#408A71;">Pexel</span>
+                        </div>
+                        <div class="text-xs tracking-widest mt-0.5"
+                            style="color:rgba(176,228,204,0.4); font-family:'Space Grotesk',sans-serif;">CODE AGENCY
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="index.html" class="nav-link active">Home</a>
+                    <!-- These will link to separate pages you'll create -->
+                    <span class="nav-link" style="opacity:0.4; cursor: not-allowed;">Services</span>
+                    <span class="nav-link" style="opacity:0.4; cursor: not-allowed;">Contact</span>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <!-- Status pill -->
+                    <div class="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-grotesk"
+                        style="background:rgba(40,90,72,0.1); border:1px solid rgba(64,138,113,0.2); color:rgba(176,228,204,0.7);">
+                        <span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
+                        Available for projects
+                    </div>
+                    <a href="#contact" class="hidden lg:flex btn-primary text-sm px-6 py-2.5 items-center gap-2"
+                        style="color:#F0FFF8;">
+                        <span>Get Started</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                    <!-- Hamburger -->
+                    <button class="lg:hidden w-9 h-9 glass rounded-xl flex flex-col justify-center items-center gap-1.5"
+                        id="menuBtn">
+                        <span class="w-5 h-0.5 transition-all" style="background:rgba(176,228,204,0.7);" id="b1"></span>
+                        <span class="w-5 h-0.5 transition-all" style="background:rgba(176,228,204,0.7);" id="b2"></span>
+                        <span class="w-3 h-0.5 transition-all" style="background:rgba(176,228,204,0.7);" id="b3"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed top-0 right-0 h-full w-80 z-40 glass-card flex flex-col justify-center px-10"
+        id="mobileMenu">
+        <button class="absolute top-5 right-5 w-8 h-8 flex items-center justify-center"
+            style="color:rgba(176,228,204,0.5);" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="mb-10">
+            <div class="font-syne font-bold text-2xl" style="color:#F0FFF8;">
+                Deve<span style="color:#408A71;">Pexel</span>
+            </div>
+            <div class="text-xs tracking-widest mt-1" style="color:rgba(176,228,204,0.35);">CODE AGENCY</div>
+        </div>
+        <div class="flex flex-col gap-6">
+            <a href="index.html" class="font-grotesk font-semibold text-lg transition-colors mobile-link"
+                style="color:#B0E4CC;">Home</a>
+            <span class="font-grotesk font-semibold text-lg mobile-link"
+                style="color:rgba(176,228,204,0.3); cursor: not-allowed;">Services (Coming Soon)</span>
+            <span class="font-grotesk font-semibold text-lg mobile-link"
+                style="color:rgba(176,228,204,0.3); cursor: not-allowed;">Contact (Coming Soon)</span>
+            <a href="#contact" class="btn-primary mt-4 py-3.5 text-center text-sm" style="color:#F0FFF8;">
+                Get Started →
+            </a>
+        </div>
+    </div>
+    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-30 hidden" id="overlay"></div>
+
+    <!-- ============================================================ -->
+    <!-- HERO SECTION                                                  -->
+    <!-- ============================================================ -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+
+        <!-- Animated canvas -->
+        <canvas id="hero-canvas"></canvas>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 relative z-10 w-full">
+            <div class="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+
+                <!-- ── Left ── -->
+                <div class="text-center lg:text-left">
+
+                    <!-- Top label -->
+                    <div class="flex items-center gap-3 justify-center lg:justify-start mb-8 reveal">
+                        <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,#B0E4CC);"></div>
+                        <span class="section-label">Professional Code Agency</span>
+                        <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+                    </div>
+
+                    <!-- Main heading -->
+                    <h1 class="font-syne font-extrabold leading-[1.05] mb-6 reveal"
+                        style="font-size:clamp(40px,6vw,80px); transition-delay:.1s;">
+                        <span style="color:#F0FFF8;">We Code</span><br>
+                        <span class="gradient-text">Your Vision</span><br>
+                        <span style="color:#F0FFF8;">Into </span>
+                        <em style="color:#408A71; font-style:normal;">Reality.</em>
+                    </h1>
+
+                    <!-- Typed line -->
+                    <div class="text-xl sm:text-2xl font-grotesk mb-6 reveal"
+                        style="color:rgba(176,228,204,0.65); transition-delay:.2s;">
+                        <span style="color:#408A71;">→ </span>
+                        <span id="typed"></span>
+                    </div>
+
+                    <!-- Description -->
+                    <p class="leading-relaxed max-w-lg mx-auto lg:mx-0 mb-10 reveal text-sm sm:text-base"
+                        style="color:rgba(176,228,204,0.5); font-family:'Space Grotesk',sans-serif; transition-delay:.3s;">
+                        DevePexel is a premium code agency specializing in WordPress development, custom web
+                        applications, graphic design, SEO optimization, and digital marketing that drive measurable
+                        business results.
+                    </p>
+
+                    <!-- CTA buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12 reveal"
+                        style="transition-delay:.4s;">
+                        <a href="#contact" class="btn-primary px-8 py-4 flex items-center justify-center gap-2 text-sm"
+                            style="color:#F0FFF8;">
+                            <span>Start Your Project</span>
+                            <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                        <a href="#services"
+                            class="btn-outline px-8 py-4 flex items-center justify-center gap-2 text-sm">
+                            <i class="fas fa-code text-xs"></i>
+                            <span>Our Services</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust row -->
+                    <div class="reveal" style="transition-delay:.5s;">
+                        <p class="text-xs mb-4"
+                            style="color:rgba(176,228,204,0.35); font-family:'Space Grotesk',sans-serif; letter-spacing:.1em;">
+                            TECHNOLOGIES WE MASTER</p>
+                        <div class="flex items-center gap-6 justify-center lg:justify-start flex-wrap">
+                            <div class="glass px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="color:rgba(176,228,204,0.5);">WordPress</div>
+                            <div class="glass px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="color:rgba(176,228,204,0.5);">React</div>
+                            <div class="glass px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="color:rgba(176,228,204,0.5);">Node.js</div>
+                            <div class="glass px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="color:rgba(176,228,204,0.5);">PHP</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Right: Code window & badges ── -->
+                <div class="flex justify-center items-center relative reveal-right" style="transition-delay:.3s;">
+                    <div class="relative w-full max-w-lg">
+
+                        <!-- Glow background -->
+                        <div class="absolute inset-0 rounded-2xl blur-3xl opacity-20"
+                            style="background:radial-gradient(circle,#285A48,transparent 70%); animation:orbDrift 8s ease-in-out infinite;">
+                        </div>
+
+                        <!-- Code window -->
+                        <div class="code-window relative z-10">
+                            <div class="code-window-bar">
+                                <div class="code-dot" style="background:#ff5f56;"></div>
+                                <div class="code-dot" style="background:#febc2e;"></div>
+                                <div class="code-dot" style="background:#27c93f;"></div>
+                                <span class="ml-3 text-xs font-grotesk"
+                                    style="color:rgba(176,228,204,0.35);">devepexel.code — agency.js</span>
+                            </div>
+                            <div class="p-6 font-mono text-sm leading-relaxed" style="background:#091413;">
+                                <div style="color:rgba(176,228,204,0.3);">// DevePexel Code Agency</div>
+                                <div class="mt-3">
+                                    <span style="color:#408A71;">const </span>
+                                    <span style="color:#B0E4CC;">agency </span>
+                                    <span style="color:rgba(176,228,204,0.5);">= </span>
+                                    <span style="color:#285A48;">{</span>
+                                </div>
+                                <div class="pl-4">
+                                    <span style="color:#B0E4CC;">name</span>
+                                    <span style="color:rgba(176,228,204,0.4);">: </span>
+                                    <span style="color:#408A71;">"DevePexel"</span><span
+                                        style="color:rgba(176,228,204,0.4);">,</span>
+                                </div>
+                                <div class="pl-4">
+                                    <span style="color:#B0E4CC;">mission</span>
+                                    <span style="color:rgba(176,228,204,0.4);">: </span>
+                                    <span style="color:#408A71;">"Code Excellence"</span><span
+                                        style="color:rgba(176,228,204,0.4);">,</span>
+                                </div>
+                                <div class="pl-4">
+                                    <span style="color:#B0E4CC;">services</span>
+                                    <span style="color:rgba(176,228,204,0.4);">: [</span>
+                                </div>
+                                <div class="pl-8" style="color:#408A71;">"WordPress", "Web Dev",</div>
+                                <div class="pl-8" style="color:#408A71;">"Graphic Design", "SEO",</div>
+                                <div class="pl-8" style="color:#408A71;">"Digital Marketing"</div>
+                                <div class="pl-4" style="color:rgba(176,228,204,0.4);">],</div>
+                                <div class="pl-4">
+                                    <span style="color:#B0E4CC;">clients</span>
+                                    <span style="color:rgba(176,228,204,0.4);">: </span>
+                                    <span style="color:#B0E4CC;">150</span><span
+                                        style="color:rgba(176,228,204,0.4);">,</span>
+                                </div>
+                                <div class="pl-4">
+                                    <span style="color:#B0E4CC;">projects</span>
+                                    <span style="color:rgba(176,228,204,0.4);">: </span>
+                                    <span style="color:#B0E4CC;">350</span><span
+                                        style="color:rgba(176,228,204,0.4);">,</span>
+                                </div>
+                                <div class="pl-4">
+                                    <span style="color:#B0E4CC;">quality</span>
+                                    <span style="color:rgba(176,228,204,0.4);">: </span>
+                                    <span style="color:#408A71;">true</span>
+                                </div>
+                                <div style="color:#285A48;">}</div>
+                                <div class="mt-3 flex items-center gap-1">
+                                    <span style="color:rgba(176,228,204,0.3);">$ </span>
+                                    <span style="color:#B0E4CC;">npm run </span>
+                                    <span style="color:#408A71;">build-success</span>
+                                    <span class="inline-block w-2 h-4 ml-1 animate-pulse"
+                                        style="background:#408A71;"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating badges -->
+                        <div class="float-badge absolute -top-6 -right-4 glass-card rounded-2xl px-4 py-3 shadow-xl"
+                            style="animation-duration:4s; animation-delay:0s;">
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 rounded-xl flex items-center justify-center text-sm"
+                                    style="background:linear-gradient(135deg,rgba(40,90,72,0.5),rgba(64,138,113,0.3));">
+                                    ⭐</div>
+                                <div>
+                                    <div class="font-syne font-bold text-sm" style="color:#F0FFF8;">100% Satisfaction
+                                    </div>
+                                    <div class="text-xs" style="color:rgba(176,228,204,0.4);">Client Rating</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="float-badge absolute -bottom-6 -left-4 glass-card rounded-2xl px-4 py-3 shadow-xl"
+                            style="animation-duration:5s; animation-delay:.8s;">
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 rounded-xl flex items-center justify-center text-sm"
+                                    style="background:linear-gradient(135deg,rgba(40,90,72,0.5),rgba(64,138,113,0.3));">
+                                    🚀</div>
+                                <div>
+                                    <div class="font-syne font-bold text-sm" style="color:#F0FFF8;">350+ Projects</div>
+                                    <div class="text-xs" style="color:rgba(176,228,204,0.4);">Successfully Delivered
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="float-badge absolute top-1/2 -left-10 glass-card rounded-xl px-3 py-2 shadow-xl"
+                            style="animation-duration:3.5s; animation-delay:1.5s;">
+                            <div class="flex items-center gap-2">
+                                <span class="text-lg">💻</span>
+                                <div class="text-xs font-grotesk font-semibold" style="color:#B0E4CC;">Code First</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Stats row ── -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-20 reveal" style="transition-delay:.6s;">
+                <div class="stat-item p-6 text-center">
+                    <div class="font-syne font-extrabold text-3xl lg:text-4xl num-gradient mb-1" data-count="150">0
+                    </div>
+                    <div class="text-sm font-grotesk" style="color:rgba(176,228,204,0.45);">Happy Clients</div>
+                </div>
+                <div class="stat-item p-6 text-center">
+                    <div class="font-syne font-extrabold text-3xl lg:text-4xl num-gradient mb-1" data-count="350">0
+                    </div>
+                    <div class="text-sm font-grotesk" style="color:rgba(176,228,204,0.45);">Projects Delivered</div>
+                </div>
+                <div class="stat-item p-6 text-center">
+                    <div class="font-syne font-extrabold text-3xl lg:text-4xl num-gradient mb-1" data-count="6">0</div>
+                    <div class="text-sm font-grotesk" style="color:rgba(176,228,204,0.45);">Years Experience</div>
+                </div>
+                <div class="stat-item p-6 text-center">
+                    <div class="font-syne font-extrabold text-3xl lg:text-4xl num-gradient mb-1" data-count="100">0
+                    </div>
+                    <div class="text-sm font-grotesk" style="color:rgba(176,228,204,0.45);">% Code Quality</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll hint -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" style="opacity:.4;">
+            <span class="text-xs font-grotesk" style="color:rgba(176,228,204,0.5);">Scroll to explore</span>
+            <div class="w-5 h-8 rounded-full flex justify-center pt-2" style="border:1px solid rgba(64,138,113,0.3);">
+                <div class="w-1 h-2 rounded-full animate-bounce" style="background:#408A71;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee strip -->
+    <div class="relative z-10 py-4 overflow-hidden"
+        style="background:rgba(40,90,72,0.04); border-top:1px solid rgba(64,138,113,0.08); border-bottom:1px solid rgba(64,138,113,0.08);">
+        <div class="marquee-wrap">
+            <div class="marquee-track gap-8 text-sm pr-8"
+                style="color:rgba(176,228,204,0.3); font-family:'Space Grotesk',sans-serif;">
+                <span class="whitespace-nowrap flex items-center gap-8">
+                    <span style="color:#408A71;">✦</span> WordPress Development
+                    <span style="color:#408A71;">✦</span> Web Development
+                    <span style="color:#408A71;">✦</span> Graphic Design
+                    <span style="color:#408A71;">✦</span> SEO Optimization
+                    <span style="color:#408A71;">✦</span> Digital Marketing
+                    <span style="color:#408A71;">✦</span> E-Commerce Solutions
+                    <span style="color:#408A71;">✦</span> Custom Web Apps
+                    <span style="color:#408A71;">✦</span> Branding & Identity
+                    <span style="color:#408A71;">✦</span> Content Strategy
+                    <span style="color:#408A71;">✦</span> WordPress Development
+                    <span style="color:#408A71;">✦</span> Web Development
+                    <span style="color:#408A71;">✦</span> Graphic Design
+                    <span style="color:#408A71;">✦</span> SEO Optimization
+                    <span style="color:#408A71;">✦</span> Digital Marketing
+                    <span style="color:#408A71;">✦</span> E-Commerce Solutions
+                    <span style="color:#408A71;">✦</span> Custom Web Apps
+                    <span style="color:#408A71;">✦</span> Branding & Identity
+                    <span style="color:#408A71;">✦</span> Content Strategy
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- SERVICES SECTION                                              -->
+    <!-- ============================================================ -->
+    <section id="services" class="py-24 lg:py-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Header -->
+            <div class="text-center mb-16 reveal">
+                <div class="flex items-center gap-3 justify-center mb-5">
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                    <span class="section-label">What We Code</span>
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                </div>
+                <h2 class="font-syne font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4" style="color:#F0FFF8;">
+                    Services That <span class="gradient-text-2">Deliver Results</span>
+                </h2>
+                <p class="max-w-2xl mx-auto text-sm sm:text-base font-grotesk" style="color:rgba(176,228,204,0.5);">
+                    From WordPress sites to comprehensive digital marketing campaigns — we handle every line of code
+                    with precision and expertise.
+                </p>
+            </div>
+
+            <!-- Services grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Service 1 — WordPress -->
+                <div class="service-card p-8 reveal" style="transition-delay:.0s;">
+                    <div class="icon-box mb-6">
+                        <i class="fab fa-wordpress text-xl" style="color:#B0E4CC;"></i>
+                    </div>
+                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">WordPress Development</h3>
+                    <p class="text-sm leading-relaxed mb-6"
+                        style="color:rgba(176,228,204,0.5); font-family:'Space Grotesk',sans-serif;">
+                        Custom WordPress themes, plugins, and full-site builds. Fast, secure, and SEO-optimized from day
+                        one.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">WordPress</span>
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">PHP</span>
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">WooCommerce</span>
+                    </div>
+                    <a href="#contact"
+                        class="flex items-center gap-2 text-sm font-grotesk font-semibold transition-all group"
+                        style="color:#408A71;" onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='#408A71'">
+                        Learn more
+                        <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 2 — Web Dev -->
+                <div class="service-card p-8 reveal" style="transition-delay:.1s;">
+                    <div class="icon-box mb-6">
+                        <i class="fas fa-code text-xl" style="color:#B0E4CC;"></i>
+                    </div>
+                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">Web Development</h3>
+                    <p class="text-sm leading-relaxed mb-6"
+                        style="color:rgba(176,228,204,0.5); font-family:'Space Grotesk',sans-serif;">
+                        Modern web applications built with React, Next.js, and Node.js. Scalable architecture for
+                        growing businesses.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">React</span>
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">Next.js</span>
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">Node.js</span>
+                    </div>
+                    <a href="#contact"
+                        class="flex items-center gap-2 text-sm font-grotesk font-semibold transition-all group"
+                        style="color:#408A71;" onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='#408A71'">
+                        Learn more
+                        <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 3 — Graphic Design -->
+                <div class="service-card p-8 reveal" style="transition-delay:.2s;">
+                    <div class="icon-box mb-6">
+                        <i class="fas fa-palette text-xl" style="color:#B0E4CC;"></i>
+                    </div>
+                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">Graphic Design</h3>
+                    <p class="text-sm leading-relaxed mb-6"
+                        style="color:rgba(176,228,204,0.5); font-family:'Space Grotesk',sans-serif;">
+                        Brand identity, UI/UX design, and visual content that converts. Pixel-perfect designs that tell
+                        your story.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">Figma</span>
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">Adobe CC</span>
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">UI/UX</span>
+                    </div>
+                    <a href="#contact"
+                        class="flex items-center gap-2 text-sm font-grotesk font-semibold transition-all group"
+                        style="color:#408A71;" onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='#408A71'">
+                        Learn more
+                        <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 4 — SEO -->
+                <div class="service-card p-8 reveal" style="transition-delay:.3s;">
+                    <div class="icon-box mb-6">
+                        <i class="fas fa-search text-xl" style="color:#B0E4CC;"></i>
+                    </div>
+                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">SEO Optimization</h3>
+                    <p class="text-sm leading-relaxed mb-6"
+                        style="color:rgba(176,228,204,0.5); font-family:'Space Grotesk',sans-serif;">
+                        Technical SEO, keyword research, and on-page optimization that gets you ranking on page 1 of
+                        Google.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">Technical SEO</span>
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">Analytics</span>
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">Keywords</span>
+                    </div>
+                    <a href="#contact"
+                        class="flex items-center gap-2 text-sm font-grotesk font-semibold transition-all group"
+                        style="color:#408A71;" onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='#408A71'">
+                        Learn more
+                        <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 5 — Digital Marketing -->
+                <div class="service-card p-8 reveal" style="transition-delay:.4s;">
+                    <div class="icon-box mb-6">
+                        <i class="fas fa-bullhorn text-xl" style="color:#B0E4CC;"></i>
+                    </div>
+                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">Digital Marketing</h3>
+                    <p class="text-sm leading-relaxed mb-6"
+                        style="color:rgba(176,228,204,0.5); font-family:'Space Grotesk',sans-serif;">
+                        Social media campaigns, PPC advertising, email marketing, and content strategy that drives
+                        conversions.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">Social Media</span>
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">PPC</span>
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">Email</span>
+                    </div>
+                    <a href="#contact"
+                        class="flex items-center gap-2 text-sm font-grotesk font-semibold transition-all group"
+                        style="color:#408A71;" onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='#408A71'">
+                        Learn more
+                        <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 6 — CTA card -->
+                <div class="service-card p-8 reveal relative overflow-hidden"
+                    style="transition-delay:.5s; background:linear-gradient(135deg,rgba(40,90,72,0.12),rgba(64,138,113,0.06));">
+                    <div class="absolute inset-0 opacity-5"
+                        style="background:radial-gradient(circle at 70% 30%, #B0E4CC, transparent 60%);"></div>
+                    <div class="relative z-10">
+                        <div class="text-4xl mb-5">💬</div>
+                        <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">Need Something Custom?</h3>
+                        <p class="text-sm leading-relaxed mb-6"
+                            style="color:rgba(176,228,204,0.5); font-family:'Space Grotesk',sans-serif;">
+                            We love unique challenges. Tell us your vision and we'll code the perfect solution for you.
+                        </p>
+                        <a href="#contact" class="btn-primary px-6 py-3 inline-flex items-center gap-2 text-sm"
+                            style="color:#F0FFF8;">
+                            <span>Let's Talk</span>
+                            <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+    
+
+    <!-- ============================================================ -->
+    <!-- CTA SECTION / CONTACT                                         -->
+    <!-- ============================================================ -->
+    <section id="contact" class="py-24 relative z-10">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="cta-section p-10 lg:p-16 text-center reveal">
+                <div class="relative z-10">
+                    <div class="flex items-center gap-3 justify-center mb-5">
+                        <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                        <span class="section-label">Get In Touch</span>
+                        <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                    </div>
+
+                    <h2 class="font-syne font-extrabold mb-4 leading-tight"
+                        style="font-size:clamp(28px,5vw,56px); color:#F0FFF8;">
+                        Ready to Start <span class="gradient-text-2">Your Project?</span>
+                    </h2>
+                    <p class="max-w-xl mx-auto mb-10 font-grotesk text-sm sm:text-base"
+                        style="color:rgba(176,228,204,0.5);">
+                        Let's turn your ideas into code. Contact DevePexel today for a free consultation and project
+                        estimate.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+                        <a href="mailto:hello@devepexel.com"
+                            class="btn-primary px-8 py-4 flex items-center justify-center gap-2 text-sm"
+                            style="color:#F0FFF8;">
+                            <i class="fas fa-envelope text-xs"></i>
+                            <span>hello@devepexel.com</span>
+                        </a>
+                        <a href="tel:+1234567890"
+                            class="btn-outline px-8 py-4 flex items-center justify-center gap-2 text-sm">
+                            <i class="fas fa-phone text-xs"></i>
+                            <span>+1 (234) 567-890</span>
+                        </a>
+                    </div>
+
+                    <!-- Quick contact cards -->
+                    <div class="grid sm:grid-cols-3 gap-4">
+                        <div class="glass-card rounded-2xl p-5 text-center">
+                            <div class="text-2xl mb-2">📧</div>
+                            <div class="text-xs font-grotesk mb-1" style="color:rgba(176,228,204,0.4);">Email Us</div>
+                            <div class="text-sm font-grotesk font-semibold" style="color:#B0E4CC;">hello@devepexel.com
+                            </div>
+                        </div>
+                        <div class="glass-card rounded-2xl p-5 text-center">
+                            <div class="text-2xl mb-2">💬</div>
+                            <div class="text-xs font-grotesk mb-1" style="color:rgba(176,228,204,0.4);">WhatsApp</div>
+                            <div class="text-sm font-grotesk font-semibold" style="color:#B0E4CC;">+1 (234) 567-890
+                            </div>
+                        </div>
+                        <div class="glass-card rounded-2xl p-5 text-center">
+                            <div class="text-2xl mb-2">📍</div>
+                            <div class="text-xs font-grotesk mb-1" style="color:rgba(176,228,204,0.4);">Office</div>
+                            <div class="text-sm font-grotesk font-semibold" style="color:#B0E4CC;">Your City</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER                                                        -->
+    <!-- ============================================================ -->
+    <footer class="relative z-10 pt-16 pb-8"
+        style="background:linear-gradient(180deg,transparent 0%,rgba(4,9,9,0.98) 30%,#040909 100%); border-top:1px solid rgba(64,138,113,0.08);">
+
+        <!-- Top glow line -->
+        <div class="glow-line mb-12"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+                <!-- Brand -->
+                <div class="lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center"
+                            style="background:linear-gradient(135deg,#285A48,#408A71); box-shadow:0 4px 15px rgba(40,90,72,0.3);">
+                            <span class="font-syne font-bold text-lg" style="color:#B0E4CC;">D</span>
+                        </div>
+                        <div>
+                            <div class="font-syne font-bold text-lg" style="color:#F0FFF8;">Deve<span
+                                    style="color:#408A71;">Pexel</span></div>
+                            <div class="text-xs tracking-widest" style="color:rgba(176,228,204,0.35);">CODE AGENCY
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-6 font-grotesk" style="color:rgba(176,228,204,0.35);">
+                        Professional code agency specializing in WordPress, web development, and digital solutions.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="#"
+                            class="w-9 h-9 glass rounded-xl flex items-center justify-center text-sm transition-all hover:scale-110 hover:-translate-y-1"
+                            style="color:rgba(176,228,204,0.4);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.4)'">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#"
+                            class="w-9 h-9 glass rounded-xl flex items-center justify-center text-sm transition-all hover:scale-110 hover:-translate-y-1"
+                            style="color:rgba(176,228,204,0.4);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.4)'">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#"
+                            class="w-9 h-9 glass rounded-xl flex items-center justify-center text-sm transition-all hover:scale-110 hover:-translate-y-1"
+                            style="color:rgba(176,228,204,0.4);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.4)'">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#"
+                            class="w-9 h-9 glass rounded-xl flex items-center justify-center text-sm transition-all hover:scale-110 hover:-translate-y-1"
+                            style="color:rgba(176,228,204,0.4);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.4)'">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="font-syne font-semibold text-sm mb-5 flex items-center gap-2" style="color:#F0FFF8;">
+                        <span style="color:#408A71; font-size:8px;">✦</span> Services
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">WordPress Development</a></li>
+                        <li><a href="#" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Web Development</a></li>
+                        <li><a href="#" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Graphic Design</a></li>
+                        <li><a href="#" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">SEO Optimization</a></li>
+                        <li><a href="#" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Digital Marketing</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company -->
+                <div>
+                    <h4 class="font-syne font-semibold text-sm mb-5 flex items-center gap-2" style="color:#F0FFF8;">
+                        <span style="color:#408A71; font-size:8px;">✦</span> Company
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Home</a></li>
+                        <li><span class="text-sm font-grotesk" style="color:rgba(176,228,204,0.15);">Services (Coming
+                                Soon)</span></li>
+                        <li><span class="text-sm font-grotesk" style="color:rgba(176,228,204,0.15);">Contact (Coming
+                                Soon)</span></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="font-syne font-semibold text-sm mb-5 flex items-center gap-2" style="color:#F0FFF8;">
+                        <span style="color:#408A71; font-size:8px;">✦</span> Get In Touch
+                    </h4>
+                    <p class="text-sm font-grotesk mb-4" style="color:rgba(176,228,204,0.35);">
+                        Ready to start your project?
+                    </p>
+                    <div class="space-y-3">
+                        <a href="mailto:hello@devepexel.com" class="text-sm font-grotesk block transition-colors"
+                            style="color:rgba(176,228,204,0.5);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.5)'">
+                            <i class="fas fa-envelope mr-2" style="color:#408A71;"></i>
+                            hello@devepexel.com
+                        </a>
+                        <a href="tel:+1234567890" class="text-sm font-grotesk block transition-colors"
+                            style="color:rgba(176,228,204,0.5);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.5)'">
+                            <i class="fas fa-phone mr-2" style="color:#408A71;"></i>
+                            +1 (234) 567-890
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer bottom -->
+            <div class="divider mb-6"></div>
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-5 pb-8">
+
+                <div class="flex flex-col sm:flex-row items-center gap-4">
+                    <p class="text-xs font-grotesk" style="color:rgba(176,228,204,0.25);">
+                        © 2024 <span style="color:#408A71;">DevePexel</span> · All rights reserved
+                    </p>
+                    <span class="hidden sm:inline text-xs" style="color:rgba(176,228,204,0.15);">·</span>
+                    <p class="text-xs font-grotesk flex items-center gap-1" style="color:rgba(176,228,204,0.25);">
+                        Coded with <span style="color:#408A71;">♥</span> by DevePexel Team
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-grotesk"
+                    style="background:rgba(40,90,72,0.06); border:1px solid rgba(64,138,113,0.12);">
+                    <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                    <span style="color:rgba(176,228,204,0.4);">Available for new projects</span>
+                </div>
+
+                <div class="flex items-center gap-5">
+                    <a href="#" class="text-xs font-grotesk transition-colors" style="color:rgba(176,228,204,0.25);"
+                        onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='rgba(176,228,204,0.25)'">Privacy</a>
+                    <a href="#" class="text-xs font-grotesk transition-colors" style="color:rgba(176,228,204,0.25);"
+                        onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='rgba(176,228,204,0.25)'">Terms</a>
+                    <a href="#home"
+                        class="w-9 h-9 rounded-xl flex items-center justify-center transition-all hover:-translate-y-1"
+                        style="background:rgba(40,90,72,0.1); border:1px solid rgba(64,138,113,0.2); color:#408A71;"
+                        onmouseover="this.style.background='rgba(40,90,72,0.2)'"
+                        onmouseout="this.style.background='rgba(40,90,72,0.1)'">
+                        <i class="fas fa-arrow-up text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Signature -->
+            <div class="text-center pb-6">
+                <p class="font-syne text-sm" style="color:rgba(40,90,72,0.3); letter-spacing:.15em;">
+                    ✦ &nbsp; DEVEPEXEL · CODE · BUILD · SCALE &nbsp; ✦
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT                                                    -->
+    <!-- ============================================================ -->
+    <script>
+        // ── Hero Canvas — floating nodes + connecting lines ─────────────
+        (function () {
+            const canvas = document.getElementById('hero-canvas');
+            const ctx = canvas.getContext('2d');
+
+            function resize() {
+                canvas.width = canvas.offsetWidth;
+                canvas.height = canvas.offsetHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            const NODE_COUNT = window.innerWidth < 768 ? 30 : 60;
+            const nodes = Array.from({ length: NODE_COUNT }, () => ({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                r: Math.random() * 2 + 1,
+                opacity: Math.random() * 0.4 + 0.1,
+            }));
+
+            let mouseX = -1000, mouseY = -1000;
+            canvas.addEventListener('mousemove', e => {
+                const rect = canvas.getBoundingClientRect();
+                mouseX = e.clientX - rect.left;
+                mouseY = e.clientY - rect.top;
+            });
+
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Draw connections
+                nodes.forEach((a, i) => {
+                    nodes.slice(i + 1).forEach(b => {
+                        const dist = Math.hypot(a.x - b.x, a.y - b.y);
+                        if (dist < 130) {
+                            ctx.beginPath();
+                            ctx.moveTo(a.x, a.y);
+                            ctx.lineTo(b.x, b.y);
+                            const alpha = (1 - dist / 130) * 0.08;
+                            ctx.strokeStyle = `rgba(64,138,113,${alpha})`;
+                            ctx.lineWidth = 1;
+                            ctx.stroke();
+                        }
+                    });
+
+                    // Mouse connections
+                    const md = Math.hypot(a.x - mouseX, a.y - mouseY);
+                    if (md < 160) {
+                        ctx.beginPath();
+                        ctx.moveTo(a.x, a.y);
+                        ctx.lineTo(mouseX, mouseY);
+                        const alpha = (1 - md / 160) * 0.15;
+                        ctx.strokeStyle = `rgba(176,228,204,${alpha})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                });
+
+                // Draw nodes
+                nodes.forEach(n => {
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(64,138,113,${n.opacity})`;
+                    ctx.fill();
+
+                    // Move
+                    n.x += n.vx;
+                    n.y += n.vy;
+                    if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
+                    if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+                });
+
+                requestAnimationFrame(draw);
+            }
+            draw();
+        })();
+
+        // ── Typed.js ───────────────────────────────────────────────────
+        new Typed('#typed', {
+            strings: [
+                'WordPress Sites',
+                'Custom Web Apps',
+                'Graphic Design',
+                'SEO Campaigns',
+                'Digital Marketing',
+                'E-Commerce Solutions',
+            ],
+            typeSpeed: 65, backSpeed: 35, backDelay: 1800,
+            loop: true, cursorChar: '|'
+        });
+
+        // ── Custom cursor ──────────────────────────────────────────────
+        const cursor = document.getElementById('cursor');
+        const cursorDot = document.getElementById('cursorDot');
+        let cx = 0, cy = 0, dx = 0, dy = 0;
+
+        document.addEventListener('mousemove', e => {
+            cx = e.clientX; cy = e.clientY;
+            cursorDot.style.left = cx - 2.5 + 'px';
+            cursorDot.style.top = cy - 2.5 + 'px';
+        });
+        (function animCursor() {
+            dx += (cx - dx) * 0.1;
+            dy += (cy - dy) * 0.1;
+            cursor.style.left = dx - 9 + 'px';
+            cursor.style.top = dy - 9 + 'px';
+            requestAnimationFrame(animCursor);
+        })();
+
+        document.querySelectorAll('a, button, .glass-card, .service-card').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(2.5)';
+                cursor.style.borderColor = '#B0E4CC';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.borderColor = '#408A71';
+            });
+        });
+
+        // ── Navbar scroll ──────────────────────────────────────────────
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            const s = window.scrollY > 50;
+            navbar.style.backgroundColor = s ? 'rgba(9,20,19,0.97)' : 'rgba(176,228,204,0.02)';
+            navbar.style.borderBottom = s ? '1px solid rgba(64,138,113,0.12)' : '1px solid rgba(64,138,113,0.1)';
+            navbar.style.boxShadow = s ? '0 4px 30px rgba(9,20,19,0.5)' : 'none';
+
+            document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 500);
+        });
+
+        // ── Mobile menu ────────────────────────────────────────────────
+        const mobileMenu = document.getElementById('mobileMenu');
+        const overlayEl = document.getElementById('overlay');
+
+        function openMenu() {
+            mobileMenu.classList.add('open'); overlayEl.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            document.getElementById('b1').style.cssText = 'transform:rotate(45deg) translateY(8px); background:#408A71;';
+            document.getElementById('b2').style.opacity = '0';
+            document.getElementById('b3').style.cssText = 'transform:rotate(-45deg) translateY(-8px); width:20px; background:#408A71;';
+        }
+        function closeMenu() {
+            mobileMenu.classList.remove('open'); overlayEl.classList.add('hidden');
+            document.body.style.overflow = '';
+            ['b1', 'b2', 'b3'].forEach(id => document.getElementById(id).style.cssText = '');
+        }
+
+        document.getElementById('menuBtn').addEventListener('click', openMenu);
+        document.getElementById('closeMenu').addEventListener('click', closeMenu);
+        overlayEl.addEventListener('click', closeMenu);
+        document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', closeMenu));
+
+        // ── Scroll reveals ─────────────────────────────────────────────
+        const revealObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('visible');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => revealObs.observe(el));
+
+        // ── Counter animation ──────────────────────────────────────────
+        function animCount(el, target) {
+            let n = 0; const step = target / 80;
+            const t = setInterval(() => {
+                n = Math.min(n + step, target);
+                el.textContent = Math.floor(n) + '+';
+                if (n >= target) {
+                    clearInterval(t);
+                    if (el.getAttribute('data-count') === '100') el.textContent = '100%';
+                }
+            }, 20);
+        }
+
+        new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.querySelectorAll('[data-count]').forEach(el => {
+                        animCount(el, parseInt(el.getAttribute('data-count')));
+                    });
+                }
+            });
+        }, { threshold: 0.5 }).observe(document.querySelector('#home'));
+
+        // ── Smooth scroll ──────────────────────────────────────────────
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                const t = document.querySelector(a.getAttribute('href'));
+                if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            });
+        });
+
+        // ── Initial reveal ─────────────────────────────────────────────
+        setTimeout(() => {
+            document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
+            });
+        }, 100);
+
+        console.log('%c✦ DevePexel — Code Agency Homepage', 'color:#408A71; font-size:14px; font-weight:bold;');
+    </script>
+</body>
+
+</html>

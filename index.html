@@ -1,0 +1,2345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoftNest — Digital Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ========================= */
+        /* ROOT & RESET              */
+        /* ========================= */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --deep: #091413;
+            --primary: #285A48;
+            --mid: #408A71;
+            --light: #B0E4CC;
+            --white: #F0FFF8;
+            --text: rgba(176, 228, 204, 0.7);
+            --border: rgba(64, 138, 113, 0.18);
+            --glow: rgba(40, 90, 72, 0.25);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #091413;
+            color: #B0E4CC;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #091413;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(#285A48, #B0E4CC);
+            border-radius: 10px;
+        }
+
+        /* ========================= */
+        /* BACKGROUND SYSTEM         */
+        /* ========================= */
+
+        /* Animated canvas */
+        #hero-canvas {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Grid overlay */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(64, 138, 113, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(64, 138, 113, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        /* Noise texture */
+        .bg-noise {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        /* Glow orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .orb-1 {
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(40, 90, 72, 0.14), transparent 70%);
+            top: -250px;
+            left: -200px;
+            animation: orbDrift 16s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, rgba(64, 138, 113, 0.1), transparent 70%);
+            bottom: -150px;
+            right: -150px;
+            animation: orbDrift 20s ease-in-out infinite reverse;
+        }
+
+        .orb-3 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(176, 228, 204, 0.05), transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: orbDrift 24s ease-in-out infinite;
+        }
+
+        @keyframes orbDrift {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(40px, -30px) scale(1.05);
+            }
+
+            66% {
+                transform: translate(-25px, 20px) scale(0.95);
+            }
+        }
+
+        /* Scan line */
+        .scanline {
+            position: fixed;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(176, 228, 204, 0.08), rgba(64, 138, 113, 0.12), transparent);
+            z-index: 1;
+            pointer-events: none;
+            animation: scanMove 12s linear infinite;
+        }
+
+        @keyframes scanMove {
+            0% {
+                top: -2px;
+            }
+
+            100% {
+                top: 100vh;
+            }
+        }
+
+        /* ========================= */
+        /* TYPOGRAPHY                */
+        /* ========================= */
+
+        .font-syne {
+            font-family: 'Syne', sans-serif;
+        }
+
+        .font-grotesk {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #F0FFF8 0%, #B0E4CC 30%, #408A71 60%, #285A48 80%, #B0E4CC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% auto;
+            animation: textShimmer 5s linear infinite;
+        }
+
+        .gradient-text-2 {
+            background: linear-gradient(135deg, #B0E4CC, #408A71, #B0E4CC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @keyframes textShimmer {
+            0% {
+                background-position: 0% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        /* ========================= */
+        /* GLASSMORPHISM             */
+        /* ========================= */
+
+        .glass {
+            background: rgba(176, 228, 204, 0.02);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(64, 138, 113, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(9, 20, 19, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(64, 138, 113, 0.15);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(64, 138, 113, 0.45);
+            box-shadow: 0 25px 60px rgba(40, 90, 72, 0.18), 0 0 40px rgba(64, 138, 113, 0.06), inset 0 1px 0 rgba(176, 228, 204, 0.06);
+            transform: translateY(-6px);
+        }
+
+        /* ========================= */
+        /* NAVIGATION                */
+        /* ========================= */
+
+        .nav-link {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: rgba(176, 228, 204, 0.55);
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, #285A48, #B0E4CC);
+            transition: width 0.4s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #B0E4CC;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* ========================= */
+        /* BUTTONS                   */
+        /* ========================= */
+
+        .btn-primary {
+            background: linear-gradient(135deg, #285A48, #408A71);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            transition: all 0.4s ease;
+            border-radius: 12px;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #408A71, #B0E4CC);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: 12px;
+        }
+
+        .btn-primary:hover::before {
+            opacity: 1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(40, 90, 72, 0.4);
+        }
+
+        .btn-primary>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(64, 138, 113, 0.45);
+            color: #B0E4CC;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: rgba(40, 90, 72, 0.15);
+            border-color: rgba(64, 138, 113, 0.8);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(40, 90, 72, 0.2);
+            color: #F0FFF8;
+        }
+
+        /* ========================= */
+        /* HERO SECTION              */
+        /* ========================= */
+
+        /* Floating badge */
+        .float-badge {
+            animation: floatBadge ease-in-out infinite;
+        }
+
+        @keyframes floatBadge {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-12px) rotate(2deg);
+            }
+        }
+
+        /* Hero code window */
+        .code-window {
+            background: rgba(9, 20, 19, 0.95);
+            border: 1px solid rgba(64, 138, 113, 0.25);
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .code-window-bar {
+            background: rgba(40, 90, 72, 0.2);
+            border-bottom: 1px solid rgba(64, 138, 113, 0.15);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .code-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        /* Typing cursor */
+        .typed-cursor {
+            color: #B0E4CC;
+        }
+
+        /* Animated counter */
+        .counter-item {
+            position: relative;
+        }
+
+        .counter-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(40, 90, 72, 0.08), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .counter-item:hover::before {
+            opacity: 1;
+        }
+
+        /* Marquee */
+        .marquee-wrap {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-track {
+            display: inline-flex;
+            animation: marqueeScroll 30s linear infinite;
+        }
+
+        @keyframes marqueeScroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ========================= */
+        /* SERVICE CARDS             */
+        /* ========================= */
+
+        .service-card {
+            background: rgba(9, 20, 19, 0.9);
+            border: 1px solid rgba(64, 138, 113, 0.12);
+            border-radius: 20px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #285A48, #B0E4CC, transparent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            border-color: rgba(64, 138, 113, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(40, 90, 72, 0.15), 0 0 30px rgba(64, 138, 113, 0.05);
+        }
+
+        /* Icon box */
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(40, 90, 72, 0.3), rgba(64, 138, 113, 0.15));
+            border: 1px solid rgba(64, 138, 113, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+        }
+
+        .service-card:hover .icon-box {
+            background: linear-gradient(135deg, rgba(40, 90, 72, 0.5), rgba(64, 138, 113, 0.3));
+            border-color: rgba(64, 138, 113, 0.5);
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* ========================= */
+        /* PROCESS STEPS             */
+        /* ========================= */
+
+        .step-line {
+            width: 1px;
+            background: linear-gradient(180deg, #285A48, rgba(40, 90, 72, 0.1));
+        }
+
+        .step-num {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(40, 90, 72, 0.2);
+            border: 1px solid rgba(64, 138, 113, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            color: #B0E4CC;
+            font-size: 16px;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-num::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 1px solid rgba(64, 138, 113, 0.2);
+            animation: stepPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes stepPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* ========================= */
+        /* TECH STACK                */
+        /* ========================= */
+
+        .tech-pill {
+            background: rgba(40, 90, 72, 0.1);
+            border: 1px solid rgba(64, 138, 113, 0.2);
+            border-radius: 100px;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .tech-pill:hover {
+            background: rgba(40, 90, 72, 0.25);
+            border-color: rgba(64, 138, 113, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(40, 90, 72, 0.15);
+        }
+
+        /* ========================= */
+        /* TESTIMONIALS              */
+        /* ========================= */
+
+        .testimonial-card {
+            background: rgba(9, 20, 19, 0.9);
+            border: 1px solid rgba(64, 138, 113, 0.12);
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '\201C';
+            position: absolute;
+            top: -8px;
+            left: 20px;
+            font-size: 72px;
+            font-family: 'Syne', sans-serif;
+            color: rgba(64, 138, 113, 0.12);
+            line-height: 1;
+        }
+
+        .testimonial-card:hover {
+            border-color: rgba(64, 138, 113, 0.35);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(40, 90, 72, 0.12);
+        }
+
+        /* ========================= */
+        /* SCROLL REVEALS            */
+        /* ========================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal.visible,
+        .reveal-left.visible,
+        .reveal-right.visible,
+        .reveal-scale.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* ========================= */
+        /* MOBILE MENU               */
+        /* ========================= */
+
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        /* ========================= */
+        /* CURSOR                    */
+        /* ========================= */
+
+        .cursor {
+            width: 18px;
+            height: 18px;
+            border: 1.5px solid #408A71;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.15s ease;
+        }
+
+        .cursor-dot {
+            width: 5px;
+            height: 5px;
+            background: #B0E4CC;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Scroll top */
+        .scroll-top {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #285A48, #408A71);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #F0FFF8;
+            cursor: pointer;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(40, 90, 72, 0.4);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-4px) scale(1.1);
+        }
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(64, 138, 113, 0.25), rgba(176, 228, 204, 0.15), transparent);
+        }
+
+        /* Stats bar */
+        .stat-item {
+            border: 1px solid rgba(64, 138, 113, 0.1);
+            background: rgba(40, 90, 72, 0.04);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            border-color: rgba(64, 138, 113, 0.3);
+            background: rgba(40, 90, 72, 0.08);
+            transform: translateY(-4px);
+        }
+
+        /* CTA section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(40, 90, 72, 0.12) 0%, rgba(64, 138, 113, 0.06) 50%, rgba(40, 90, 72, 0.12) 100%);
+            border: 1px solid rgba(64, 138, 113, 0.15);
+            border-radius: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(176, 228, 204, 0.02) 50%, transparent 70%);
+            animation: cta-shine 4s linear infinite;
+        }
+
+        @keyframes cta-shine {
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(200%) rotate(45deg);
+            }
+        }
+
+        /* Section label */
+        .section-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            letter-spacing: 0.18em;
+            color: #408A71;
+            text-transform: uppercase;
+        }
+
+        /* Portfolio card */
+        .port-card {
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(64, 138, 113, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .port-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(9, 20, 19, 0.95), rgba(40, 90, 72, 0.9));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .port-card:hover .port-overlay {
+            opacity: 1;
+        }
+
+        .port-card:hover {
+            border-color: rgba(64, 138, 113, 0.4);
+            transform: translateY(-6px);
+            box-shadow: 0 25px 50px rgba(40, 90, 72, 0.18);
+        }
+
+        /* Number gradient */
+        .num-gradient {
+            background: linear-gradient(135deg, #B0E4CC, #408A71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Glow line */
+        .glow-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #285A48, #408A71, #B0E4CC, #408A71, #285A48, transparent);
+            opacity: 0.5;
+        }
+
+        @media (max-width: 768px) {
+
+            .cursor,
+            .cursor-dot {
+                display: none;
+            }
+
+            .bg-grid {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <!-- Scroll Top -->
+    <div class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fas fa-arrow-up text-sm"></i>
+    </div>
+
+    <!-- Background layers -->
+    <div class="bg-grid"></div>
+    <div class="bg-noise"></div>
+    <div class="scanline"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- ============================================================ -->
+    <!-- NAVBAR                                                        -->
+    <!-- ============================================================ -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+
+                <!-- Logo -->
+                <a href="#home" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center relative overflow-hidden group-hover:scale-110 transition-transform duration-300"
+                        style="background: linear-gradient(135deg, #285A48, #408A71); box-shadow: 0 4px 15px rgba(40,90,72,0.35);">
+                        <span class="font-syne font-bold text-lg" style="color:#B0E4CC;">S</span>
+                        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                            style="background: linear-gradient(135deg, #408A71, #B0E4CC);"></div>
+                        <span class="font-syne font-bold text-lg absolute" style="color:#091413; opacity:0;"
+                            id="logo-s2">S</span>
+                    </div>
+                    <div class="hidden sm:block">
+                        <div class="font-syne font-bold text-xl leading-none" style="color:#F0FFF8;">
+                            Soft<span style="color:#408A71;">Nest</span>
+                        </div>
+                        <div class="text-xs tracking-widest mt-0.5"
+                            style="color:rgba(176,228,204,0.4); font-family:'Space Grotesk',sans-serif;">DIGITAL AGENCY
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#work" class="nav-link">Our Work</a>
+                    <a href="#process" class="nav-link">Process</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <!-- Status pill -->
+                    <div class="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-grotesk"
+                        style="background:rgba(40,90,72,0.1); border:1px solid rgba(64,138,113,0.2); color:rgba(176,228,204,0.7);">
+                        <span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
+                        Available for projects
+                    </div>
+                    <a href="#contact" class="hidden lg:flex btn-primary text-sm px-6 py-2.5 items-center gap-2"
+                        style="color:#F0FFF8;">
+                        <span>Get Started</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                    <!-- Hamburger -->
+                    <button class="lg:hidden w-9 h-9 glass rounded-xl flex flex-col justify-center items-center gap-1.5"
+                        id="menuBtn">
+                        <span class="w-5 h-0.5 transition-all" style="background:rgba(176,228,204,0.7);" id="b1"></span>
+                        <span class="w-5 h-0.5 transition-all" style="background:rgba(176,228,204,0.7);" id="b2"></span>
+                        <span class="w-3 h-0.5 transition-all" style="background:rgba(176,228,204,0.7);" id="b3"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed top-0 right-0 h-full w-80 z-40 glass-card flex flex-col justify-center px-10"
+        id="mobileMenu">
+        <button class="absolute top-5 right-5 w-8 h-8 flex items-center justify-center"
+            style="color:rgba(176,228,204,0.5);" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="mb-10">
+            <div class="font-syne font-bold text-2xl" style="color:#F0FFF8;">
+                Soft<span style="color:#408A71;">Nest</span>
+            </div>
+            <div class="text-xs tracking-widest mt-1" style="color:rgba(176,228,204,0.35);">DIGITAL AGENCY</div>
+        </div>
+        <div class="flex flex-col gap-6">
+            <a href="#home" class="font-grotesk font-semibold text-lg transition-colors mobile-link"
+                style="color:rgba(176,228,204,0.6);" onmouseover="this.style.color='#B0E4CC'"
+                onmouseout="this.style.color='rgba(176,228,204,0.6)'">Home</a>
+            <a href="#services" class="font-grotesk font-semibold text-lg transition-colors mobile-link"
+                style="color:rgba(176,228,204,0.6);" onmouseover="this.style.color='#B0E4CC'"
+                onmouseout="this.style.color='rgba(176,228,204,0.6)'">Services</a>
+            <a href="#work" class="font-grotesk font-semibold text-lg transition-colors mobile-link"
+                style="color:rgba(176,228,204,0.6);" onmouseover="this.style.color='#B0E4CC'"
+                onmouseout="this.style.color='rgba(176,228,204,0.6)'">Our Work</a>
+            <a href="#process" class="font-grotesk font-semibold text-lg transition-colors mobile-link"
+                style="color:rgba(176,228,204,0.6);" onmouseover="this.style.color='#B0E4CC'"
+                onmouseout="this.style.color='rgba(176,228,204,0.6)'">Process</a>
+            <a href="#about" class="font-grotesk font-semibold text-lg transition-colors mobile-link"
+                style="color:rgba(176,228,204,0.6);" onmouseover="this.style.color='#B0E4CC'"
+                onmouseout="this.style.color='rgba(176,228,204,0.6)'">About</a>
+            <a href="#contact" class="font-grotesk font-semibold text-lg transition-colors mobile-link"
+                style="color:rgba(176,228,204,0.6);" onmouseover="this.style.color='#B0E4CC'"
+                onmouseout="this.style.color='rgba(176,228,204,0.6)'">Contact</a>
+            <a href="#contact" class="btn-primary mt-4 py-3.5 text-center text-sm" style="color:#F0FFF8;">
+                Get Started →
+            </a>
+        </div>
+    </div>
+    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-30 hidden" id="overlay"></div>
+
+    <!-- ============================================================ -->
+    <!-- HERO SECTION                                                  -->
+    <!-- ============================================================ -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+
+        <!-- Animated canvas -->
+        <canvas id="hero-canvas"></canvas>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 relative z-10 w-full">
+            <div class="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+
+                <!-- ── Left ── -->
+                <div class="text-center lg:text-left">
+
+                    <!-- Top label -->
+                    <div class="flex items-center gap-3 justify-center lg:justify-start mb-8 reveal">
+                        <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,#B0E4CC);"></div>
+                        <span class="section-label">Digital Innovation Agency</span>
+                        <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+                    </div>
+
+                    <!-- Main heading -->
+                    <h1 class="font-syne font-extrabold leading-[1.05] mb-6 reveal"
+                        style="font-size:clamp(40px,6vw,80px); transition-delay:.1s;">
+                        <span style="color:#F0FFF8;">We Build</span><br>
+                        <span class="gradient-text">Digital Products</span><br>
+                        <span style="color:#F0FFF8;">That </span>
+                        <em style="color:#408A71; font-style:normal;">Matter.</em>
+                    </h1>
+
+                    <!-- Typed line -->
+                    <div class="text-xl sm:text-2xl font-grotesk mb-6 reveal"
+                        style="color:rgba(176,228,204,0.65); transition-delay:.2s;">
+                        <span style="color:#408A71;">→ </span>
+                        <span id="typed"></span>
+                    </div>
+
+                    <!-- Description -->
+                    <p class="leading-relaxed max-w-lg mx-auto lg:mx-0 mb-10 reveal text-sm sm:text-base"
+                        style="color:rgba(176,228,204,0.5); font-family:'Space Grotesk',sans-serif; transition-delay:.3s;">
+                        SoftNest is a premium software agency transforming ideas into world-class digital experiences.
+                        We craft scalable web apps, mobile solutions, and AI-powered platforms that drive real business
+                        growth.
+                    </p>
+
+                    <!-- CTA buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12 reveal"
+                        style="transition-delay:.4s;">
+                        <a href="#contact" class="btn-primary px-8 py-4 flex items-center justify-center gap-2 text-sm"
+                            style="color:#F0FFF8;">
+                            <span>Start Your Project</span>
+                            <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                        <a href="#work" class="btn-outline px-8 py-4 flex items-center justify-center gap-2 text-sm">
+                            <i class="fas fa-play-circle text-xs"></i>
+                            <span>View Our Work</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust row -->
+                    <div class="reveal" style="transition-delay:.5s;">
+                        <p class="text-xs mb-4"
+                            style="color:rgba(176,228,204,0.35); font-family:'Space Grotesk',sans-serif; letter-spacing:.1em;">
+                            TRUSTED BY LEADING BRANDS</p>
+                        <div class="flex items-center gap-6 justify-center lg:justify-start flex-wrap">
+                            <div class="glass px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="color:rgba(176,228,204,0.5);">TechCorp</div>
+                            <div class="glass px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="color:rgba(176,228,204,0.5);">Nexus Inc.</div>
+                            <div class="glass px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="color:rgba(176,228,204,0.5);">Veridia</div>
+                            <div class="glass px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="color:rgba(176,228,204,0.5);">Orbis Labs</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Right: Code window & badges ── -->
+                <div class="flex justify-center items-center relative reveal-right" style="transition-delay:.3s;">
+                    <div class="relative w-full max-w-lg">
+
+                        <!-- Glow background -->
+                        <div class="absolute inset-0 rounded-2xl blur-3xl opacity-20"
+                            style="background:radial-gradient(circle,#285A48,transparent 70%); animation:orbDrift 8s ease-in-out infinite;">
+                        </div>
+
+                        <!-- Code window -->
+                        <div class="code-window relative z-10">
+                            <div class="code-window-bar">
+                                <div class="code-dot" style="background:#ff5f56;"></div>
+                                <div class="code-dot" style="background:#febc2e;"></div>
+                                <div class="code-dot" style="background:#27c93f;"></div>
+                                <span class="ml-3 text-xs font-grotesk"
+                                    style="color:rgba(176,228,204,0.35);">softnest.agency — project.tsx</span>
+                            </div>
+                            <div class="p-6 font-mono text-sm leading-relaxed" style="background:#091413;">
+                                <div style="color:rgba(176,228,204,0.3);">// SoftNest — Building the future</div>
+                                <div class="mt-3">
+                                    <span style="color:#408A71;">const </span>
+                                    <span style="color:#B0E4CC;">agency </span>
+                                    <span style="color:rgba(176,228,204,0.5);">= </span>
+                                    <span style="color:#285A48;">{</span>
+                                </div>
+                                <div class="pl-4">
+                                    <span style="color:#B0E4CC;">name</span>
+                                    <span style="color:rgba(176,228,204,0.4);">: </span>
+                                    <span style="color:#408A71;">"SoftNest"</span><span
+                                        style="color:rgba(176,228,204,0.4);">,</span>
+                                </div>
+                                <div class="pl-4">
+                                    <span style="color:#B0E4CC;">mission</span>
+                                    <span style="color:rgba(176,228,204,0.4);">: </span>
+                                    <span style="color:#408A71;">"Transform Ideas"</span><span
+                                        style="color:rgba(176,228,204,0.4);">,</span>
+                                </div>
+                                <div class="pl-4">
+                                    <span style="color:#B0E4CC;">services</span>
+                                    <span style="color:rgba(176,228,204,0.4);">: [</span>
+                                </div>
+                                <div class="pl-8" style="color:#408A71;">"Web Dev", "Mobile", "AI",</div>
+                                <div class="pl-8" style="color:#408A71;">"UI/UX", "Cloud", "Consulting"</div>
+                                <div class="pl-4" style="color:rgba(176,228,204,0.4);">],</div>
+                                <div class="pl-4">
+                                    <span style="color:#B0E4CC;">clients</span>
+                                    <span style="color:rgba(176,228,204,0.4);">: </span>
+                                    <span style="color:#B0E4CC;">200</span><span
+                                        style="color:rgba(176,228,204,0.4);">,</span>
+                                </div>
+                                <div class="pl-4">
+                                    <span style="color:#B0E4CC;">projects</span>
+                                    <span style="color:rgba(176,228,204,0.4);">: </span>
+                                    <span style="color:#B0E4CC;">500</span><span
+                                        style="color:rgba(176,228,204,0.4);">,</span>
+                                </div>
+                                <div class="pl-4">
+                                    <span style="color:#B0E4CC;">excellence</span>
+                                    <span style="color:rgba(176,228,204,0.4);">: </span>
+                                    <span style="color:#408A71;">true</span>
+                                </div>
+                                <div style="color:#285A48;">}</div>
+                                <div class="mt-3 flex items-center gap-1">
+                                    <span style="color:rgba(176,228,204,0.3);">$ </span>
+                                    <span style="color:#B0E4CC;">npm run </span>
+                                    <span style="color:#408A71;">build-future</span>
+                                    <span class="inline-block w-2 h-4 ml-1 animate-pulse"
+                                        style="background:#408A71;"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating badges -->
+                        <div class="float-badge absolute -top-6 -right-4 glass-card rounded-2xl px-4 py-3 shadow-xl"
+                            style="animation-duration:4s; animation-delay:0s;">
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 rounded-xl flex items-center justify-center text-sm"
+                                    style="background:linear-gradient(135deg,rgba(40,90,72,0.5),rgba(64,138,113,0.3));">
+                                    ⭐</div>
+                                <div>
+                                    <div class="font-syne font-bold text-sm" style="color:#F0FFF8;">98% Satisfaction
+                                    </div>
+                                    <div class="text-xs" style="color:rgba(176,228,204,0.4);">Client Rating</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="float-badge absolute -bottom-6 -left-4 glass-card rounded-2xl px-4 py-3 shadow-xl"
+                            style="animation-duration:5s; animation-delay:.8s;">
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 rounded-xl flex items-center justify-center text-sm"
+                                    style="background:linear-gradient(135deg,rgba(40,90,72,0.5),rgba(64,138,113,0.3));">
+                                    🚀</div>
+                                <div>
+                                    <div class="font-syne font-bold text-sm" style="color:#F0FFF8;">500+ Projects</div>
+                                    <div class="text-xs" style="color:rgba(176,228,204,0.4);">Delivered</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="float-badge absolute top-1/2 -left-10 glass-card rounded-xl px-3 py-2 shadow-xl"
+                            style="animation-duration:3.5s; animation-delay:1.5s;">
+                            <div class="flex items-center gap-2">
+                                <span class="text-lg">💡</span>
+                                <div class="text-xs font-grotesk font-semibold" style="color:#B0E4CC;">AI Powered</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Stats row ── -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-20 reveal" style="transition-delay:.6s;">
+                <div class="stat-item p-6 text-center">
+                    <div class="font-syne font-extrabold text-3xl lg:text-4xl num-gradient mb-1" data-count="200">0
+                    </div>
+                    <div class="text-sm font-grotesk" style="color:rgba(176,228,204,0.45);">Happy Clients</div>
+                </div>
+                <div class="stat-item p-6 text-center">
+                    <div class="font-syne font-extrabold text-3xl lg:text-4xl num-gradient mb-1" data-count="500">0
+                    </div>
+                    <div class="text-sm font-grotesk" style="color:rgba(176,228,204,0.45);">Projects Delivered</div>
+                </div>
+                <div class="stat-item p-6 text-center">
+                    <div class="font-syne font-extrabold text-3xl lg:text-4xl num-gradient mb-1" data-count="8">0</div>
+                    <div class="text-sm font-grotesk" style="color:rgba(176,228,204,0.45);">Years Experience</div>
+                </div>
+                <div class="stat-item p-6 text-center">
+                    <div class="font-syne font-extrabold text-3xl lg:text-4xl num-gradient mb-1" data-count="98">0</div>
+                    <div class="text-sm font-grotesk" style="color:rgba(176,228,204,0.45);">% Satisfaction Rate</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll hint -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" style="opacity:.4;">
+            <span class="text-xs font-grotesk" style="color:rgba(176,228,204,0.5);">Scroll to explore</span>
+            <div class="w-5 h-8 rounded-full flex justify-center pt-2" style="border:1px solid rgba(64,138,113,0.3);">
+                <div class="w-1 h-2 rounded-full animate-bounce" style="background:#408A71;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee strip -->
+    <div class="relative z-10 py-4 overflow-hidden"
+        style="background:rgba(40,90,72,0.04); border-top:1px solid rgba(64,138,113,0.08); border-bottom:1px solid rgba(64,138,113,0.08);">
+        <div class="marquee-wrap">
+            <div class="marquee-track gap-8 text-sm pr-8"
+                style="color:rgba(176,228,204,0.3); font-family:'Space Grotesk',sans-serif;">
+                <span class="whitespace-nowrap flex items-center gap-8">
+                    <span style="color:#408A71;">✦</span> Web Development
+                    <span style="color:#408A71;">✦</span> Mobile Applications
+                    <span style="color:#408A71;">✦</span> AI & Machine Learning
+                    <span style="color:#408A71;">✦</span> UI/UX Design
+                    <span style="color:#408A71;">✦</span> Cloud Solutions
+                    <span style="color:#408A71;">✦</span> Digital Transformation
+                    <span style="color:#408A71;">✦</span> E-Commerce Platforms
+                    <span style="color:#408A71;">✦</span> SaaS Products
+                    <span style="color:#408A71;">✦</span> API Development
+                    <span style="color:#408A71;">✦</span> Cybersecurity
+                    <span style="color:#408A71;">✦</span> Web Development
+                    <span style="color:#408A71;">✦</span> Mobile Applications
+                    <span style="color:#408A71;">✦</span> AI & Machine Learning
+                    <span style="color:#408A71;">✦</span> UI/UX Design
+                    <span style="color:#408A71;">✦</span> Cloud Solutions
+                    <span style="color:#408A71;">✦</span> Digital Transformation
+                    <span style="color:#408A71;">✦</span> E-Commerce Platforms
+                    <span style="color:#408A71;">✦</span> SaaS Products
+                    <span style="color:#408A71;">✦</span> API Development
+                    <span style="color:#408A71;">✦</span> Cybersecurity
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- SERVICES SECTION                                              -->
+    <!-- ============================================================ -->
+    <section id="services" class="py-24 lg:py-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Header -->
+            <div class="text-center mb-16 reveal">
+                <div class="flex items-center gap-3 justify-center mb-5">
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                    <span class="section-label">What We Do</span>
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                </div>
+                <h2 class="font-syne font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4" style="color:#F0FFF8;">
+                    Services That <span class="gradient-text-2">Drive Growth</span>
+                </h2>
+                <p class="max-w-2xl mx-auto text-sm sm:text-base font-grotesk" style="color:rgba(176,228,204,0.5);">
+                    From concept to deployment, we deliver end-to-end digital solutions engineered for performance,
+                    scale, and impact.
+                </p>
+            </div>
+
+            <!-- Services grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Service 1 -->
+                <div class="service-card p-8 reveal" style="transition-delay:.0s;">
+                    <div class="icon-box mb-6">
+                        <i class="fas fa-code text-xl" style="color:#B0E4CC;"></i>
+                    </div>
+                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">Web Development</h3>
+                    <p class="text-sm leading-relaxed mb-6"
+                        style="color:rgba(176,228,204,0.5); font-family:'Space Grotesk',sans-serif;">
+                        High-performance web applications built with React, Next.js, and Node.js. Scalable architecture
+                        that grows with your business.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">React</span>
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">Next.js</span>
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">Node.js</span>
+                    </div>
+                    <a href="#contact"
+                        class="flex items-center gap-2 text-sm font-grotesk font-semibold transition-all group"
+                        style="color:#408A71;" onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='#408A71'">
+                        Learn more
+                        <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card p-8 reveal" style="transition-delay:.1s;">
+                    <div class="icon-box mb-6">
+                        <i class="fas fa-mobile-alt text-xl" style="color:#B0E4CC;"></i>
+                    </div>
+                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">Mobile Applications</h3>
+                    <p class="text-sm leading-relaxed mb-6"
+                        style="color:rgba(176,228,204,0.5); font-family:'Space Grotesk',sans-serif;">
+                        Native and cross-platform mobile apps for iOS and Android. Seamless user experiences with
+                        Flutter and React Native.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">Flutter</span>
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">React Native</span>
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">Swift</span>
+                    </div>
+                    <a href="#contact"
+                        class="flex items-center gap-2 text-sm font-grotesk font-semibold transition-all group"
+                        style="color:#408A71;" onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='#408A71'">
+                        Learn more
+                        <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card p-8 reveal" style="transition-delay:.2s;">
+                    <div class="icon-box mb-6">
+                        <i class="fas fa-brain text-xl" style="color:#B0E4CC;"></i>
+                    </div>
+                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">AI & Machine Learning</h3>
+                    <p class="text-sm leading-relaxed mb-6"
+                        style="color:rgba(176,228,204,0.5); font-family:'Space Grotesk',sans-serif;">
+                        Intelligent systems, predictive analytics, and AI integrations that automate workflows and
+                        unlock business insights.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">Python</span>
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">TensorFlow</span>
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">OpenAI</span>
+                    </div>
+                    <a href="#contact"
+                        class="flex items-center gap-2 text-sm font-grotesk font-semibold transition-all group"
+                        style="color:#408A71;" onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='#408A71'">
+                        Learn more
+                        <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-card p-8 reveal" style="transition-delay:.3s;">
+                    <div class="icon-box mb-6">
+                        <i class="fas fa-palette text-xl" style="color:#B0E4CC;"></i>
+                    </div>
+                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">UI/UX Design</h3>
+                    <p class="text-sm leading-relaxed mb-6"
+                        style="color:rgba(176,228,204,0.5); font-family:'Space Grotesk',sans-serif;">
+                        Human-centered design that converts. We create intuitive interfaces backed by research, data,
+                        and pixel-perfect execution.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">Figma</span>
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">Adobe XD</span>
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">Framer</span>
+                    </div>
+                    <a href="#contact"
+                        class="flex items-center gap-2 text-sm font-grotesk font-semibold transition-all group"
+                        style="color:#408A71;" onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='#408A71'">
+                        Learn more
+                        <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="service-card p-8 reveal" style="transition-delay:.4s;">
+                    <div class="icon-box mb-6">
+                        <i class="fas fa-cloud text-xl" style="color:#B0E4CC;"></i>
+                    </div>
+                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">Cloud & DevOps</h3>
+                    <p class="text-sm leading-relaxed mb-6"
+                        style="color:rgba(176,228,204,0.5); font-family:'Space Grotesk',sans-serif;">
+                        Robust cloud infrastructure, CI/CD pipelines, and DevOps automation on AWS, GCP, and Azure for
+                        maximum reliability.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">AWS</span>
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">Docker</span>
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">Kubernetes</span>
+                    </div>
+                    <a href="#contact"
+                        class="flex items-center gap-2 text-sm font-grotesk font-semibold transition-all group"
+                        style="color:#408A71;" onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='#408A71'">
+                        Learn more
+                        <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 6 — CTA card -->
+                <div class="service-card p-8 reveal relative overflow-hidden"
+                    style="transition-delay:.5s; background:linear-gradient(135deg,rgba(40,90,72,0.12),rgba(64,138,113,0.06));">
+                    <div class="absolute inset-0 opacity-5"
+                        style="background:radial-gradient(circle at 70% 30%, #B0E4CC, transparent 60%);"></div>
+                    <div class="relative z-10">
+                        <div class="text-4xl mb-5">💬</div>
+                        <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">Have a Custom Idea?</h3>
+                        <p class="text-sm leading-relaxed mb-6"
+                            style="color:rgba(176,228,204,0.5); font-family:'Space Grotesk',sans-serif;">
+                            We love unique challenges. Tell us your vision and we'll craft the perfect solution tailored
+                            just for you.
+                        </p>
+                        <a href="#contact" class="btn-primary px-6 py-3 inline-flex items-center gap-2 text-sm"
+                            style="color:#F0FFF8;">
+                            <span>Let's Talk</span>
+                            <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- PORTFOLIO / WORK                                              -->
+    <!-- ============================================================ -->
+    <section id="work" class="py-24 lg:py-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16 reveal">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                        <span class="section-label">Featured Work</span>
+                    </div>
+                    <h2 class="font-syne font-extrabold text-3xl sm:text-4xl lg:text-5xl" style="color:#F0FFF8;">
+                        Projects We're <span class="gradient-text-2">Proud Of</span>
+                    </h2>
+                </div>
+                <a href="#contact" class="btn-outline px-6 py-3 inline-flex items-center gap-2 text-sm w-fit">
+                    <span>View All Projects</span>
+                    <i class="fas fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Portfolio grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Project 1 — large -->
+                <div class="port-card sm:col-span-2 reveal"
+                    style="transition-delay:.0s; min-height:280px; background:linear-gradient(135deg,#091413 0%,#0d1f1c 50%,#091413 100%);">
+                    <div class="h-72 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0"
+                            style="background:linear-gradient(135deg,rgba(40,90,72,0.3),rgba(64,138,113,0.15));"></div>
+                        <div class="relative z-10 text-center p-8">
+                            <div class="text-6xl mb-4">🏦</div>
+                            <p class="font-syne font-bold text-xl" style="color:#F0FFF8;">FinFlow Platform</p>
+                            <p class="text-sm mt-1" style="color:#408A71;">FinTech · Web App · AI Dashboard</p>
+                        </div>
+                    </div>
+                    <div class="port-overlay">
+                        <p class="font-grotesk text-sm" style="color:rgba(176,228,204,0.7);">Full-Stack FinTech Platform
+                        </p>
+                        <h3 class="font-syne font-bold text-2xl text-white">FinFlow</h3>
+                        <p class="text-sm text-center px-8" style="color:rgba(176,228,204,0.65);">AI-powered financial
+                            analytics dashboard serving 50,000+ users with real-time insights.</p>
+                        <div class="flex gap-3 mt-2">
+                            <button class="px-5 py-2.5 rounded-lg text-sm font-grotesk font-semibold transition-colors"
+                                style="background:rgba(64,138,113,0.3); color:#B0E4CC; border:1px solid rgba(64,138,113,0.4);"
+                                onmouseover="this.style.background='rgba(64,138,113,0.5)'"
+                                onmouseout="this.style.background='rgba(64,138,113,0.3)'">
+                                Live Demo
+                            </button>
+                            <button class="px-5 py-2.5 rounded-lg text-sm font-grotesk font-semibold"
+                                style="background:rgba(176,228,204,0.1); color:#B0E4CC; border:1px solid rgba(176,228,204,0.2);">
+                                Case Study
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="port-card reveal"
+                    style="transition-delay:.1s; background:linear-gradient(135deg,#091413,#0f1e1b);">
+                    <div class="h-72 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0"
+                            style="background:linear-gradient(135deg,rgba(40,90,72,0.2),rgba(64,138,113,0.1));"></div>
+                        <div class="relative z-10 text-center p-6">
+                            <div class="text-5xl mb-3">🛒</div>
+                            <p class="font-syne font-bold text-lg" style="color:#F0FFF8;">NexMart</p>
+                            <p class="text-xs mt-1" style="color:#408A71;">E-Commerce · Mobile</p>
+                        </div>
+                    </div>
+                    <div class="port-overlay">
+                        <p class="font-grotesk text-xs" style="color:rgba(176,228,204,0.7);">E-Commerce Platform</p>
+                        <h3 class="font-syne font-bold text-xl text-white">NexMart</h3>
+                        <p class="text-xs text-center px-4" style="color:rgba(176,228,204,0.65);">Multi-vendor
+                            marketplace with AI-powered recommendations — $2M+ GMV.</p>
+                        <button class="px-4 py-2 rounded-lg text-xs font-grotesk"
+                            style="background:rgba(64,138,113,0.3); color:#B0E4CC; border:1px solid rgba(64,138,113,0.4);">View
+                            Project</button>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="port-card reveal"
+                    style="transition-delay:.2s; background:linear-gradient(135deg,#091413,#0d1a16);">
+                    <div class="h-72 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0"
+                            style="background:linear-gradient(135deg,rgba(40,90,72,0.2),rgba(64,138,113,0.08));"></div>
+                        <div class="relative z-10 text-center p-6">
+                            <div class="text-5xl mb-3">🏥</div>
+                            <p class="font-syne font-bold text-lg" style="color:#F0FFF8;">MediCare Pro</p>
+                            <p class="text-xs mt-1" style="color:#408A71;">HealthTech · AI</p>
+                        </div>
+                    </div>
+                    <div class="port-overlay">
+                        <p class="font-grotesk text-xs" style="color:rgba(176,228,204,0.7);">HealthTech Solution</p>
+                        <h3 class="font-syne font-bold text-xl text-white">MediCare Pro</h3>
+                        <p class="text-xs text-center px-4" style="color:rgba(176,228,204,0.65);">AI-powered patient
+                            management and diagnostics system for 200+ hospitals.</p>
+                        <button class="px-4 py-2 rounded-lg text-xs font-grotesk"
+                            style="background:rgba(64,138,113,0.3); color:#B0E4CC; border:1px solid rgba(64,138,113,0.4);">View
+                            Project</button>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="port-card sm:col-span-2 reveal"
+                    style="transition-delay:.3s; background:linear-gradient(135deg,#091413,#0e1c18);">
+                    <div class="h-72 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0"
+                            style="background:linear-gradient(135deg,rgba(40,90,72,0.25),rgba(64,138,113,0.12));"></div>
+                        <div class="relative z-10 text-center p-8">
+                            <div class="text-6xl mb-4">📊</div>
+                            <p class="font-syne font-bold text-xl" style="color:#F0FFF8;">InsightIQ</p>
+                            <p class="text-sm mt-1" style="color:#408A71;">SaaS · Analytics · Real-time Dashboard</p>
+                        </div>
+                    </div>
+                    <div class="port-overlay">
+                        <p class="font-grotesk text-sm" style="color:rgba(176,228,204,0.7);">SaaS Analytics Platform</p>
+                        <h3 class="font-syne font-bold text-2xl text-white">InsightIQ</h3>
+                        <p class="text-sm text-center px-8" style="color:rgba(176,228,204,0.65);">Real-time business
+                            intelligence SaaS used by 300+ enterprises globally.</p>
+                        <div class="flex gap-3 mt-2">
+                            <button class="px-5 py-2.5 rounded-lg text-sm font-grotesk"
+                                style="background:rgba(64,138,113,0.3); color:#B0E4CC; border:1px solid rgba(64,138,113,0.4);">Live
+                                Demo</button>
+                            <button class="px-5 py-2.5 rounded-lg text-sm font-grotesk"
+                                style="background:rgba(176,228,204,0.1); color:#B0E4CC; border:1px solid rgba(176,228,204,0.2);">Case
+                                Study</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- PROCESS SECTION                                               -->
+    <!-- ============================================================ -->
+    <section id="process" class="py-24 lg:py-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center mb-16 reveal">
+                <div class="flex items-center gap-3 justify-center mb-5">
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                    <span class="section-label">How We Work</span>
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                </div>
+                <h2 class="font-syne font-extrabold text-3xl sm:text-4xl lg:text-5xl" style="color:#F0FFF8;">
+                    Our <span class="gradient-text-2">Process</span>
+                </h2>
+                <p class="max-w-xl mx-auto mt-4 text-sm font-grotesk" style="color:rgba(176,228,204,0.5);">
+                    A proven, agile process that ensures quality delivery on time and within budget — every single time.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+                <!-- Steps -->
+                <div class="space-y-8 reveal-left">
+
+                    <div class="flex gap-6">
+                        <div class="flex flex-col items-center">
+                            <div class="step-num">01</div>
+                            <div class="step-line flex-1 mt-3 mb-0" style="min-height:60px;"></div>
+                        </div>
+                        <div class="pb-8">
+                            <h3 class="font-syne font-bold text-xl mb-2" style="color:#F0FFF8;">Discovery & Strategy
+                            </h3>
+                            <p class="text-sm leading-relaxed font-grotesk" style="color:rgba(176,228,204,0.5);">
+                                Deep-dive into your business goals, target audience, and technical requirements to craft
+                                a bulletproof roadmap.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-6">
+                        <div class="flex flex-col items-center">
+                            <div class="step-num">02</div>
+                            <div class="step-line flex-1 mt-3" style="min-height:60px;"></div>
+                        </div>
+                        <div class="pb-8">
+                            <h3 class="font-syne font-bold text-xl mb-2" style="color:#F0FFF8;">Design & Prototyping
+                            </h3>
+                            <p class="text-sm leading-relaxed font-grotesk" style="color:rgba(176,228,204,0.5);">We
+                                craft stunning UI/UX designs and interactive prototypes. You see and feel the product
+                                before a single line of code is written.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-6">
+                        <div class="flex flex-col items-center">
+                            <div class="step-num">03</div>
+                            <div class="step-line flex-1 mt-3" style="min-height:60px;"></div>
+                        </div>
+                        <div class="pb-8">
+                            <h3 class="font-syne font-bold text-xl mb-2" style="color:#F0FFF8;">Development & Testing
+                            </h3>
+                            <p class="text-sm leading-relaxed font-grotesk" style="color:rgba(176,228,204,0.5);">Agile
+                                sprints, clean code, and rigorous QA testing ensure the product is fast, secure, and
+                                bug-free at launch.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-6">
+                        <div class="flex flex-col items-center">
+                            <div class="step-num">04</div>
+                        </div>
+                        <div>
+                            <h3 class="font-syne font-bold text-xl mb-2" style="color:#F0FFF8;">Launch & Scale</h3>
+                            <p class="text-sm leading-relaxed font-grotesk" style="color:rgba(176,228,204,0.5);">
+                                Seamless deployment, performance monitoring, and ongoing support to keep your product
+                                evolving and growing.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual panel -->
+                <div class="reveal-right">
+                    <div class="glass-card rounded-3xl p-8 relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-30"
+                            style="background:linear-gradient(135deg,rgba(40,90,72,0.1),transparent);"></div>
+                        <div class="relative z-10">
+
+                            <!-- Tech logos -->
+                            <h4 class="font-syne font-bold text-lg mb-6" style="color:#F0FFF8;">Our Technology Stack
+                            </h4>
+                            <div class="flex flex-wrap gap-3 mb-8">
+                                <span class="tech-pill text-xs px-4 py-2 font-grotesk"
+                                    style="color:rgba(176,228,204,0.7);">⚛️ React</span>
+                                <span class="tech-pill text-xs px-4 py-2 font-grotesk"
+                                    style="color:rgba(176,228,204,0.7);">▲ Next.js</span>
+                                <span class="tech-pill text-xs px-4 py-2 font-grotesk"
+                                    style="color:rgba(176,228,204,0.7);">🟨 JavaScript</span>
+                                <span class="tech-pill text-xs px-4 py-2 font-grotesk"
+                                    style="color:rgba(176,228,204,0.7);">🟦 TypeScript</span>
+                                <span class="tech-pill text-xs px-4 py-2 font-grotesk"
+                                    style="color:rgba(176,228,204,0.7);">🟩 Node.js</span>
+                                <span class="tech-pill text-xs px-4 py-2 font-grotesk"
+                                    style="color:rgba(176,228,204,0.7);">🐍 Python</span>
+                                <span class="tech-pill text-xs px-4 py-2 font-grotesk"
+                                    style="color:rgba(176,228,204,0.7);">📱 Flutter</span>
+                                <span class="tech-pill text-xs px-4 py-2 font-grotesk"
+                                    style="color:rgba(176,228,204,0.7);">☁️ AWS</span>
+                                <span class="tech-pill text-xs px-4 py-2 font-grotesk"
+                                    style="color:rgba(176,228,204,0.7);">🐋 Docker</span>
+                                <span class="tech-pill text-xs px-4 py-2 font-grotesk"
+                                    style="color:rgba(176,228,204,0.7);">🗄️ PostgreSQL</span>
+                                <span class="tech-pill text-xs px-4 py-2 font-grotesk"
+                                    style="color:rgba(176,228,204,0.7);">🔥 Firebase</span>
+                                <span class="tech-pill text-xs px-4 py-2 font-grotesk"
+                                    style="color:rgba(176,228,204,0.7);">🤖 OpenAI</span>
+                            </div>
+
+                            <!-- Mini stats -->
+                            <div class="divider mb-6"></div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="p-4 rounded-xl"
+                                    style="background:rgba(40,90,72,0.08); border:1px solid rgba(64,138,113,0.1);">
+                                    <div class="font-syne font-bold text-2xl num-gradient">99.9%</div>
+                                    <div class="text-xs font-grotesk mt-1" style="color:rgba(176,228,204,0.45);">Uptime
+                                        SLA</div>
+                                </div>
+                                <div class="p-4 rounded-xl"
+                                    style="background:rgba(40,90,72,0.08); border:1px solid rgba(64,138,113,0.1);">
+                                    <div class="font-syne font-bold text-2xl num-gradient">&lt; 2s</div>
+                                    <div class="text-xs font-grotesk mt-1" style="color:rgba(176,228,204,0.45);">Load
+                                        Time</div>
+                                </div>
+                                <div class="p-4 rounded-xl"
+                                    style="background:rgba(40,90,72,0.08); border:1px solid rgba(64,138,113,0.1);">
+                                    <div class="font-syne font-bold text-2xl num-gradient">14 days</div>
+                                    <div class="text-xs font-grotesk mt-1" style="color:rgba(176,228,204,0.45);">MVP
+                                        Delivery</div>
+                                </div>
+                                <div class="p-4 rounded-xl"
+                                    style="background:rgba(40,90,72,0.08); border:1px solid rgba(64,138,113,0.1);">
+                                    <div class="font-syne font-bold text-2xl num-gradient">24/7</div>
+                                    <div class="text-xs font-grotesk mt-1" style="color:rgba(176,228,204,0.45);">Support
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- ABOUT / TEAM SNAPSHOT                                         -->
+    <!-- ============================================================ -->
+    <section id="about" class="py-24 lg:py-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+                <!-- Left -->
+                <div class="reveal-left">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                        <span class="section-label">Who We Are</span>
+                    </div>
+                    <h2 class="font-syne font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-6 leading-tight"
+                        style="color:#F0FFF8;">
+                        A Team of <span class="gradient-text-2">Passionate</span> Builders
+                    </h2>
+                    <p class="text-sm sm:text-base leading-relaxed mb-6 font-grotesk"
+                        style="color:rgba(176,228,204,0.5);">
+                        Founded in 2016, SoftNest is a team of 50+ engineers, designers, and strategists passionate
+                        about building digital products that solve real problems. We've helped startups raise millions
+                        and enterprises save millions.
+                    </p>
+                    <p class="text-sm sm:text-base leading-relaxed mb-8 font-grotesk"
+                        style="color:rgba(176,228,204,0.5);">
+                        Our culture is built on transparency, craftsmanship, and relentless innovation. When you partner
+                        with SoftNest, you get a team that treats your business like their own.
+                    </p>
+
+                    <!-- Values -->
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                                style="background:rgba(40,90,72,0.15); border:1px solid rgba(64,138,113,0.2);">
+                                <i class="fas fa-rocket text-xs" style="color:#408A71;"></i>
+                            </div>
+                            <span class="text-sm font-grotesk font-medium"
+                                style="color:rgba(176,228,204,0.7);">Innovation First</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                                style="background:rgba(40,90,72,0.15); border:1px solid rgba(64,138,113,0.2);">
+                                <i class="fas fa-shield-alt text-xs" style="color:#408A71;"></i>
+                            </div>
+                            <span class="text-sm font-grotesk font-medium" style="color:rgba(176,228,204,0.7);">Security
+                                & Trust</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                                style="background:rgba(40,90,72,0.15); border:1px solid rgba(64,138,113,0.2);">
+                                <i class="fas fa-users text-xs" style="color:#408A71;"></i>
+                            </div>
+                            <span class="text-sm font-grotesk font-medium" style="color:rgba(176,228,204,0.7);">Client
+                                Centric</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                                style="background:rgba(40,90,72,0.15); border:1px solid rgba(64,138,113,0.2);">
+                                <i class="fas fa-chart-line text-xs" style="color:#408A71;"></i>
+                            </div>
+                            <span class="text-sm font-grotesk font-medium" style="color:rgba(176,228,204,0.7);">Result
+                                Driven</span>
+                        </div>
+                    </div>
+
+                    <a href="#contact" class="btn-primary px-8 py-4 inline-flex items-center gap-2 text-sm"
+                        style="color:#F0FFF8;">
+                        <span>Work With Us</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Right — Team grid -->
+                <div class="reveal-right">
+                    <div class="grid grid-cols-2 gap-4">
+
+                        <div class="glass-card rounded-2xl p-6 text-center">
+                            <div class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center text-3xl"
+                                style="background:linear-gradient(135deg,rgba(40,90,72,0.4),rgba(64,138,113,0.2)); border:1px solid rgba(64,138,113,0.25);">
+                                👨‍💻
+                            </div>
+                            <div class="font-syne font-bold text-sm" style="color:#F0FFF8;">Aryan Shah</div>
+                            <div class="text-xs mt-1 font-grotesk" style="color:#408A71;">CEO & Founder</div>
+                        </div>
+
+                        <div class="glass-card rounded-2xl p-6 text-center">
+                            <div class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center text-3xl"
+                                style="background:linear-gradient(135deg,rgba(40,90,72,0.4),rgba(64,138,113,0.2)); border:1px solid rgba(64,138,113,0.25);">
+                                👩‍🎨
+                            </div>
+                            <div class="font-syne font-bold text-sm" style="color:#F0FFF8;">Maya Chen</div>
+                            <div class="text-xs mt-1 font-grotesk" style="color:#408A71;">Head of Design</div>
+                        </div>
+
+                        <div class="glass-card rounded-2xl p-6 text-center">
+                            <div class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center text-3xl"
+                                style="background:linear-gradient(135deg,rgba(40,90,72,0.4),rgba(64,138,113,0.2)); border:1px solid rgba(64,138,113,0.25);">
+                                👨‍🔬
+                            </div>
+                            <div class="font-syne font-bold text-sm" style="color:#F0FFF8;">Liam Torres</div>
+                            <div class="text-xs mt-1 font-grotesk" style="color:#408A71;">Lead Engineer</div>
+                        </div>
+
+                        <div class="glass-card rounded-2xl p-6 text-center">
+                            <div class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center text-3xl"
+                                style="background:linear-gradient(135deg,rgba(40,90,72,0.4),rgba(64,138,113,0.2)); border:1px solid rgba(64,138,113,0.25);">
+                                👩‍💼
+                            </div>
+                            <div class="font-syne font-bold text-sm" style="color:#F0FFF8;">Sara Ali</div>
+                            <div class="text-xs mt-1 font-grotesk" style="color:#408A71;">Project Manager</div>
+                        </div>
+
+                        <!-- Team stat -->
+                        <div class="col-span-2 glass-card rounded-2xl p-5 flex items-center gap-4"
+                            style="background:linear-gradient(135deg,rgba(40,90,72,0.1),rgba(64,138,113,0.05));">
+                            <div class="text-4xl">🌍</div>
+                            <div>
+                                <div class="font-syne font-bold text-lg" style="color:#F0FFF8;">50+ Team Members</div>
+                                <div class="text-sm font-grotesk" style="color:rgba(176,228,204,0.5);">Across 8
+                                    countries · Remote-first culture</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- TESTIMONIALS                                                  -->
+    <!-- ============================================================ -->
+    <section class="py-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center mb-16 reveal">
+                <div class="flex items-center gap-3 justify-center mb-5">
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                    <span class="section-label">Client Love</span>
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                </div>
+                <h2 class="font-syne font-extrabold text-3xl sm:text-4xl lg:text-5xl" style="color:#F0FFF8;">
+                    What Our Clients <span class="gradient-text-2">Say</span>
+                </h2>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <div class="testimonial-card p-8 reveal" style="transition-delay:.0s;">
+                    <div class="flex gap-1 mb-4 text-sm" style="color:#408A71;">★★★★★</div>
+                    <p class="text-sm leading-relaxed mb-6 font-grotesk"
+                        style="color:rgba(176,228,204,0.6); font-style:italic;">
+                        "SoftNest transformed our legacy system into a modern, AI-driven platform. Our team productivity
+                        doubled and customer satisfaction is at an all-time high."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm"
+                            style="background:linear-gradient(135deg,#285A48,#408A71);">J</div>
+                        <div>
+                            <div class="font-syne font-semibold text-sm" style="color:#F0FFF8;">James Whitmore</div>
+                            <div class="text-xs font-grotesk" style="color:rgba(176,228,204,0.4);">CTO, TechCorp Global
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card p-8 reveal" style="transition-delay:.1s;">
+                    <div class="flex gap-1 mb-4 text-sm" style="color:#408A71;">★★★★★</div>
+                    <p class="text-sm leading-relaxed mb-6 font-grotesk"
+                        style="color:rgba(176,228,204,0.6); font-style:italic;">
+                        "Delivered our MVP in just 3 weeks — better than anything we imagined. The team's communication
+                        and technical depth is unmatched. Highly recommend!"
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm"
+                            style="background:linear-gradient(135deg,#408A71,#B0E4CC);">A</div>
+                        <div>
+                            <div class="font-syne font-semibold text-sm" style="color:#F0FFF8;">Aisha Rahman</div>
+                            <div class="text-xs font-grotesk" style="color:rgba(176,228,204,0.4);">CEO, Veridia Startup
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card p-8 reveal" style="transition-delay:.2s;">
+                    <div class="flex gap-1 mb-4 text-sm" style="color:#408A71;">★★★★★</div>
+                    <p class="text-sm leading-relaxed mb-6 font-grotesk"
+                        style="color:rgba(176,228,204,0.6); font-style:italic;">
+                        "The mobile app SoftNest built for us has 4.9 stars on the App Store. They understand UX at a
+                        level I've never seen from another agency. True partners."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm"
+                            style="background:linear-gradient(135deg,#285A48,#408A71);">M</div>
+                        <div>
+                            <div class="font-syne font-semibold text-sm" style="color:#F0FFF8;">Marco DeVito</div>
+                            <div class="text-xs font-grotesk" style="color:rgba(176,228,204,0.4);">Founder, NexMart
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- CTA SECTION                                                   -->
+    <!-- ============================================================ -->
+    <section id="contact" class="py-24 relative z-10">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="cta-section p-10 lg:p-16 text-center reveal">
+                <div class="relative z-10">
+                    <div class="flex items-center gap-3 justify-center mb-5">
+                        <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                        <span class="section-label">Start Today</span>
+                        <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                    </div>
+
+                    <h2 class="font-syne font-extrabold mb-4 leading-tight"
+                        style="font-size:clamp(28px,5vw,56px); color:#F0FFF8;">
+                        Ready to Build Something <span class="gradient-text-2">Extraordinary?</span>
+                    </h2>
+                    <p class="max-w-xl mx-auto mb-10 font-grotesk text-sm sm:text-base"
+                        style="color:rgba(176,228,204,0.5);">
+                        Join 200+ businesses that trust SoftNest to deliver world-class digital products. Your next big
+                        thing starts with a conversation.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+                        <a href="mailto:hello@softnest.agency"
+                            class="btn-primary px-8 py-4 flex items-center justify-center gap-2 text-sm"
+                            style="color:#F0FFF8;">
+                            <i class="fas fa-envelope text-xs"></i>
+                            <span>hello@softnest.agency</span>
+                        </a>
+                        <a href="tel:+1234567890"
+                            class="btn-outline px-8 py-4 flex items-center justify-center gap-2 text-sm">
+                            <i class="fas fa-phone text-xs"></i>
+                            <span>+1 (234) 567-890</span>
+                        </a>
+                    </div>
+
+                    <!-- Quick contact cards -->
+                    <div class="grid sm:grid-cols-3 gap-4">
+                        <div class="glass-card rounded-2xl p-5 text-center">
+                            <div class="text-2xl mb-2">📧</div>
+                            <div class="text-xs font-grotesk mb-1" style="color:rgba(176,228,204,0.4);">Email Us</div>
+                            <div class="text-sm font-grotesk font-semibold" style="color:#B0E4CC;">hello@softnest.agency
+                            </div>
+                        </div>
+                        <div class="glass-card rounded-2xl p-5 text-center">
+                            <div class="text-2xl mb-2">💬</div>
+                            <div class="text-xs font-grotesk mb-1" style="color:rgba(176,228,204,0.4);">WhatsApp</div>
+                            <div class="text-sm font-grotesk font-semibold" style="color:#B0E4CC;">+1 (234) 567-890
+                            </div>
+                        </div>
+                        <div class="glass-card rounded-2xl p-5 text-center">
+                            <div class="text-2xl mb-2">📍</div>
+                            <div class="text-xs font-grotesk mb-1" style="color:rgba(176,228,204,0.4);">Office</div>
+                            <div class="text-sm font-grotesk font-semibold" style="color:#B0E4CC;">New York, NY</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER                                                        -->
+    <!-- ============================================================ -->
+    <footer class="relative z-10 pt-16 pb-0"
+        style="background:linear-gradient(180deg,transparent 0%,rgba(4,9,9,0.98) 30%,#040909 100%); border-top:1px solid rgba(64,138,113,0.08);">
+
+        <!-- Top glow line -->
+        <div class="glow-line mb-12"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+                <!-- Brand -->
+                <div class="lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center"
+                            style="background:linear-gradient(135deg,#285A48,#408A71); box-shadow:0 4px 15px rgba(40,90,72,0.3);">
+                            <span class="font-syne font-bold text-lg" style="color:#B0E4CC;">S</span>
+                        </div>
+                        <div>
+                            <div class="font-syne font-bold text-lg" style="color:#F0FFF8;">Soft<span
+                                    style="color:#408A71;">Nest</span></div>
+                            <div class="text-xs tracking-widest" style="color:rgba(176,228,204,0.35);">DIGITAL AGENCY
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-6 font-grotesk" style="color:rgba(176,228,204,0.35);">
+                        Transforming ideas into extraordinary digital experiences since 2016.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="#"
+                            class="w-9 h-9 glass rounded-xl flex items-center justify-center text-sm transition-all hover:scale-110 hover:-translate-y-1"
+                            style="color:rgba(176,228,204,0.4);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.4)'">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#"
+                            class="w-9 h-9 glass rounded-xl flex items-center justify-center text-sm transition-all hover:scale-110 hover:-translate-y-1"
+                            style="color:rgba(176,228,204,0.4);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.4)'">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#"
+                            class="w-9 h-9 glass rounded-xl flex items-center justify-center text-sm transition-all hover:scale-110 hover:-translate-y-1"
+                            style="color:rgba(176,228,204,0.4);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.4)'">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#"
+                            class="w-9 h-9 glass rounded-xl flex items-center justify-center text-sm transition-all hover:scale-110 hover:-translate-y-1"
+                            style="color:rgba(176,228,204,0.4);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.4)'">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="font-syne font-semibold text-sm mb-5 flex items-center gap-2" style="color:#F0FFF8;">
+                        <span style="color:#408A71; font-size:8px;">✦</span> Services
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Web Development</a></li>
+                        <li><a href="#" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Mobile Applications</a></li>
+                        <li><a href="#" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">AI & Machine Learning</a></li>
+                        <li><a href="#" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">UI/UX Design</a></li>
+                        <li><a href="#" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Cloud & DevOps</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company -->
+                <div>
+                    <h4 class="font-syne font-semibold text-sm mb-5 flex items-center gap-2" style="color:#F0FFF8;">
+                        <span style="color:#408A71; font-size:8px;">✦</span> Company
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="#about" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">About Us</a></li>
+                        <li><a href="#work" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Our Work</a></li>
+                        <li><a href="#process" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Our Process</a></li>
+                        <li><a href="#" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Careers</a></li>
+                        <li><a href="#contact" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="font-syne font-semibold text-sm mb-5 flex items-center gap-2" style="color:#F0FFF8;">
+                        <span style="color:#408A71; font-size:8px;">✦</span> Stay Updated
+                    </h4>
+                    <p class="text-sm font-grotesk mb-4" style="color:rgba(176,228,204,0.35);">
+                        Get the latest in tech, design, and digital transformation.
+                    </p>
+                    <div class="flex">
+                        <input type="email" placeholder="your@email.com"
+                            class="flex-1 px-4 py-3 text-sm rounded-l-xl font-grotesk outline-none"
+                            style="background:rgba(255,255,255,0.03); border:1px solid rgba(64,138,113,0.2); border-right:none; color:#B0E4CC;"
+                            onfocus="this.style.borderColor='rgba(64,138,113,0.6)'"
+                            onblur="this.style.borderColor='rgba(64,138,113,0.2)'"
+                            placeholder-color="rgba(176,228,204,0.25)">
+                        <button class="btn-primary px-4 py-3 rounded-r-xl text-sm"
+                            style="color:#F0FFF8; border-radius:0 12px 12px 0;">
+                            <i class="fas fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+
+                    <!-- Certifications -->
+                    <div class="mt-5 flex gap-3 flex-wrap">
+                        <div class="glass px-3 py-1.5 rounded-lg text-xs font-grotesk"
+                            style="color:rgba(176,228,204,0.4);">🔒 ISO 27001</div>
+                        <div class="glass px-3 py-1.5 rounded-lg text-xs font-grotesk"
+                            style="color:rgba(176,228,204,0.4);">✅ GDPR</div>
+                        <div class="glass px-3 py-1.5 rounded-lg text-xs font-grotesk"
+                            style="color:rgba(176,228,204,0.4);">☁️ AWS Partner</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer bottom -->
+            <div class="divider mb-6"></div>
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-5 pb-8">
+
+                <div class="flex flex-col sm:flex-row items-center gap-4">
+                    <p class="text-xs font-grotesk" style="color:rgba(176,228,204,0.25);">
+                        © 2024 <span style="color:#408A71;">SoftNest Agency</span> · All rights reserved
+                    </p>
+                    <span class="hidden sm:inline text-xs" style="color:rgba(176,228,204,0.15);">·</span>
+                    <p class="text-xs font-grotesk flex items-center gap-1" style="color:rgba(176,228,204,0.25);">
+                        Built with <span style="color:#408A71; animation:textShimmer 3s infinite;">♥</span> by the
+                        SoftNest Team
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-grotesk"
+                    style="background:rgba(40,90,72,0.06); border:1px solid rgba(64,138,113,0.12);">
+                    <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                    <span style="color:rgba(176,228,204,0.4);">All systems operational</span>
+                    <span style="color:rgba(176,228,204,0.2);">·</span>
+                    <span style="color:#408A71;" id="liveTime">00:00:00</span>
+                </div>
+
+                <div class="flex items-center gap-5">
+                    <a href="#" class="text-xs font-grotesk transition-colors" style="color:rgba(176,228,204,0.25);"
+                        onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='rgba(176,228,204,0.25)'">Privacy</a>
+                    <a href="#" class="text-xs font-grotesk transition-colors" style="color:rgba(176,228,204,0.25);"
+                        onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='rgba(176,228,204,0.25)'">Terms</a>
+                    <a href="#" class="text-xs font-grotesk transition-colors" style="color:rgba(176,228,204,0.25);"
+                        onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='rgba(176,228,204,0.25)'">Sitemap</a>
+                    <a href="#home"
+                        class="w-9 h-9 rounded-xl flex items-center justify-center transition-all hover:-translate-y-1"
+                        style="background:rgba(40,90,72,0.1); border:1px solid rgba(64,138,113,0.2); color:#408A71;"
+                        onmouseover="this.style.background='rgba(40,90,72,0.2)'"
+                        onmouseout="this.style.background='rgba(40,90,72,0.1)'">
+                        <i class="fas fa-arrow-up text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Signature -->
+            <div class="text-center pb-6">
+                <p class="font-syne text-sm" style="color:rgba(40,90,72,0.3); letter-spacing:.15em;">
+                    ✦ &nbsp; SOFTNEST · BUILD · SCALE · INNOVATE &nbsp; ✦
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT                                                    -->
+    <!-- ============================================================ -->
+    <script>
+        // ── Hero Canvas — floating nodes + connecting lines ─────────────
+        (function () {
+            const canvas = document.getElementById('hero-canvas');
+            const ctx = canvas.getContext('2d');
+
+            function resize() {
+                canvas.width = canvas.offsetWidth;
+                canvas.height = canvas.offsetHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            const NODE_COUNT = window.innerWidth < 768 ? 30 : 60;
+            const nodes = Array.from({ length: NODE_COUNT }, () => ({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                r: Math.random() * 2 + 1,
+                opacity: Math.random() * 0.4 + 0.1,
+            }));
+
+            let mouseX = -1000, mouseY = -1000;
+            canvas.addEventListener('mousemove', e => {
+                const rect = canvas.getBoundingClientRect();
+                mouseX = e.clientX - rect.left;
+                mouseY = e.clientY - rect.top;
+            });
+
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Draw connections
+                nodes.forEach((a, i) => {
+                    nodes.slice(i + 1).forEach(b => {
+                        const dist = Math.hypot(a.x - b.x, a.y - b.y);
+                        if (dist < 130) {
+                            ctx.beginPath();
+                            ctx.moveTo(a.x, a.y);
+                            ctx.lineTo(b.x, b.y);
+                            const alpha = (1 - dist / 130) * 0.08;
+                            ctx.strokeStyle = `rgba(64,138,113,${alpha})`;
+                            ctx.lineWidth = 1;
+                            ctx.stroke();
+                        }
+                    });
+
+                    // Mouse connections
+                    const md = Math.hypot(a.x - mouseX, a.y - mouseY);
+                    if (md < 160) {
+                        ctx.beginPath();
+                        ctx.moveTo(a.x, a.y);
+                        ctx.lineTo(mouseX, mouseY);
+                        const alpha = (1 - md / 160) * 0.15;
+                        ctx.strokeStyle = `rgba(176,228,204,${alpha})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                });
+
+                // Draw nodes
+                nodes.forEach(n => {
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(64,138,113,${n.opacity})`;
+                    ctx.fill();
+
+                    // Move
+                    n.x += n.vx;
+                    n.y += n.vy;
+                    if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
+                    if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+                });
+
+                requestAnimationFrame(draw);
+            }
+            draw();
+        })();
+
+        // ── Typed.js ───────────────────────────────────────────────────
+        new Typed('#typed', {
+            strings: [
+                'Web Applications',
+                'Mobile Apps',
+                'AI Solutions',
+                'SaaS Platforms',
+                'E-Commerce Systems',
+                'Digital Products',
+            ],
+            typeSpeed: 65, backSpeed: 35, backDelay: 1800,
+            loop: true, cursorChar: '|'
+        });
+
+        // ── Custom cursor ──────────────────────────────────────────────
+        const cursor = document.getElementById('cursor');
+        const cursorDot = document.getElementById('cursorDot');
+        let cx = 0, cy = 0, dx = 0, dy = 0;
+
+        document.addEventListener('mousemove', e => {
+            cx = e.clientX; cy = e.clientY;
+            cursorDot.style.left = cx - 2.5 + 'px';
+            cursorDot.style.top = cy - 2.5 + 'px';
+        });
+        (function animCursor() {
+            dx += (cx - dx) * 0.1;
+            dy += (cy - dy) * 0.1;
+            cursor.style.left = dx - 9 + 'px';
+            cursor.style.top = dy - 9 + 'px';
+            requestAnimationFrame(animCursor);
+        })();
+
+        document.querySelectorAll('a, button, .glass-card, .service-card, .port-card').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(2.5)';
+                cursor.style.borderColor = '#B0E4CC';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.borderColor = '#408A71';
+            });
+        });
+
+        // ── Navbar scroll ──────────────────────────────────────────────
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            const s = window.scrollY > 50;
+            navbar.style.backgroundColor = s ? 'rgba(9,20,19,0.97)' : 'rgba(176,228,204,0.02)';
+            navbar.style.borderBottom = s ? '1px solid rgba(64,138,113,0.12)' : '1px solid rgba(64,138,113,0.1)';
+            navbar.style.boxShadow = s ? '0 4px 30px rgba(9,20,19,0.5)' : 'none';
+
+            // Active nav
+            let cur = '';
+            document.querySelectorAll('section[id]').forEach(sec => {
+                if (window.scrollY >= sec.offsetTop - 130) cur = sec.id;
+            });
+            document.querySelectorAll('.nav-link').forEach(l => {
+                l.classList.remove('active');
+                l.style.color = 'rgba(176,228,204,0.55)';
+                if (l.getAttribute('href') === '#' + cur) {
+                    l.classList.add('active');
+                    l.style.color = '#B0E4CC';
+                }
+            });
+
+            document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 500);
+        });
+
+        // ── Mobile menu ────────────────────────────────────────────────
+        const mobileMenu = document.getElementById('mobileMenu');
+        const overlayEl = document.getElementById('overlay');
+
+        function openMenu() {
+            mobileMenu.classList.add('open'); overlayEl.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            document.getElementById('b1').style.cssText = 'transform:rotate(45deg) translateY(8px); background:#408A71;';
+            document.getElementById('b2').style.opacity = '0';
+            document.getElementById('b3').style.cssText = 'transform:rotate(-45deg) translateY(-8px); width:20px; background:#408A71;';
+        }
+        function closeMenu() {
+            mobileMenu.classList.remove('open'); overlayEl.classList.add('hidden');
+            document.body.style.overflow = '';
+            ['b1', 'b2', 'b3'].forEach(id => document.getElementById(id).style.cssText = '');
+        }
+
+        document.getElementById('menuBtn').addEventListener('click', openMenu);
+        document.getElementById('closeMenu').addEventListener('click', closeMenu);
+        overlayEl.addEventListener('click', closeMenu);
+        document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', closeMenu));
+
+        // ── Scroll reveals ─────────────────────────────────────────────
+        const revealObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('visible');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => revealObs.observe(el));
+
+        // ── Counter animation ──────────────────────────────────────────
+        function animCount(el, target) {
+            let n = 0; const step = target / 80;
+            const t = setInterval(() => {
+                n = Math.min(n + step, target);
+                el.textContent = Math.floor(n) + '+';
+                if (n >= target) {
+                    clearInterval(t);
+                    if (el.getAttribute('data-count') === '98') el.textContent = '98%';
+                    if (el.getAttribute('data-count') === '8') el.textContent = '8+';
+                }
+            }, 20);
+        }
+
+        new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.querySelectorAll('[data-count]').forEach(el => {
+                        animCount(el, parseInt(el.getAttribute('data-count')));
+                    });
+                }
+            });
+        }, { threshold: 0.5 }).observe(document.querySelector('#home'));
+
+        // ── Live clock ─────────────────────────────────────────────────
+        function tick() {
+            const t = new Date().toLocaleTimeString('en-US', { hour12: false });
+            const el = document.getElementById('liveTime');
+            if (el) el.textContent = t;
+        }
+        tick(); setInterval(tick, 1000);
+
+        // ── Smooth scroll ──────────────────────────────────────────────
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                const t = document.querySelector(a.getAttribute('href'));
+                if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            });
+        });
+
+        // ── Initial reveal ─────────────────────────────────────────────
+        setTimeout(() => {
+            document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
+            });
+        }, 100);
+
+        console.log('%c✦ SoftNest Agency — Home Page Loaded', 'color:#408A71; font-size:14px; font-weight:bold;');
+        console.log('%c→ Module 1 Complete | Color Scheme: #091413 · #285A48 · #408A71 · #B0E4CC', 'color:#B0E4CC; font-size:12px;');
+    </script>
+</body>
+
+</html>
