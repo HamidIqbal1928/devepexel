@@ -1,0 +1,2464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us — DevePexel Code Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --deep: #091413;
+            --primary: #285A48;
+            --mid: #408A71;
+            --light: #B0E4CC;
+            --white: #F0FFF8;
+            --text: rgba(176, 228, 204, 0.7);
+            --border: rgba(64, 138, 113, 0.18);
+            --glow: rgba(40, 90, 72, 0.25);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #091413;
+            color: #B0E4CC;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #091413;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(#285A48, #B0E4CC);
+            border-radius: 10px;
+        }
+
+        /* Background */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image: linear-gradient(rgba(64, 138, 113, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(64, 138, 113, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .bg-noise {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .orb-1 {
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(40, 90, 72, 0.14), transparent 70%);
+            top: -250px;
+            left: -200px;
+            animation: orbDrift 16s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, rgba(64, 138, 113, 0.1), transparent 70%);
+            bottom: -150px;
+            right: -150px;
+            animation: orbDrift 20s ease-in-out infinite reverse;
+        }
+
+        .orb-3 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(176, 228, 204, 0.05), transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: orbDrift 25s ease-in-out infinite;
+        }
+
+        @keyframes orbDrift {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(40px, -30px) scale(1.05);
+            }
+
+            66% {
+                transform: translate(-25px, 20px) scale(0.95);
+            }
+        }
+
+        .scanline {
+            position: fixed;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(176, 228, 204, 0.08), rgba(64, 138, 113, 0.12), transparent);
+            z-index: 1;
+            pointer-events: none;
+            animation: scanMove 12s linear infinite;
+        }
+
+        @keyframes scanMove {
+            0% {
+                top: -2px;
+            }
+
+            100% {
+                top: 100vh;
+            }
+        }
+
+        /* Typography */
+        .font-syne {
+            font-family: 'Syne', sans-serif;
+        }
+
+        .font-grotesk {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #F0FFF8 0%, #B0E4CC 30%, #408A71 60%, #285A48 80%, #B0E4CC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% auto;
+            animation: textShimmer 5s linear infinite;
+        }
+
+        .gradient-text-2 {
+            background: linear-gradient(135deg, #B0E4CC, #408A71, #B0E4CC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @keyframes textShimmer {
+            0% {
+                background-position: 0% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        /* Glass */
+        .glass {
+            background: rgba(176, 228, 204, 0.02);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(64, 138, 113, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(9, 20, 19, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(64, 138, 113, 0.15);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(64, 138, 113, 0.45);
+            box-shadow: 0 25px 60px rgba(40, 90, 72, 0.18), 0 0 40px rgba(64, 138, 113, 0.06);
+            transform: translateY(-6px);
+        }
+
+        /* Nav */
+        .nav-link {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: rgba(176, 228, 204, 0.55);
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, #285A48, #B0E4CC);
+            transition: width 0.4s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #B0E4CC;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #285A48, #408A71);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            transition: all 0.4s ease;
+            border-radius: 12px;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #408A71, #B0E4CC);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: 12px;
+        }
+
+        .btn-primary:hover::before {
+            opacity: 1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(40, 90, 72, 0.4);
+        }
+
+        .btn-primary>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(64, 138, 113, 0.45);
+            color: #B0E4CC;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: rgba(40, 90, 72, 0.15);
+            border-color: rgba(64, 138, 113, 0.8);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(40, 90, 72, 0.2);
+            color: #F0FFF8;
+        }
+
+        /* Reveals */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal.visible,
+        .reveal-left.visible,
+        .reveal-right.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        /* Cursor */
+        .cursor {
+            width: 18px;
+            height: 18px;
+            border: 1.5px solid #408A71;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.15s ease;
+        }
+
+        .cursor-dot {
+            width: 5px;
+            height: 5px;
+            background: #B0E4CC;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #285A48, #408A71);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #F0FFF8;
+            cursor: pointer;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(40, 90, 72, 0.4);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-4px) scale(1.1);
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(64, 138, 113, 0.25), rgba(176, 228, 204, 0.15), transparent);
+        }
+
+        .section-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            letter-spacing: 0.18em;
+            color: #408A71;
+            text-transform: uppercase;
+        }
+
+        .num-gradient {
+            background: linear-gradient(135deg, #B0E4CC, #408A71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ===== ABOUT SPECIFIC ===== */
+
+        /* Hero image panel */
+        .hero-img-panel {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(40, 90, 72, 0.25), rgba(64, 138, 113, 0.1));
+            border: 1px solid rgba(64, 138, 113, 0.2);
+        }
+
+        .hero-img-panel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.8s ease;
+        }
+
+        .hero-img-panel:hover img {
+            transform: scale(1.04);
+        }
+
+        .hero-img-panel .img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(9, 20, 19, 0.3) 0%, transparent 50%, rgba(9, 20, 19, 0.4) 100%);
+        }
+
+        .hero-img-panel .floating-badge {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            background: rgba(9, 20, 19, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(64, 138, 113, 0.3);
+            border-radius: 16px;
+            padding: 16px 20px;
+        }
+
+        /* Stat cards */
+        .stat-card {
+            background: rgba(9, 20, 19, 0.8);
+            border: 1px solid rgba(64, 138, 113, 0.12);
+            border-radius: 20px;
+            padding: 28px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #285A48, #B0E4CC, #285A48, transparent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-card:hover {
+            border-color: rgba(64, 138, 113, 0.35);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(40, 90, 72, 0.15);
+        }
+
+        /* Team cards */
+        .team-card {
+            background: rgba(9, 20, 19, 0.85);
+            border: 1px solid rgba(64, 138, 113, 0.12);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #285A48, #B0E4CC, #285A48, transparent);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .team-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .team-card:hover {
+            border-color: rgba(64, 138, 113, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 30px 70px rgba(40, 90, 72, 0.2);
+        }
+
+        .team-avatar {
+            width: 100%;
+            height: 260px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .team-card:hover .team-avatar img {
+            transform: scale(1.06);
+        }
+
+        .team-avatar .avatar-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(9, 20, 19, 0.95) 100%);
+        }
+
+        .team-avatar .social-links {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            padding: 16px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .team-card:hover .social-links {
+            transform: translateY(0);
+        }
+
+        /* Values cards */
+        .value-card {
+            background: rgba(9, 20, 19, 0.8);
+            border: 1px solid rgba(64, 138, 113, 0.1);
+            border-radius: 20px;
+            padding: 32px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(64, 138, 113, 0.08), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .value-card:hover::after {
+            opacity: 1;
+        }
+
+        .value-card:hover {
+            border-color: rgba(64, 138, 113, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(40, 90, 72, 0.12);
+        }
+
+        .value-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(40, 90, 72, 0.3), rgba(64, 138, 113, 0.2));
+            border: 1px solid rgba(64, 138, 113, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 22px;
+            color: #B0E4CC;
+            transition: all 0.4s ease;
+        }
+
+        .value-card:hover .value-icon {
+            background: linear-gradient(135deg, #285A48, #408A71);
+            box-shadow: 0 8px 25px rgba(40, 90, 72, 0.4);
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        /* Milestone timeline */
+        .milestone-track {
+            position: relative;
+        }
+
+        .milestone-track::before {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #285A48, rgba(64, 138, 113, 0.3), transparent);
+        }
+
+        .milestone-item {
+            position: relative;
+            padding-left: 64px;
+            padding-bottom: 40px;
+        }
+
+        .milestone-dot {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #285A48, #408A71);
+            border: 3px solid rgba(9, 20, 19, 0.95);
+            box-shadow: 0 0 0 4px rgba(64, 138, 113, 0.15), 0 0 25px rgba(40, 90, 72, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: #F0FFF8;
+        }
+
+        .milestone-card {
+            background: rgba(9, 20, 19, 0.8);
+            border: 1px solid rgba(64, 138, 113, 0.12);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .milestone-card:hover {
+            border-color: rgba(64, 138, 113, 0.3);
+            background: rgba(40, 90, 72, 0.06);
+        }
+
+        /* Tech stack badges */
+        .tech-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 12px;
+            background: rgba(9, 20, 19, 0.8);
+            border: 1px solid rgba(64, 138, 113, 0.15);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(176, 228, 204, 0.7);
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .tech-badge:hover {
+            border-color: rgba(64, 138, 113, 0.4);
+            color: #B0E4CC;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(40, 90, 72, 0.15);
+        }
+
+        /* Advanced image effects */
+        .advanced-img {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(64, 138, 113, 0.15);
+        }
+
+        .advanced-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .advanced-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .advanced-img .img-shine {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 30%, rgba(176, 228, 204, 0.04) 50%, transparent 70%);
+            animation: imgShine 4s linear infinite;
+        }
+
+        @keyframes imgShine {
+            0% {
+                transform: translateX(-100%) translateY(-100%);
+            }
+
+            100% {
+                transform: translateX(100%) translateY(100%);
+            }
+        }
+
+        .advanced-img .img-border-glow {
+            position: absolute;
+            inset: -1px;
+            border-radius: 21px;
+            background: linear-gradient(135deg, rgba(64, 138, 113, 0.3), transparent, rgba(176, 228, 204, 0.15), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .advanced-img:hover .img-border-glow {
+            opacity: 1;
+        }
+
+        /* Image collage */
+        .img-collage {
+            position: relative;
+            height: 500px;
+        }
+
+        .collage-main {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 65%;
+            height: 320px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(64, 138, 113, 0.2);
+        }
+
+        .collage-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .collage-main:hover img {
+            transform: scale(1.04);
+        }
+
+        .collage-tr {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 33%;
+            height: 150px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(64, 138, 113, 0.2);
+        }
+
+        .collage-tr img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .collage-tr:hover img {
+            transform: scale(1.04);
+        }
+
+        .collage-br {
+            position: absolute;
+            top: 165px;
+            right: 0;
+            width: 33%;
+            height: 150px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(64, 138, 113, 0.2);
+        }
+
+        .collage-br img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .collage-br:hover img {
+            transform: scale(1.04);
+        }
+
+        .collage-bl {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 47%;
+            height: 165px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(64, 138, 113, 0.2);
+        }
+
+        .collage-bl img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .collage-bl:hover img {
+            transform: scale(1.04);
+        }
+
+        .collage-bm {
+            position: absolute;
+            bottom: 0;
+            right: 35%;
+            width: 20%;
+            height: 165px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(64, 138, 113, 0.2);
+        }
+
+        .collage-bm img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .collage-bm:hover img {
+            transform: scale(1.04);
+        }
+
+        /* Floating elements */
+        .float-badge {
+            position: absolute;
+            background: rgba(9, 20, 19, 0.92);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(64, 138, 113, 0.3);
+            border-radius: 14px;
+            padding: 12px 16px;
+            font-family: 'Space Grotesk', sans-serif;
+            animation: floatBadge 4s ease-in-out infinite;
+            z-index: 10;
+        }
+
+        @keyframes floatBadge {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        /* Progress bars */
+        .skill-bar {
+            height: 6px;
+            background: rgba(64, 138, 113, 0.12);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .skill-fill {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #285A48, #B0E4CC);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .skill-fill.animated {
+            transform: scaleX(1);
+        }
+
+        /* Culture image strip */
+        .culture-strip {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            scrollbar-width: none;
+        }
+
+        .culture-strip::-webkit-scrollbar {
+            display: none;
+        }
+
+        .culture-img {
+            flex: 0 0 200px;
+            height: 140px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(64, 138, 113, 0.15);
+        }
+
+        .culture-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .culture-img:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Award card */
+        .award-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            background: rgba(9, 20, 19, 0.7);
+            border: 1px solid rgba(64, 138, 113, 0.1);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .award-item:hover {
+            border-color: rgba(64, 138, 113, 0.3);
+            background: rgba(40, 90, 72, 0.06);
+            transform: translateX(6px);
+        }
+
+        @media(max-width:768px) {
+
+            .cursor,
+            .cursor-dot {
+                display: none;
+            }
+
+            .img-collage {
+                height: auto;
+            }
+
+            .collage-main,
+            .collage-tr,
+            .collage-br,
+            .collage-bl,
+            .collage-bm {
+                position: relative;
+                width: 100%;
+                height: 200px;
+                top: auto;
+                left: auto;
+                right: auto;
+                bottom: auto;
+            }
+
+            .img-collage {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <!-- Scroll Top -->
+    <div class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fas fa-arrow-up text-sm"></i>
+    </div>
+
+    <!-- Background -->
+    <div class="bg-grid"></div>
+    <div class="bg-noise"></div>
+    <div class="scanline"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- ============================================================ -->
+    <!-- NAVBAR                                                        -->
+    <!-- ============================================================ -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center relative overflow-hidden group-hover:scale-110 transition-transform duration-300"
+                        style="background:linear-gradient(135deg,#285A48,#408A71);box-shadow:0 4px 15px rgba(40,90,72,0.35);">
+                        <span class="font-syne font-bold text-lg relative z-10" style="color:#B0E4CC;">D</span>
+                        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                            style="background:linear-gradient(135deg,#408A71,#B0E4CC);"></div>
+                    </div>
+                    <div class="hidden sm:block">
+                        <div class="font-syne font-bold text-xl leading-none" style="color:#F0FFF8;">Deve<span
+                                style="color:#408A71;">Pexel</span></div>
+                        <div class="text-xs tracking-widest mt-0.5"
+                            style="color:rgba(176,228,204,0.4);font-family:'Space Grotesk',sans-serif;">CODE AGENCY
+                        </div>
+                    </div>
+                </a>
+
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link active">About</a>
+                    <a href="services.html" class="nav-link">Services</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <div class="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-grotesk"
+                        style="background:rgba(40,90,72,0.1);border:1px solid rgba(64,138,113,0.2);color:rgba(176,228,204,0.7);">
+                        <span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
+                        Available for projects
+                    </div>
+                    <a href="contact.html" class="hidden lg:flex btn-primary text-sm px-6 py-2.5 items-center gap-2"
+                        style="color:#F0FFF8;">
+                        <span>Get Started</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                    <button class="lg:hidden w-9 h-9 glass rounded-xl flex flex-col justify-center items-center gap-1.5"
+                        id="menuBtn">
+                        <span class="w-5 h-0.5 transition-all" style="background:rgba(176,228,204,0.7);" id="b1"></span>
+                        <span class="w-5 h-0.5 transition-all" style="background:rgba(176,228,204,0.7);" id="b2"></span>
+                        <span class="w-3 h-0.5 transition-all" style="background:rgba(176,228,204,0.7);" id="b3"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed top-0 right-0 h-full w-80 z-40 glass-card flex flex-col justify-center px-10"
+        id="mobileMenu">
+        <button class="absolute top-5 right-5 w-8 h-8 flex items-center justify-center"
+            style="color:rgba(176,228,204,0.5);" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="mb-10">
+            <div class="font-syne font-bold text-2xl" style="color:#F0FFF8;">Deve<span
+                    style="color:#408A71;">Pexel</span></div>
+            <div class="text-xs tracking-widest mt-1" style="color:rgba(176,228,204,0.35);">CODE AGENCY</div>
+        </div>
+        <div class="flex flex-col gap-6">
+            <a href="index.html" class="font-grotesk font-semibold text-lg mobile-link"
+                style="color:rgba(176,228,204,0.6);">Home</a>
+            <a href="about.html" class="font-grotesk font-semibold text-lg mobile-link" style="color:#B0E4CC;">About</a>
+            <a href="services.html" class="font-grotesk font-semibold text-lg mobile-link"
+                style="color:rgba(176,228,204,0.6);">Services</a>
+            <a href="contact.html" class="font-grotesk font-semibold text-lg mobile-link"
+                style="color:rgba(176,228,204,0.6);">Contact</a>
+            <a href="contact.html" class="btn-primary mt-4 py-3.5 text-center text-sm" style="color:#F0FFF8;">Get
+                Started →</a>
+        </div>
+    </div>
+    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-30 hidden" id="overlay"></div>
+
+    <!-- ============================================================ -->
+    <!-- HERO SECTION                                                  -->
+    <!-- ============================================================ -->
+    <section class="relative pt-32 pb-20 lg:pt-44 lg:pb-28 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+            <!-- Breadcrumb -->
+            <div class="flex items-center gap-2 mb-8 reveal text-sm font-grotesk" style="color:rgba(176,228,204,0.4);">
+                <a href="index.html" class="hover:text-white transition-colors">Home</a>
+                <i class="fas fa-chevron-right text-xs"></i>
+                <span style="color:#408A71;">About Us</span>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Left Content -->
+                <div>
+                    <div class="flex items-center gap-3 mb-6 reveal">
+                        <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                        <span class="section-label">Our Story</span>
+                        <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                    </div>
+
+                    <h1 class="font-syne font-extrabold mb-6 reveal leading-tight"
+                        style="font-size:clamp(38px,5.5vw,70px);color:#F0FFF8;transition-delay:.1s;">
+                        We Are <span class="gradient-text">DevePexel</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg leading-relaxed mb-6 reveal font-grotesk"
+                        style="color:rgba(176,228,204,0.5);transition-delay:.2s;">
+                        A passionate code agency born from a simple belief — that every business deserves digital
+                        excellence. We blend cutting-edge technology with creative vision to craft experiences that
+                        leave lasting impressions.
+                    </p>
+
+                    <p class="text-sm sm:text-base leading-relaxed mb-10 reveal font-grotesk"
+                        style="color:rgba(176,228,204,0.4);transition-delay:.25s;">
+                        Since 2019, we've partnered with startups and Fortune 500 companies alike, delivering digital
+                        solutions that drive real, measurable growth.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 reveal" style="transition-delay:.3s;">
+                        <a href="#story" class="btn-primary px-8 py-4 flex items-center justify-center gap-2 text-sm"
+                            style="color:#F0FFF8;">
+                            <span>Discover Our Journey</span>
+                            <i class="fas fa-arrow-down text-xs"></i>
+                        </a>
+                        <a href="contact.html"
+                            class="btn-outline px-8 py-4 flex items-center justify-center gap-2 text-sm">
+                            <i class="fas fa-paper-plane text-xs"></i>
+                            <span>Work With Us</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right — Advanced Image Collage -->
+                <div class="reveal-right" style="transition-delay:.2s;">
+                    <div class="img-collage">
+
+                        <!-- Main large image -->
+                        <div class="collage-main">
+                            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80&auto=format&fit=crop"
+                                alt="Team collaboration" loading="lazy">
+                            <div
+                                style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(9,20,19,0.2),transparent);">
+                            </div>
+                        </div>
+
+                        <!-- Top right -->
+                        <div class="collage-tr">
+                            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&q=80&auto=format&fit=crop"
+                                alt="Code development" loading="lazy">
+                        </div>
+
+                        <!-- Bottom right -->
+                        <div class="collage-br">
+                            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&q=80&auto=format&fit=crop"
+                                alt="Team meeting" loading="lazy">
+                        </div>
+
+                        <!-- Bottom left -->
+                        <div class="collage-bl">
+                            <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=500&q=80&auto=format&fit=crop"
+                                alt="Design process" loading="lazy">
+                        </div>
+
+                        <!-- Bottom middle -->
+                        <div class="collage-bm">
+                            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=300&q=80&auto=format&fit=crop"
+                                alt="Laptop coding" loading="lazy">
+                        </div>
+
+                        <!-- Floating badge -->
+                        <div class="float-badge" style="top:20px;right:36%;animation-delay:0s;">
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                                <span class="text-xs font-grotesk" style="color:rgba(176,228,204,0.8);">Est. 2019</span>
+                            </div>
+                        </div>
+
+                        <!-- Floating badge 2 -->
+                        <div class="float-badge" style="bottom:180px;left:67%;animation-delay:1s;">
+                            <div class="flex items-center gap-1">
+                                <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                                <span class="text-xs font-grotesk font-bold" style="color:#F0FFF8;">5.0</span>
+                                <span class="text-xs font-grotesk" style="color:rgba(176,228,204,0.5);">rated</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- STATS SECTION                                                 -->
+    <!-- ============================================================ -->
+    <section class="py-20 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <div class="stat-card reveal" style="transition-delay:0s;">
+                    <div class="font-syne font-extrabold text-4xl lg:text-5xl num-gradient mb-2" id="stat1">0+</div>
+                    <div class="font-grotesk text-sm" style="color:rgba(176,228,204,0.5);">Projects Delivered</div>
+                    <div class="w-8 h-0.5 mx-auto mt-3" style="background:linear-gradient(90deg,#285A48,#B0E4CC);">
+                    </div>
+                </div>
+
+                <div class="stat-card reveal" style="transition-delay:.1s;">
+                    <div class="font-syne font-extrabold text-4xl lg:text-5xl num-gradient mb-2" id="stat2">0+</div>
+                    <div class="font-grotesk text-sm" style="color:rgba(176,228,204,0.5);">Happy Clients</div>
+                    <div class="w-8 h-0.5 mx-auto mt-3" style="background:linear-gradient(90deg,#285A48,#B0E4CC);">
+                    </div>
+                </div>
+
+                <div class="stat-card reveal" style="transition-delay:.2s;">
+                    <div class="font-syne font-extrabold text-4xl lg:text-5xl num-gradient mb-2" id="stat3">0+</div>
+                    <div class="font-grotesk text-sm" style="color:rgba(176,228,204,0.5);">Years Experience</div>
+                    <div class="w-8 h-0.5 mx-auto mt-3" style="background:linear-gradient(90deg,#285A48,#B0E4CC);">
+                    </div>
+                </div>
+
+                <div class="stat-card reveal" style="transition-delay:.3s;">
+                    <div class="font-syne font-extrabold text-4xl lg:text-5xl num-gradient mb-2" id="stat4">0%</div>
+                    <div class="font-grotesk text-sm" style="color:rgba(176,228,204,0.5);">Client Satisfaction</div>
+                    <div class="w-8 h-0.5 mx-auto mt-3" style="background:linear-gradient(90deg,#285A48,#B0E4CC);">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- OUR STORY SECTION                                             -->
+    <!-- ============================================================ -->
+    <section id="story" class="py-24 lg:py-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="grid lg:grid-cols-2 gap-16 items-center mb-24">
+
+                <!-- Image -->
+                <div class="reveal-left">
+                    <div class="advanced-img" style="height:480px;">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=900&q=80&auto=format&fit=crop"
+                            alt="Our office and team" loading="lazy" style="height:480px;">
+                        <div class="img-shine"></div>
+                        <div class="img-border-glow"></div>
+                        <!-- Overlay badge -->
+                        <div
+                            style="position:absolute;top:24px;left:24px;background:rgba(9,20,19,0.9);backdrop-filter:blur(20px);border:1px solid rgba(64,138,113,0.3);border-radius:14px;padding:14px 18px;">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-map-marker-alt text-xs" style="color:#408A71;"></i>
+                                <span class="text-xs font-grotesk" style="color:rgba(176,228,204,0.7);">San Francisco,
+                                    CA</span>
+                            </div>
+                        </div>
+                        <div
+                            style="position:absolute;bottom:24px;right:24px;background:rgba(9,20,19,0.9);backdrop-filter:blur(20px);border:1px solid rgba(64,138,113,0.3);border-radius:14px;padding:14px 20px;">
+                            <div class="font-syne font-bold text-lg num-gradient">2019</div>
+                            <div class="text-xs font-grotesk mt-0.5" style="color:rgba(176,228,204,0.5);">Founded</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="reveal-right">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                        <span class="section-label">Who We Are</span>
+                        <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                    </div>
+
+                    <h2 class="font-syne font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-6" style="color:#F0FFF8;">
+                        Built on <span class="gradient-text-2">Passion</span> &amp; Precision
+                    </h2>
+
+                    <p class="font-grotesk text-sm sm:text-base leading-relaxed mb-5"
+                        style="color:rgba(176,228,204,0.5);">
+                        DevePexel was born in a small apartment in San Francisco, where a group of developers and
+                        designers shared one radical idea — that code is an art form, and every digital product should
+                        be a masterpiece.
+                    </p>
+
+                    <p class="font-grotesk text-sm sm:text-base leading-relaxed mb-8"
+                        style="color:rgba(176,228,204,0.4);">
+                        Today, we're a fully remote team of 18 specialists spanning 6 countries, united by our obsession
+                        with quality, performance, and pixel-perfect execution. We don't just build websites — we
+                        engineer digital experiences.
+                    </p>
+
+                    <!-- Highlights -->
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="p-4 rounded-xl"
+                            style="background:rgba(40,90,72,0.08);border:1px solid rgba(64,138,113,0.15);">
+                            <i class="fas fa-globe mb-2" style="color:#408A71;"></i>
+                            <div class="font-syne font-semibold text-sm" style="color:#F0FFF8;">Global Reach</div>
+                            <div class="text-xs font-grotesk mt-1" style="color:rgba(176,228,204,0.4);">Clients across
+                                30+ countries</div>
+                        </div>
+                        <div class="p-4 rounded-xl"
+                            style="background:rgba(40,90,72,0.08);border:1px solid rgba(64,138,113,0.15);">
+                            <i class="fas fa-award mb-2" style="color:#408A71;"></i>
+                            <div class="font-syne font-semibold text-sm" style="color:#F0FFF8;">Award Winning</div>
+                            <div class="text-xs font-grotesk mt-1" style="color:rgba(176,228,204,0.4);">12 industry
+                                recognitions</div>
+                        </div>
+                        <div class="p-4 rounded-xl"
+                            style="background:rgba(40,90,72,0.08);border:1px solid rgba(64,138,113,0.15);">
+                            <i class="fas fa-bolt mb-2" style="color:#408A71;"></i>
+                            <div class="font-syne font-semibold text-sm" style="color:#F0FFF8;">Fast Delivery</div>
+                            <div class="text-xs font-grotesk mt-1" style="color:rgba(176,228,204,0.4);">On-time, every
+                                time</div>
+                        </div>
+                        <div class="p-4 rounded-xl"
+                            style="background:rgba(40,90,72,0.08);border:1px solid rgba(64,138,113,0.15);">
+                            <i class="fas fa-shield-alt mb-2" style="color:#408A71;"></i>
+                            <div class="font-syne font-semibold text-sm" style="color:#F0FFF8;">Secure & Reliable</div>
+                            <div class="text-xs font-grotesk mt-1" style="color:rgba(176,228,204,0.4);">99.9% uptime
+                                guarantee</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- OUR VALUES                                                    -->
+    <!-- ============================================================ -->
+    <section class="py-24 lg:py-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center mb-16 reveal">
+                <div class="flex items-center gap-3 justify-center mb-5">
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                    <span class="section-label">What Drives Us</span>
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                </div>
+                <h2 class="font-syne font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4" style="color:#F0FFF8;">
+                    Our Core <span class="gradient-text-2">Values</span>
+                </h2>
+                <p class="max-w-2xl mx-auto text-sm sm:text-base font-grotesk" style="color:rgba(176,228,204,0.5);">
+                    These aren't just words on a wall — they're the principles that shape every decision we make.
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <div class="value-card reveal" style="transition-delay:0s;">
+                    <div class="value-icon"><i class="fas fa-gem"></i></div>
+                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">Uncompromising Quality</h3>
+                    <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">Every line of
+                        code, every pixel, every interaction is crafted with obsessive attention to detail. Good enough
+                        is never enough.</p>
+                </div>
+
+                <div class="value-card reveal" style="transition-delay:.1s;">
+                    <div class="value-icon"><i class="fas fa-lightbulb"></i></div>
+                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">Innovation First</h3>
+                    <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">We stay ahead
+                        of the curve, constantly exploring emerging technologies to give our clients a competitive edge
+                        in the digital landscape.</p>
+                </div>
+
+                <div class="value-card reveal" style="transition-delay:.2s;">
+                    <div class="value-icon"><i class="fas fa-handshake"></i></div>
+                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">Radical Transparency</h3>
+                    <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">No surprises,
+                        no hidden fees. We communicate openly at every stage, treating our clients as true partners in
+                        the journey.</p>
+                </div>
+
+                <div class="value-card reveal" style="transition-delay:.3s;">
+                    <div class="value-icon"><i class="fas fa-rocket"></i></div>
+                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">Results Obsessed</h3>
+                    <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">Beautiful
+                        design means nothing without performance. We measure success by the real business outcomes we
+                        generate for our clients.</p>
+                </div>
+
+                <div class="value-card reveal" style="transition-delay:.4s;">
+                    <div class="value-icon"><i class="fas fa-users"></i></div>
+                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">People Over Process</h3>
+                    <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">Systems serve
+                        people — not the other way around. We adapt our workflow to each client's unique needs and
+                        working style.</p>
+                </div>
+
+                <div class="value-card reveal" style="transition-delay:.5s;">
+                    <div class="value-icon"><i class="fas fa-leaf"></i></div>
+                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">Sustainable Growth</h3>
+                    <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">We build for
+                        the long term — architectures that scale, strategies that compound, and relationships that last
+                        a decade.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- MEET THE TEAM                                                 -->
+    <!-- ============================================================ -->
+    <section class="py-24 lg:py-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center mb-16 reveal">
+                <div class="flex items-center gap-3 justify-center mb-5">
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                    <span class="section-label">The Humans Behind It</span>
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                </div>
+                <h2 class="font-syne font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4" style="color:#F0FFF8;">
+                    Meet Our <span class="gradient-text-2">Team</span>
+                </h2>
+                <p class="max-w-2xl mx-auto text-sm sm:text-base font-grotesk" style="color:rgba(176,228,204,0.5);">
+                    World-class talent with a shared passion for building exceptional digital products.
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- Team Member 1 -->
+                <div class="team-card reveal" style="transition-delay:0s;">
+                    <div class="team-avatar">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80&auto=format&fit=crop&facepad=3&faces=1"
+                            alt="Alex Chen - CEO" loading="lazy">
+                        <div class="avatar-overlay"></div>
+                        <div class="social-links">
+                            <a href="#"
+                                class="w-8 h-8 rounded-lg flex items-center justify-center text-xs transition-all hover:scale-110"
+                                style="background:rgba(40,90,72,0.5);color:#B0E4CC;border:1px solid rgba(64,138,113,0.3);">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#"
+                                class="w-8 h-8 rounded-lg flex items-center justify-center text-xs transition-all hover:scale-110"
+                                style="background:rgba(40,90,72,0.5);color:#B0E4CC;border:1px solid rgba(64,138,113,0.3);">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#"
+                                class="w-8 h-8 rounded-lg flex items-center justify-center text-xs transition-all hover:scale-110"
+                                style="background:rgba(40,90,72,0.5);color:#B0E4CC;border:1px solid rgba(64,138,113,0.3);">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-syne font-bold text-lg" style="color:#F0FFF8;">Alex Chen</h3>
+                        <div class="text-xs font-grotesk mt-1 mb-3" style="color:#408A71;">CEO & Co-Founder</div>
+                        <p class="text-xs font-grotesk leading-relaxed" style="color:rgba(176,228,204,0.4);">Visionary
+                            leader with 12+ years in tech. Ex-Google, Stanford CS grad.</p>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="team-card reveal" style="transition-delay:.1s;">
+                    <div class="team-avatar">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80&auto=format&fit=crop&facepad=3"
+                            alt="Sarah Kim - CTO" loading="lazy">
+                        <div class="avatar-overlay"></div>
+                        <div class="social-links">
+                            <a href="#"
+                                class="w-8 h-8 rounded-lg flex items-center justify-center text-xs transition-all hover:scale-110"
+                                style="background:rgba(40,90,72,0.5);color:#B0E4CC;border:1px solid rgba(64,138,113,0.3);">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#"
+                                class="w-8 h-8 rounded-lg flex items-center justify-center text-xs transition-all hover:scale-110"
+                                style="background:rgba(40,90,72,0.5);color:#B0E4CC;border:1px solid rgba(64,138,113,0.3);">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#"
+                                class="w-8 h-8 rounded-lg flex items-center justify-center text-xs transition-all hover:scale-110"
+                                style="background:rgba(40,90,72,0.5);color:#B0E4CC;border:1px solid rgba(64,138,113,0.3);">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-syne font-bold text-lg" style="color:#F0FFF8;">Sarah Kim</h3>
+                        <div class="text-xs font-grotesk mt-1 mb-3" style="color:#408A71;">CTO & Co-Founder</div>
+                        <p class="text-xs font-grotesk leading-relaxed" style="color:rgba(176,228,204,0.4);">Full-stack
+                            architect. Open-source contributor & TypeScript evangelist.</p>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="team-card reveal" style="transition-delay:.2s;">
+                    <div class="team-avatar">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80&auto=format&fit=crop&facepad=3"
+                            alt="Marcus Reid - Design Lead" loading="lazy">
+                        <div class="avatar-overlay"></div>
+                        <div class="social-links">
+                            <a href="#"
+                                class="w-8 h-8 rounded-lg flex items-center justify-center text-xs transition-all hover:scale-110"
+                                style="background:rgba(40,90,72,0.5);color:#B0E4CC;border:1px solid rgba(64,138,113,0.3);">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#"
+                                class="w-8 h-8 rounded-lg flex items-center justify-center text-xs transition-all hover:scale-110"
+                                style="background:rgba(40,90,72,0.5);color:#B0E4CC;border:1px solid rgba(64,138,113,0.3);">
+                                <i class="fab fa-dribbble"></i>
+                            </a>
+                            <a href="#"
+                                class="w-8 h-8 rounded-lg flex items-center justify-center text-xs transition-all hover:scale-110"
+                                style="background:rgba(40,90,72,0.5);color:#B0E4CC;border:1px solid rgba(64,138,113,0.3);">
+                                <i class="fab fa-behance"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-syne font-bold text-lg" style="color:#F0FFF8;">Marcus Reid</h3>
+                        <div class="text-xs font-grotesk mt-1 mb-3" style="color:#408A71;">Design Lead</div>
+                        <p class="text-xs font-grotesk leading-relaxed" style="color:rgba(176,228,204,0.4);">
+                            Award-winning UI/UX designer. Former design director at Spotify.</p>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="team-card reveal" style="transition-delay:.3s;">
+                    <div class="team-avatar">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80&auto=format&fit=crop&facepad=3"
+                            alt="Priya Sharma - Marketing Head" loading="lazy">
+                        <div class="avatar-overlay"></div>
+                        <div class="social-links">
+                            <a href="#"
+                                class="w-8 h-8 rounded-lg flex items-center justify-center text-xs transition-all hover:scale-110"
+                                style="background:rgba(40,90,72,0.5);color:#B0E4CC;border:1px solid rgba(64,138,113,0.3);">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#"
+                                class="w-8 h-8 rounded-lg flex items-center justify-center text-xs transition-all hover:scale-110"
+                                style="background:rgba(40,90,72,0.5);color:#B0E4CC;border:1px solid rgba(64,138,113,0.3);">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#"
+                                class="w-8 h-8 rounded-lg flex items-center justify-center text-xs transition-all hover:scale-110"
+                                style="background:rgba(40,90,72,0.5);color:#B0E4CC;border:1px solid rgba(64,138,113,0.3);">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-syne font-bold text-lg" style="color:#F0FFF8;">Priya Sharma</h3>
+                        <div class="text-xs font-grotesk mt-1 mb-3" style="color:#408A71;">Marketing Head</div>
+                        <p class="text-xs font-grotesk leading-relaxed" style="color:rgba(176,228,204,0.4);">Growth
+                            hacker & brand strategist. Generated $50M+ in client revenue.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Join team CTA -->
+            <div class="text-center mt-12 reveal">
+                <div class="glass-card inline-flex items-center gap-4 px-8 py-5 rounded-2xl">
+                    <div class="flex -space-x-3">
+                        <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=60&q=80&auto=format&fit=crop&facepad=3"
+                            class="w-8 h-8 rounded-full border-2" style="border-color:#091413;object-fit:cover;" alt="">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=60&q=80&auto=format&fit=crop&facepad=3"
+                            class="w-8 h-8 rounded-full border-2" style="border-color:#091413;object-fit:cover;" alt="">
+                        <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?w=60&q=80&auto=format&fit=crop&facepad=3"
+                            class="w-8 h-8 rounded-full border-2" style="border-color:#091413;object-fit:cover;" alt="">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-grotesk font-bold border-2"
+                            style="background:linear-gradient(135deg,#285A48,#408A71);border-color:#091413;color:#F0FFF8;">
+                            +14</div>
+                    </div>
+                    <div class="text-left">
+                        <div class="font-syne font-semibold text-sm" style="color:#F0FFF8;">We're growing!</div>
+                        <div class="font-grotesk text-xs" style="color:rgba(176,228,204,0.5);">3 open positions
+                            available</div>
+                    </div>
+                    <a href="contact.html" class="btn-primary px-5 py-2.5 text-xs inline-flex items-center gap-2"
+                        style="color:#F0FFF8;">
+                        Join Us <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- SKILLS & EXPERTISE                                            -->
+    <!-- ============================================================ -->
+    <section class="py-24 lg:py-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+                <!-- Skills -->
+                <div class="reveal-left">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                        <span class="section-label">Our Expertise</span>
+                        <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                    </div>
+
+                    <h2 class="font-syne font-extrabold text-3xl sm:text-4xl mb-6" style="color:#F0FFF8;">
+                        Skills That <span class="gradient-text-2">Deliver</span>
+                    </h2>
+
+                    <p class="font-grotesk text-sm leading-relaxed mb-8" style="color:rgba(176,228,204,0.5);">
+                        Mastery across the full digital spectrum — from pixel-perfect design to scalable backend
+                        infrastructure.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="skill-item">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-grotesk text-sm font-medium"
+                                    style="color:rgba(176,228,204,0.8);">WordPress & PHP Development</span>
+                                <span class="font-syne font-bold text-sm num-gradient">98%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--target:0.98;" data-width="0.98"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-grotesk text-sm font-medium"
+                                    style="color:rgba(176,228,204,0.8);">React & Next.js</span>
+                                <span class="font-syne font-bold text-sm num-gradient">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--target:0.95;" data-width="0.95"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-grotesk text-sm font-medium"
+                                    style="color:rgba(176,228,204,0.8);">UI/UX & Graphic Design</span>
+                                <span class="font-syne font-bold text-sm num-gradient">93%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--target:0.93;" data-width="0.93"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-grotesk text-sm font-medium" style="color:rgba(176,228,204,0.8);">SEO
+                                    & Digital Marketing</span>
+                                <span class="font-syne font-bold text-sm num-gradient">91%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--target:0.91;" data-width="0.91"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-grotesk text-sm font-medium"
+                                    style="color:rgba(176,228,204,0.8);">Cloud & DevOps</span>
+                                <span class="font-syne font-bold text-sm num-gradient">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="--target:0.88;" data-width="0.88"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tech stack -->
+                <div class="reveal-right">
+                    <div class="advanced-img mb-6" style="height:280px;">
+                        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80&auto=format&fit=crop"
+                            alt="Technology and code" loading="lazy" style="height:280px;">
+                        <div class="img-shine"></div>
+                        <div class="img-border-glow"></div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3">
+                        <span class="tech-badge"><i class="fab fa-react text-sm" style="color:#61DAFB;"></i>
+                            React</span>
+                        <span class="tech-badge"><i class="fas fa-n text-sm" style="color:#F0FFF8;"></i> Next.js</span>
+                        <span class="tech-badge"><i class="fab fa-wordpress text-sm" style="color:#21759B;"></i>
+                            WordPress</span>
+                        <span class="tech-badge"><i class="fab fa-node-js text-sm" style="color:#339933;"></i>
+                            Node.js</span>
+                        <span class="tech-badge"><i class="fab fa-python text-sm" style="color:#3776AB;"></i>
+                            Python</span>
+                        <span class="tech-badge"><i class="fab fa-figma text-sm" style="color:#F24E1E;"></i>
+                            Figma</span>
+                        <span class="tech-badge"><i class="fab fa-aws text-sm" style="color:#FF9900;"></i> AWS</span>
+                        <span class="tech-badge"><i class="fab fa-docker text-sm" style="color:#2496ED;"></i>
+                            Docker</span>
+                        <span class="tech-badge"><i class="fab fa-git-alt text-sm" style="color:#F05032;"></i>
+                            Git</span>
+                        <span class="tech-badge"><i class="fab fa-js text-sm" style="color:#F7DF1E;"></i>
+                            TypeScript</span>
+                        <span class="tech-badge"><i class="fas fa-database text-sm" style="color:#408A71;"></i>
+                            PostgreSQL</span>
+                        <span class="tech-badge"><i class="fab fa-stripe text-sm" style="color:#635BFF;"></i>
+                            Stripe</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- MILESTONES / JOURNEY                                          -->
+    <!-- ============================================================ -->
+    <section class="py-24 lg:py-32 relative z-10">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center mb-16 reveal">
+                <div class="flex items-center gap-3 justify-center mb-5">
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                    <span class="section-label">Our Journey</span>
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                </div>
+                <h2 class="font-syne font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4" style="color:#F0FFF8;">
+                    Key <span class="gradient-text-2">Milestones</span>
+                </h2>
+            </div>
+
+            <div class="milestone-track reveal">
+
+                <div class="milestone-item">
+                    <div class="milestone-dot">19</div>
+                    <div class="milestone-card">
+                        <div class="flex items-start justify-between mb-2">
+                            <h3 class="font-syne font-bold text-lg" style="color:#F0FFF8;">Agency Founded</h3>
+                            <span class="text-xs font-grotesk px-3 py-1 rounded-full"
+                                style="background:rgba(40,90,72,0.2);border:1px solid rgba(64,138,113,0.2);color:#408A71;">2019</span>
+                        </div>
+                        <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">DevePexel
+                            launched with a team of 3 in San Francisco. First client signed within 2 weeks — a local
+                            e-commerce brand that grew 400% in 6 months.</p>
+                    </div>
+                </div>
+
+                <div class="milestone-item">
+                    <div class="milestone-dot">20</div>
+                    <div class="milestone-card">
+                        <div class="flex items-start justify-between mb-2">
+                            <h3 class="font-syne font-bold text-lg" style="color:#F0FFF8;">First Enterprise Client</h3>
+                            <span class="text-xs font-grotesk px-3 py-1 rounded-full"
+                                style="background:rgba(40,90,72,0.2);border:1px solid rgba(64,138,113,0.2);color:#408A71;">2020</span>
+                        </div>
+                        <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">Landed our
+                            first Fortune 500 contract. Delivered a complete digital transformation project — on time,
+                            under budget. Team expanded to 8.</p>
+                    </div>
+                </div>
+
+                <div class="milestone-item">
+                    <div class="milestone-dot">21</div>
+                    <div class="milestone-card">
+                        <div class="flex items-start justify-between mb-2">
+                            <h3 class="font-syne font-bold text-lg" style="color:#F0FFF8;">Global Expansion</h3>
+                            <span class="text-xs font-grotesk px-3 py-1 rounded-full"
+                                style="background:rgba(40,90,72,0.2);border:1px solid rgba(64,138,113,0.2);color:#408A71;">2021</span>
+                        </div>
+                        <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">Went fully
+                            remote, hiring top talent from 6 countries. Crossed 100 projects milestone and launched our
+                            digital marketing division.</p>
+                    </div>
+                </div>
+
+                <div class="milestone-item">
+                    <div class="milestone-dot">22</div>
+                    <div class="milestone-card">
+                        <div class="flex items-start justify-between mb-2">
+                            <h3 class="font-syne font-bold text-lg" style="color:#F0FFF8;">Award Recognition</h3>
+                            <span class="text-xs font-grotesk px-3 py-1 rounded-full"
+                                style="background:rgba(40,90,72,0.2);border:1px solid rgba(64,138,113,0.2);color:#408A71;">2022</span>
+                        </div>
+                        <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">Won "Best
+                            Digital Agency" at the Global Web Awards and "Top Developer Studio" on Clutch. 200+ projects
+                            delivered, 98% client retention rate.</p>
+                    </div>
+                </div>
+
+                <div class="milestone-item">
+                    <div class="milestone-dot">23</div>
+                    <div class="milestone-card">
+                        <div class="flex items-start justify-between mb-2">
+                            <h3 class="font-syne font-bold text-lg" style="color:#F0FFF8;">$10M Revenue Milestone</h3>
+                            <span class="text-xs font-grotesk px-3 py-1 rounded-full"
+                                style="background:rgba(40,90,72,0.2);border:1px solid rgba(64,138,113,0.2);color:#408A71;">2023</span>
+                        </div>
+                        <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">Crossed
+                            $10M in total client revenue generated. Team grew to 18 specialists. Launched proprietary
+                            project management platform for clients.</p>
+                    </div>
+                </div>
+
+                <div class="milestone-item">
+                    <div class="milestone-dot">24</div>
+                    <div class="milestone-card"
+                        style="border-color:rgba(64,138,113,0.3);background:rgba(40,90,72,0.08);">
+                        <div class="flex items-start justify-between mb-2">
+                            <h3 class="font-syne font-bold text-lg" style="color:#F0FFF8;">Today & Beyond</h3>
+                            <span class="text-xs font-grotesk px-3 py-1 rounded-full"
+                                style="background:linear-gradient(135deg,rgba(40,90,72,0.4),rgba(64,138,113,0.2));border:1px solid rgba(64,138,113,0.3);color:#B0E4CC;">2024</span>
+                        </div>
+                        <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">500+
+                            projects delivered. Pioneering AI-enhanced development workflows. Building the future of
+                            digital experiences — one line of code at a time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- CULTURE / WORKSPACE GALLERY                                   -->
+    <!-- ============================================================ -->
+    <section class="py-24 lg:py-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center mb-12 reveal">
+                <div class="flex items-center gap-3 justify-center mb-5">
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                    <span class="section-label">Life at DevePexel</span>
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                </div>
+                <h2 class="font-syne font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4" style="color:#F0FFF8;">
+                    Our <span class="gradient-text-2">Culture</span>
+                </h2>
+                <p class="max-w-xl mx-auto text-sm sm:text-base font-grotesk" style="color:rgba(176,228,204,0.5);">
+                    Remote-first, async-friendly, and built on trust. We work hard, celebrate wins, and have fun doing
+                    it.
+                </p>
+            </div>
+
+            <!-- Main culture image -->
+            <div class="reveal mb-6">
+                <div class="advanced-img" style="height:400px;border-radius:24px;">
+                    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1400&q=80&auto=format&fit=crop"
+                        alt="Team culture" loading="lazy" style="height:400px;border-radius:24px;">
+                    <div class="img-shine"></div>
+                    <div
+                        style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(9,20,19,0.7) 100%);border-radius:24px;">
+                    </div>
+                    <div style="position:absolute;bottom:32px;left:32px;right:32px;">
+                        <h3 class="font-syne font-bold text-2xl mb-2" style="color:#F0FFF8;">We Build Together, We Grow
+                            Together</h3>
+                        <p class="font-grotesk text-sm" style="color:rgba(176,228,204,0.6);">Our remote team connects
+                            through weekly video calls, annual retreats, and a culture of radical candor.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Culture strip -->
+            <div class="culture-strip reveal">
+                <div class="culture-img">
+                    <img src="https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=400&q=80&auto=format&fit=crop"
+                        alt="Culture 1" loading="lazy">
+                </div>
+                <div class="culture-img">
+                    <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=400&q=80&auto=format&fit=crop"
+                        alt="Culture 2" loading="lazy">
+                </div>
+                <div class="culture-img">
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&q=80&auto=format&fit=crop"
+                        alt="Culture 3" loading="lazy">
+                </div>
+                <div class="culture-img">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&q=80&auto=format&fit=crop"
+                        alt="Culture 4" loading="lazy">
+                </div>
+                <div class="culture-img">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=400&q=80&auto=format&fit=crop"
+                        alt="Culture 5" loading="lazy">
+                </div>
+                <div class="culture-img">
+                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=400&q=80&auto=format&fit=crop"
+                        alt="Culture 6" loading="lazy">
+                </div>
+            </div>
+
+            <!-- Perks -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-10 reveal">
+                <div class="text-center p-5 rounded-xl"
+                    style="background:rgba(40,90,72,0.06);border:1px solid rgba(64,138,113,0.1);">
+                    <i class="fas fa-home text-2xl mb-3" style="color:#408A71;"></i>
+                    <div class="font-syne font-semibold text-sm" style="color:#F0FFF8;">Remote First</div>
+                    <div class="font-grotesk text-xs mt-1" style="color:rgba(176,228,204,0.4);">Work from anywhere in
+                        the world</div>
+                </div>
+                <div class="text-center p-5 rounded-xl"
+                    style="background:rgba(40,90,72,0.06);border:1px solid rgba(64,138,113,0.1);">
+                    <i class="fas fa-plane text-2xl mb-3" style="color:#408A71;"></i>
+                    <div class="font-syne font-semibold text-sm" style="color:#F0FFF8;">Annual Retreats</div>
+                    <div class="font-grotesk text-xs mt-1" style="color:rgba(176,228,204,0.4);">Team trips to amazing
+                        locations</div>
+                </div>
+                <div class="text-center p-5 rounded-xl"
+                    style="background:rgba(40,90,72,0.06);border:1px solid rgba(64,138,113,0.1);">
+                    <i class="fas fa-graduation-cap text-2xl mb-3" style="color:#408A71;"></i>
+                    <div class="font-syne font-semibold text-sm" style="color:#F0FFF8;">Learning Budget</div>
+                    <div class="font-grotesk text-xs mt-1" style="color:rgba(176,228,204,0.4);">$2K/year for courses &
+                        books</div>
+                </div>
+                <div class="text-center p-5 rounded-xl"
+                    style="background:rgba(40,90,72,0.06);border:1px solid rgba(64,138,113,0.1);">
+                    <i class="fas fa-heart text-2xl mb-3" style="color:#408A71;"></i>
+                    <div class="font-syne font-semibold text-sm" style="color:#F0FFF8;">Health & Wellness</div>
+                    <div class="font-grotesk text-xs mt-1" style="color:rgba(176,228,204,0.4);">Full health benefits +
+                        gym</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- AWARDS & RECOGNITION                                          -->
+    <!-- ============================================================ -->
+    <section class="py-24 lg:py-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+                <div class="reveal-left">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                        <span class="section-label">Recognition</span>
+                        <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                    </div>
+                    <h2 class="font-syne font-extrabold text-3xl sm:text-4xl mb-4" style="color:#F0FFF8;">
+                        Awards &amp; <span class="gradient-text-2">Recognition</span>
+                    </h2>
+                    <p class="font-grotesk text-sm leading-relaxed mb-8" style="color:rgba(176,228,204,0.5);">
+                        Our commitment to excellence has been recognized by the industry's most respected bodies.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="award-item">
+                            <div class="w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center"
+                                style="background:linear-gradient(135deg,rgba(40,90,72,0.3),rgba(64,138,113,0.2));border:1px solid rgba(64,138,113,0.25);">
+                                <i class="fas fa-trophy" style="color:#B0E4CC;"></i>
+                            </div>
+                            <div>
+                                <div class="font-syne font-semibold text-sm" style="color:#F0FFF8;">Best Digital Agency
+                                    2022</div>
+                                <div class="font-grotesk text-xs mt-0.5" style="color:rgba(176,228,204,0.4);">Global Web
+                                    Awards — Gold Winner</div>
+                            </div>
+                            <div class="ml-auto px-3 py-1 rounded-full text-xs font-grotesk"
+                                style="background:rgba(40,90,72,0.15);border:1px solid rgba(64,138,113,0.2);color:#408A71;">
+                                2022</div>
+                        </div>
+
+                        <div class="award-item">
+                            <div class="w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center"
+                                style="background:linear-gradient(135deg,rgba(40,90,72,0.3),rgba(64,138,113,0.2));border:1px solid rgba(64,138,113,0.25);">
+                                <i class="fas fa-medal" style="color:#B0E4CC;"></i>
+                            </div>
+                            <div>
+                                <div class="font-syne font-semibold text-sm" style="color:#F0FFF8;">Top Developer Studio
+                                </div>
+                                <div class="font-grotesk text-xs mt-0.5" style="color:rgba(176,228,204,0.4);">Clutch
+                                    Global Leaders — #3 Worldwide</div>
+                            </div>
+                            <div class="ml-auto px-3 py-1 rounded-full text-xs font-grotesk"
+                                style="background:rgba(40,90,72,0.15);border:1px solid rgba(64,138,113,0.2);color:#408A71;">
+                                2022</div>
+                        </div>
+
+                        <div class="award-item">
+                            <div class="w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center"
+                                style="background:linear-gradient(135deg,rgba(40,90,72,0.3),rgba(64,138,113,0.2));border:1px solid rgba(64,138,113,0.25);">
+                                <i class="fas fa-star" style="color:#B0E4CC;"></i>
+                            </div>
+                            <div>
+                                <div class="font-syne font-semibold text-sm" style="color:#F0FFF8;">Awwwards Site of the
+                                    Day</div>
+                                <div class="font-grotesk text-xs mt-0.5" style="color:rgba(176,228,204,0.4);">Recognized
+                                    for exceptional UI/UX design</div>
+                            </div>
+                            <div class="ml-auto px-3 py-1 rounded-full text-xs font-grotesk"
+                                style="background:rgba(40,90,72,0.15);border:1px solid rgba(64,138,113,0.2);color:#408A71;">
+                                2023</div>
+                        </div>
+
+                        <div class="award-item">
+                            <div class="w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center"
+                                style="background:linear-gradient(135deg,rgba(40,90,72,0.3),rgba(64,138,113,0.2));border:1px solid rgba(64,138,113,0.25);">
+                                <i class="fas fa-crown" style="color:#B0E4CC;"></i>
+                            </div>
+                            <div>
+                                <div class="font-syne font-semibold text-sm" style="color:#F0FFF8;">Fast Company's Most
+                                    Innovative</div>
+                                <div class="font-grotesk text-xs mt-0.5" style="color:rgba(176,228,204,0.4);">Listed
+                                    among top 50 creative agencies</div>
+                            </div>
+                            <div class="ml-auto px-3 py-1 rounded-full text-xs font-grotesk"
+                                style="background:rgba(40,90,72,0.15);border:1px solid rgba(64,138,113,0.2);color:#408A71;">
+                                2023</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right image -->
+                <div class="reveal-right">
+                    <div class="advanced-img" style="height:500px;border-radius:24px;">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80&auto=format&fit=crop"
+                            alt="Awards and recognition" loading="lazy" style="height:500px;border-radius:24px;">
+                        <div class="img-shine"></div>
+                        <div class="img-border-glow"></div>
+                        <div
+                            style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(9,20,19,0.15),transparent,rgba(9,20,19,0.25));border-radius:24px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- TESTIMONIALS STRIP                                            -->
+    <!-- ============================================================ -->
+    <section class="py-24 lg:py-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center mb-16 reveal">
+                <div class="flex items-center gap-3 justify-center mb-5">
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                    <span class="section-label">Client Voices</span>
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                </div>
+                <h2 class="font-syne font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4" style="color:#F0FFF8;">
+                    What Clients <span class="gradient-text-2">Say</span>
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+
+                <div class="glass-card rounded-2xl p-8 reveal" style="transition-delay:0s;">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                    </div>
+                    <p class="font-grotesk text-sm leading-relaxed mb-6" style="color:rgba(176,228,204,0.6);">
+                        "DevePexel transformed our outdated WordPress site into a revenue-generating machine. Traffic up
+                        340%, conversions tripled in 3 months. Absolute game-changers."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&q=80&auto=format&fit=crop&facepad=3"
+                            class="w-10 h-10 rounded-full" style="object-fit:cover;" alt="">
+                        <div>
+                            <div class="font-syne font-semibold text-sm" style="color:#F0FFF8;">James Whitmore</div>
+                            <div class="font-grotesk text-xs" style="color:rgba(176,228,204,0.4);">CEO, NovaTech Inc.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 reveal" style="transition-delay:.1s;">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                    </div>
+                    <p class="font-grotesk text-sm leading-relaxed mb-6" style="color:rgba(176,228,204,0.6);">
+                        "The attention to detail is extraordinary. They didn't just build what we asked — they built
+                        what we needed. Our React app handles 100K+ users flawlessly."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=80&q=80&auto=format&fit=crop&facepad=3"
+                            class="w-10 h-10 rounded-full" style="object-fit:cover;" alt="">
+                        <div>
+                            <div class="font-syne font-semibold text-sm" style="color:#F0FFF8;">Lisa Chen</div>
+                            <div class="font-grotesk text-xs" style="color:rgba(176,228,204,0.4);">CTO, Luminary Labs
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 reveal" style="transition-delay:.2s;">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                    </div>
+                    <p class="font-grotesk text-sm leading-relaxed mb-6" style="color:rgba(176,228,204,0.6);">
+                        "Best investment we've made. The SEO work alone paid back 20x in 6 months. Their digital
+                        marketing team is a cut above anything I've seen in 15 years."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&q=80&auto=format&fit=crop&facepad=3"
+                            class="w-10 h-10 rounded-full" style="object-fit:cover;" alt="">
+                        <div>
+                            <div class="font-syne font-semibold text-sm" style="color:#F0FFF8;">David Okafor</div>
+                            <div class="font-grotesk text-xs" style="color:rgba(176,228,204,0.4);">Founder, GrowScale
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- CTA SECTION                                                   -->
+    <!-- ============================================================ -->
+    <section class="py-24 relative z-10">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-10 lg:p-16 text-center reveal relative overflow-hidden">
+                <div class="absolute inset-0"
+                    style="background:linear-gradient(135deg,rgba(40,90,72,0.08),rgba(64,138,113,0.04));"></div>
+
+                <!-- Decorative image strip at top -->
+                <div class="absolute top-0 left-0 right-0 h-1"
+                    style="background:linear-gradient(90deg,transparent,#285A48,#B0E4CC,#285A48,transparent);"></div>
+
+                <div class="relative z-10">
+                    <div class="flex items-center gap-3 justify-center mb-5">
+                        <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                        <span class="section-label">Ready to Build?</span>
+                        <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                    </div>
+
+                    <h2 class="font-syne font-extrabold mb-4 leading-tight"
+                        style="font-size:clamp(28px,5vw,56px);color:#F0FFF8;">
+                        Let's Create Something <span class="gradient-text-2">Legendary</span>
+                    </h2>
+                    <p class="max-w-xl mx-auto mb-10 font-grotesk text-sm sm:text-base"
+                        style="color:rgba(176,228,204,0.5);">
+                        Join 200+ businesses that chose DevePexel to transform their digital presence. Your vision, our
+                        expertise — let's make it happen.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                        <a href="contact.html"
+                            class="btn-primary px-8 py-4 flex items-center justify-center gap-2 text-sm"
+                            style="color:#F0FFF8;">
+                            <i class="fas fa-rocket text-xs"></i>
+                            <span>Start Your Project</span>
+                        </a>
+                        <a href="services.html"
+                            class="btn-outline px-8 py-4 flex items-center justify-center gap-2 text-sm">
+                            <i class="fas fa-th-large text-xs"></i>
+                            <span>View Services</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust signals -->
+                    <div class="flex flex-wrap items-center justify-center gap-6">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-shield-alt text-xs" style="color:#408A71;"></i>
+                            <span class="font-grotesk text-xs" style="color:rgba(176,228,204,0.4);">100% Secure</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-clock text-xs" style="color:#408A71;"></i>
+                            <span class="font-grotesk text-xs" style="color:rgba(176,228,204,0.4);">24h Response</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-undo text-xs" style="color:#408A71;"></i>
+                            <span class="font-grotesk text-xs" style="color:rgba(176,228,204,0.4);">Money-back
+                                Guarantee</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                            <span class="font-grotesk text-xs" style="color:rgba(176,228,204,0.4);">5.0 Rated
+                                Agency</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER                                                        -->
+    <!-- ============================================================ -->
+    <footer class="relative z-10 pt-16 pb-8"
+        style="background:linear-gradient(180deg,transparent 0%,rgba(4,9,9,0.98) 30%,#040909 100%);border-top:1px solid rgba(64,138,113,0.08);">
+
+        <div class="divider mb-12"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+                <div class="lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center"
+                            style="background:linear-gradient(135deg,#285A48,#408A71);box-shadow:0 4px 15px rgba(40,90,72,0.3);">
+                            <span class="font-syne font-bold text-lg" style="color:#B0E4CC;">D</span>
+                        </div>
+                        <div>
+                            <div class="font-syne font-bold text-lg" style="color:#F0FFF8;">Deve<span
+                                    style="color:#408A71;">Pexel</span></div>
+                            <div class="text-xs tracking-widest" style="color:rgba(176,228,204,0.35);">CODE AGENCY</div>
+                        </div>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-6 font-grotesk" style="color:rgba(176,228,204,0.35);">
+                        Professional code agency specializing in WordPress, web development, and digital solutions.</p>
+                    <div class="flex gap-3">
+                        <a href="#"
+                            class="w-9 h-9 glass rounded-xl flex items-center justify-center text-sm transition-all hover:scale-110 hover:-translate-y-1"
+                            style="color:rgba(176,228,204,0.4);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.4)'"><i class="fab fa-github"></i></a>
+                        <a href="#"
+                            class="w-9 h-9 glass rounded-xl flex items-center justify-center text-sm transition-all hover:scale-110 hover:-translate-y-1"
+                            style="color:rgba(176,228,204,0.4);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.4)'"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"
+                            class="w-9 h-9 glass rounded-xl flex items-center justify-center text-sm transition-all hover:scale-110 hover:-translate-y-1"
+                            style="color:rgba(176,228,204,0.4);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.4)'"><i class="fab fa-twitter"></i></a>
+                        <a href="#"
+                            class="w-9 h-9 glass rounded-xl flex items-center justify-center text-sm transition-all hover:scale-110 hover:-translate-y-1"
+                            style="color:rgba(176,228,204,0.4);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.4)'"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-syne font-semibold text-sm mb-5 flex items-center gap-2" style="color:#F0FFF8;">
+                        <span style="color:#408A71;font-size:8px;">✦</span> Services</h4>
+                    <ul class="space-y-3">
+                        <li><a href="services.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">WordPress Development</a></li>
+                        <li><a href="services.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Web Development</a></li>
+                        <li><a href="services.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Graphic Design</a></li>
+                        <li><a href="services.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">SEO Optimization</a></li>
+                        <li><a href="services.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Digital Marketing</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-syne font-semibold text-sm mb-5 flex items-center gap-2" style="color:#F0FFF8;">
+                        <span style="color:#408A71;font-size:8px;">✦</span> Company</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Home</a></li>
+                        <li><a href="about.html" class="text-sm font-grotesk transition-colors" style="color:#408A71;"
+                                onmouseover="this.style.color='#B0E4CC'" onmouseout="this.style.color='#408A71'">About
+                                Us</a></li>
+                        <li><a href="services.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Services</a></li>
+                        <li><a href="contact.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-syne font-semibold text-sm mb-5 flex items-center gap-2" style="color:#F0FFF8;">
+                        <span style="color:#408A71;font-size:8px;">✦</span> Get In Touch</h4>
+                    <div class="space-y-3">
+                        <a href="mailto:hello@devepexel.com" class="text-sm font-grotesk block transition-colors"
+                            style="color:rgba(176,228,204,0.5);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.5)'">
+                            <i class="fas fa-envelope mr-2" style="color:#408A71;"></i>hello@devepexel.com
+                        </a>
+                        <a href="tel:+1234567890" class="text-sm font-grotesk block transition-colors"
+                            style="color:rgba(176,228,204,0.5);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.5)'">
+                            <i class="fas fa-phone mr-2" style="color:#408A71;"></i>+1 (234) 567-890
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider mb-6"></div>
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-5 pb-8">
+                <p class="text-xs font-grotesk" style="color:rgba(176,228,204,0.25);">© 2024 <span
+                        style="color:#408A71;">DevePexel</span> · All rights reserved</p>
+                <div class="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-grotesk"
+                    style="background:rgba(40,90,72,0.06);border:1px solid rgba(64,138,113,0.12);">
+                    <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                    <span style="color:rgba(176,228,204,0.4);">Available for new projects</span>
+                </div>
+                <div class="flex items-center gap-5">
+                    <a href="#" class="text-xs font-grotesk transition-colors" style="color:rgba(176,228,204,0.25);"
+                        onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='rgba(176,228,204,0.25)'">Privacy</a>
+                    <a href="#" class="text-xs font-grotesk transition-colors" style="color:rgba(176,228,204,0.25);"
+                        onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='rgba(176,228,204,0.25)'">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT                                                    -->
+    <!-- ============================================================ -->
+    <script>
+        // ── Custom cursor ──────────────────────────────────────────────
+        const cursor = document.getElementById('cursor');
+        const cursorDot = document.getElementById('cursorDot');
+        let cx = 0, cy = 0, dx = 0, dy = 0;
+        document.addEventListener('mousemove', e => {
+            cx = e.clientX; cy = e.clientY;
+            cursorDot.style.left = cx - 2.5 + 'px';
+            cursorDot.style.top = cy - 2.5 + 'px';
+        });
+        (function animCursor() {
+            dx += (cx - dx) * 0.1; dy += (cy - dy) * 0.1;
+            cursor.style.left = dx - 9 + 'px'; cursor.style.top = dy - 9 + 'px';
+            requestAnimationFrame(animCursor);
+        })();
+        document.querySelectorAll('a,button,.glass-card,.team-card,.stat-card,.value-card,.award-item').forEach(el => {
+            el.addEventListener('mouseenter', () => { cursor.style.transform = 'scale(2.5)'; cursor.style.borderColor = '#B0E4CC'; });
+            el.addEventListener('mouseleave', () => { cursor.style.transform = 'scale(1)'; cursor.style.borderColor = '#408A71'; });
+        });
+
+        // ── Value card mouse tracking ──────────────────────────────────
+        document.querySelectorAll('.value-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+                const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
+                card.style.setProperty('--mx', x + '%');
+                card.style.setProperty('--my', y + '%');
+            });
+        });
+
+        // ── Navbar scroll ──────────────────────────────────────────────
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            const s = window.scrollY > 50;
+            navbar.style.backgroundColor = s ? 'rgba(9,20,19,0.97)' : 'rgba(176,228,204,0.02)';
+            navbar.style.borderBottom = s ? '1px solid rgba(64,138,113,0.12)' : '1px solid rgba(64,138,113,0.1)';
+            navbar.style.boxShadow = s ? '0 4px 30px rgba(9,20,19,0.5)' : 'none';
+            document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 500);
+        });
+
+        // ── Mobile menu ────────────────────────────────────────────────
+        const mobileMenu = document.getElementById('mobileMenu');
+        const overlayEl = document.getElementById('overlay');
+        function openMenu() {
+            mobileMenu.classList.add('open'); overlayEl.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            document.getElementById('b1').style.cssText = 'transform:rotate(45deg) translateY(8px);background:#408A71;';
+            document.getElementById('b2').style.opacity = '0';
+            document.getElementById('b3').style.cssText = 'transform:rotate(-45deg) translateY(-8px);width:20px;background:#408A71;';
+        }
+        function closeMenu() {
+            mobileMenu.classList.remove('open'); overlayEl.classList.add('hidden');
+            document.body.style.overflow = '';
+            ['b1', 'b2', 'b3'].forEach(id => document.getElementById(id).style.cssText = '');
+        }
+        document.getElementById('menuBtn').addEventListener('click', openMenu);
+        document.getElementById('closeMenu').addEventListener('click', closeMenu);
+        overlayEl.addEventListener('click', closeMenu);
+        document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', closeMenu));
+
+        // ── Counter animation ──────────────────────────────────────────
+        function animateCounter(el, target, suffix, duration) {
+            let start = 0, startTime = null;
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const progress = Math.min((timestamp - startTime) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(eased * target);
+                el.textContent = current + suffix;
+                if (progress < 1) requestAnimationFrame(step);
+                else el.textContent = target + suffix;
+            }
+            requestAnimationFrame(step);
+        }
+
+        // ── Scroll reveals + skill bars + counters ─────────────────────
+        let countersAnimated = false;
+        let skillsAnimated = false;
+
+        const revealObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+
+                    // Counters
+                    if (!countersAnimated && e.target.closest) {
+                        const s1 = document.getElementById('stat1');
+                        const s2 = document.getElementById('stat2');
+                        if (s1 && s2) {
+                            const statsSection = s1.closest('section');
+                            if (statsSection && statsSection.contains(e.target) || e.target.id === 'stat1') {
+                                // handled below
+                            }
+                        }
+                    }
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => revealObs.observe(el));
+
+        // Stats counter via separate observer
+        const statsObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting && !countersAnimated) {
+                    countersAnimated = true;
+                    animateCounter(document.getElementById('stat1'), 500, '+', 2000);
+                    animateCounter(document.getElementById('stat2'), 200, '+', 2000);
+                    animateCounter(document.getElementById('stat3'), 5, '+', 1500);
+                    animateCounter(document.getElementById('stat4'), 98, '%', 2000);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.getElementById('stat1');
+        if (statsSection) statsObs.observe(statsSection.closest('section'));
+
+        // Skill bars
+        const skillObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting && !skillsAnimated) {
+                    skillsAnimated = true;
+                    document.querySelectorAll('.skill-fill').forEach((bar, i) => {
+                        const w = parseFloat(bar.dataset.width);
+                        setTimeout(() => {
+                            bar.style.transform = `scaleX(${w})`;
+                            bar.classList.add('animated');
+                        }, i * 150);
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const skillSection = document.querySelector('.skill-bar');
+        if (skillSection) skillObs.observe(skillSection.closest('section'));
+
+        // ── Smooth scroll ──────────────────────────────────────────────
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                const t = document.querySelector(a.getAttribute('href'));
+                if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            });
+        });
+
+        // ── Initial reveal ─────────────────────────────────────────────
+        setTimeout(() => {
+            document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
+            });
+        }, 100);
+
+        console.log('%c✦ DevePexel — About Page Loaded', 'color:#408A71;font-size:14px;font-weight:bold;');
+    </script>
+</body>
+
+</html>

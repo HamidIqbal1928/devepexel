@@ -1,0 +1,2032 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us — DevePexel Code Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --deep: #091413;
+            --primary: #285A48;
+            --mid: #408A71;
+            --light: #B0E4CC;
+            --white: #F0FFF8;
+            --text: rgba(176, 228, 204, 0.7);
+            --border: rgba(64, 138, 113, 0.18);
+            --glow: rgba(40, 90, 72, 0.25);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #091413;
+            color: #B0E4CC;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #091413;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(#285A48, #B0E4CC);
+            border-radius: 10px;
+        }
+
+        /* ── Background ── */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image: linear-gradient(rgba(64, 138, 113, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(64, 138, 113, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .bg-noise {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .orb-1 {
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(40, 90, 72, 0.14), transparent 70%);
+            top: -250px;
+            left: -200px;
+            animation: orbDrift 16s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, rgba(64, 138, 113, 0.1), transparent 70%);
+            bottom: -150px;
+            right: -150px;
+            animation: orbDrift 20s ease-in-out infinite reverse;
+        }
+
+        .orb-3 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(176, 228, 204, 0.05), transparent 70%);
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: orbDrift 22s ease-in-out infinite;
+        }
+
+        @keyframes orbDrift {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(40px, -30px) scale(1.05);
+            }
+
+            66% {
+                transform: translate(-25px, 20px) scale(0.95);
+            }
+        }
+
+        .scanline {
+            position: fixed;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(176, 228, 204, 0.08), rgba(64, 138, 113, 0.12), transparent);
+            z-index: 1;
+            pointer-events: none;
+            animation: scanMove 12s linear infinite;
+        }
+
+        @keyframes scanMove {
+            0% {
+                top: -2px;
+            }
+
+            100% {
+                top: 100vh;
+            }
+        }
+
+        /* ── Typography ── */
+        .font-syne {
+            font-family: 'Syne', sans-serif;
+        }
+
+        .font-grotesk {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #F0FFF8 0%, #B0E4CC 30%, #408A71 60%, #285A48 80%, #B0E4CC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% auto;
+            animation: textShimmer 5s linear infinite;
+        }
+
+        .gradient-text-2 {
+            background: linear-gradient(135deg, #B0E4CC, #408A71, #B0E4CC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @keyframes textShimmer {
+            0% {
+                background-position: 0% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        /* ── Glass ── */
+        .glass {
+            background: rgba(176, 228, 204, 0.02);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(64, 138, 113, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(9, 20, 19, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(64, 138, 113, 0.15);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(64, 138, 113, 0.45);
+            box-shadow: 0 25px 60px rgba(40, 90, 72, 0.18), 0 0 40px rgba(64, 138, 113, 0.06);
+        }
+
+        /* ── Nav ── */
+        .nav-link {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: rgba(176, 228, 204, 0.55);
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, #285A48, #B0E4CC);
+            transition: width 0.4s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #B0E4CC;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* ── Buttons ── */
+        .btn-primary {
+            background: linear-gradient(135deg, #285A48, #408A71);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            transition: all 0.4s ease;
+            border-radius: 12px;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #408A71, #B0E4CC);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: 12px;
+        }
+
+        .btn-primary:hover::before {
+            opacity: 1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(40, 90, 72, 0.4);
+        }
+
+        .btn-primary>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(64, 138, 113, 0.45);
+            color: #B0E4CC;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: rgba(40, 90, 72, 0.15);
+            border-color: rgba(64, 138, 113, 0.8);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(40, 90, 72, 0.2);
+            color: #F0FFF8;
+        }
+
+        /* ── Reveals ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal.visible,
+        .reveal-left.visible,
+        .reveal-right.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* ── Mobile menu ── */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        /* ── Cursor ── */
+        .cursor {
+            width: 18px;
+            height: 18px;
+            border: 1.5px solid #408A71;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.15s ease;
+        }
+
+        .cursor-dot {
+            width: 5px;
+            height: 5px;
+            background: #B0E4CC;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #285A48, #408A71);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #F0FFF8;
+            cursor: pointer;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(40, 90, 72, 0.4);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-4px) scale(1.1);
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(64, 138, 113, 0.25), rgba(176, 228, 204, 0.15), transparent);
+        }
+
+        .section-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            letter-spacing: 0.18em;
+            color: #408A71;
+            text-transform: uppercase;
+        }
+
+        .num-gradient {
+            background: linear-gradient(135deg, #B0E4CC, #408A71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ══════════════════════════════════════
+           CONTACT-SPECIFIC STYLES
+        ══════════════════════════════════════ */
+
+        /* ── Contact Form ── */
+        .contact-form-wrap {
+            background: rgba(9, 20, 19, 0.92);
+            border: 1px solid rgba(64, 138, 113, 0.15);
+            border-radius: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form-wrap::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #285A48, #B0E4CC, #408A71, transparent);
+        }
+
+        /* Form inputs */
+        .form-group {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            color: rgba(176, 228, 204, 0.5);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .form-group:focus-within .form-label {
+            color: #B0E4CC;
+        }
+
+        .form-input {
+            width: 100%;
+            background: rgba(9, 20, 19, 0.6);
+            border: 1px solid rgba(64, 138, 113, 0.15);
+            border-radius: 14px;
+            padding: 16px 20px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: #F0FFF8;
+            outline: none;
+            transition: all 0.3s ease;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .form-input::placeholder {
+            color: rgba(176, 228, 204, 0.2);
+        }
+
+        .form-input:focus {
+            border-color: rgba(64, 138, 113, 0.5);
+            background: rgba(40, 90, 72, 0.06);
+            box-shadow: 0 0 0 4px rgba(40, 90, 72, 0.08), 0 0 20px rgba(64, 138, 113, 0.06);
+        }
+
+        .form-input:focus+.input-border {
+            transform: scaleX(1);
+        }
+
+        .input-border {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #285A48, #B0E4CC, #285A48);
+            border-radius: 0 0 14px 14px;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .form-textarea {
+            width: 100%;
+            background: rgba(9, 20, 19, 0.6);
+            border: 1px solid rgba(64, 138, 113, 0.15);
+            border-radius: 14px;
+            padding: 16px 20px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            color: #F0FFF8;
+            outline: none;
+            resize: vertical;
+            min-height: 150px;
+            transition: all 0.3s ease;
+        }
+
+        .form-textarea::placeholder {
+            color: rgba(176, 228, 204, 0.2);
+        }
+
+        .form-textarea:focus {
+            border-color: rgba(64, 138, 113, 0.5);
+            background: rgba(40, 90, 72, 0.06);
+            box-shadow: 0 0 0 4px rgba(40, 90, 72, 0.08), 0 0 20px rgba(64, 138, 113, 0.06);
+        }
+
+        .form-select {
+            width: 100%;
+            background: rgba(9, 20, 19, 0.6);
+            border: 1px solid rgba(64, 138, 113, 0.15);
+            border-radius: 14px;
+            padding: 16px 20px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            color: #F0FFF8;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            -webkit-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23408A71' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 18px center;
+            padding-right: 46px;
+        }
+
+        .form-select:focus {
+            border-color: rgba(64, 138, 113, 0.5);
+            background-color: rgba(40, 90, 72, 0.06);
+            box-shadow: 0 0 0 4px rgba(40, 90, 72, 0.08);
+        }
+
+        .form-select option {
+            background: #0d1e1d;
+            color: #B0E4CC;
+        }
+
+        /* Submit button */
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #285A48, #408A71);
+            border: none;
+            border-radius: 14px;
+            padding: 18px 32px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 0.06em;
+            color: #F0FFF8;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #408A71, #B0E4CC);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .submit-btn:hover::before {
+            opacity: 1;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(40, 90, 72, 0.45);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .submit-btn>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .submit-btn.loading {
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        /* ── Info cards ── */
+        .info-card {
+            background: rgba(9, 20, 19, 0.8);
+            border: 1px solid rgba(64, 138, 113, 0.12);
+            border-radius: 20px;
+            padding: 24px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #285A48, #B0E4CC);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.4s ease;
+        }
+
+        .info-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .info-card:hover {
+            border-color: rgba(64, 138, 113, 0.35);
+            transform: translateX(6px);
+            box-shadow: 0 15px 40px rgba(40, 90, 72, 0.12);
+            background: rgba(40, 90, 72, 0.06);
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(40, 90, 72, 0.3), rgba(64, 138, 113, 0.15));
+            border: 1px solid rgba(64, 138, 113, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #B0E4CC;
+            transition: all 0.4s ease;
+            flex-shrink: 0;
+        }
+
+        .info-card:hover .info-icon {
+            background: linear-gradient(135deg, #285A48, #408A71);
+            box-shadow: 0 8px 25px rgba(40, 90, 72, 0.4);
+        }
+
+        /* ── Service selector pills ── */
+        .service-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 10px;
+            background: rgba(9, 20, 19, 0.7);
+            border: 1px solid rgba(64, 138, 113, 0.15);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(176, 228, 204, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .service-pill:hover {
+            border-color: rgba(64, 138, 113, 0.4);
+            color: #B0E4CC;
+            background: rgba(40, 90, 72, 0.1);
+        }
+
+        .service-pill.selected {
+            background: linear-gradient(135deg, rgba(40, 90, 72, 0.3), rgba(64, 138, 113, 0.2));
+            border-color: rgba(64, 138, 113, 0.5);
+            color: #B0E4CC;
+            box-shadow: 0 4px 20px rgba(40, 90, 72, 0.2);
+        }
+
+        .service-pill .pill-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(64, 138, 113, 0.3);
+            transition: background 0.3s ease;
+        }
+
+        .service-pill.selected .pill-dot {
+            background: #B0E4CC;
+        }
+
+        /* ── Map / visual block ── */
+        .map-block {
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(64, 138, 113, 0.15);
+            position: relative;
+            background: #0d1e1d;
+            height: 300px;
+        }
+
+        .map-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(64, 138, 113, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(64, 138, 113, 0.06) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .map-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .map-pin {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #285A48, #408A71);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            box-shadow: 0 0 0 8px rgba(40, 90, 72, 0.15), 0 0 0 16px rgba(40, 90, 72, 0.08), 0 0 0 24px rgba(40, 90, 72, 0.04);
+            animation: pinPulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pinPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 8px rgba(40, 90, 72, 0.15), 0 0 0 16px rgba(40, 90, 72, 0.08), 0 0 0 24px rgba(40, 90, 72, 0.04);
+            }
+
+            50% {
+                box-shadow: 0 0 0 12px rgba(40, 90, 72, 0.12), 0 0 0 24px rgba(40, 90, 72, 0.06), 0 0 0 36px rgba(40, 90, 72, 0.02);
+            }
+        }
+
+        /* Map decorative dots */
+        .map-dot {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: rgba(64, 138, 113, 0.3);
+        }
+
+        /* ── Process mini cards ── */
+        .process-mini {
+            background: rgba(9, 20, 19, 0.7);
+            border: 1px solid rgba(64, 138, 113, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .process-mini:hover {
+            border-color: rgba(64, 138, 113, 0.3);
+            background: rgba(40, 90, 72, 0.05);
+        }
+
+        /* ── Social links ── */
+        .social-link {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(9, 20, 19, 0.8);
+            border: 1px solid rgba(64, 138, 113, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(176, 228, 204, 0.5);
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, #285A48, #408A71);
+            border-color: transparent;
+            color: #F0FFF8;
+            transform: translateY(-4px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(40, 90, 72, 0.35);
+        }
+
+        /* ── FAQ mini ── */
+        .faq-mini {
+            background: rgba(9, 20, 19, 0.6);
+            border: 1px solid rgba(64, 138, 113, 0.1);
+            border-radius: 14px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-mini.open {
+            border-color: rgba(64, 138, 113, 0.25);
+            background: rgba(40, 90, 72, 0.05);
+        }
+
+        .faq-q {
+            padding: 16px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+            padding: 0 20px;
+        }
+
+        .faq-mini.open .faq-a {
+            max-height: 200px;
+            padding: 0 20px 16px;
+        }
+
+        .faq-chevron {
+            transition: transform 0.3s ease;
+            color: #408A71;
+        }
+
+        .faq-mini.open .faq-chevron {
+            transform: rotate(180deg);
+        }
+
+        /* ── Success toast ── */
+        .toast {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(9, 20, 19, 0.97);
+            border: 1px solid rgba(64, 138, 113, 0.4);
+            border-radius: 16px;
+            padding: 16px 28px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 9999;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 60px rgba(40, 90, 72, 0.3);
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ── Character counter ── */
+        .char-counter {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            color: rgba(176, 228, 204, 0.3);
+            text-align: right;
+            margin-top: 6px;
+        }
+
+        /* ── Availability badge ── */
+        .availability-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 30px;
+            background: rgba(40, 90, 72, 0.1);
+            border: 1px solid rgba(64, 138, 113, 0.2);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            color: rgba(176, 228, 204, 0.6);
+        }
+
+        /* ── Floating action ── */
+        .whatsapp-fab {
+            position: fixed;
+            bottom: 28px;
+            left: 28px;
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #1a5c38, #25a244);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 22px;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(37, 162, 68, 0.4);
+        }
+
+        .whatsapp-fab:hover {
+            transform: translateY(-4px) scale(1.1);
+            box-shadow: 0 14px 35px rgba(37, 162, 68, 0.5);
+        }
+
+        .whatsapp-fab .fab-tooltip {
+            position: absolute;
+            left: 60px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(9, 20, 19, 0.95);
+            border: 1px solid rgba(64, 138, 113, 0.2);
+            border-radius: 10px;
+            padding: 8px 14px;
+            white-space: nowrap;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            color: #B0E4CC;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .whatsapp-fab:hover .fab-tooltip {
+            opacity: 1;
+        }
+
+        @media(max-width:768px) {
+
+            .cursor,
+            .cursor-dot {
+                display: none;
+            }
+
+            .whatsapp-fab .fab-tooltip {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <!-- Scroll Top -->
+    <div class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fas fa-arrow-up text-sm"></i>
+    </div>
+
+    <!-- WhatsApp FAB -->
+    <div class="whatsapp-fab" onclick="window.open('https://wa.me/1234567890','_blank')">
+        <i class="fab fa-whatsapp"></i>
+        <div class="fab-tooltip">Chat on WhatsApp</div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+            style="background:linear-gradient(135deg,#285A48,#408A71);">
+            <i class="fas fa-check text-xs" style="color:#F0FFF8;"></i>
+        </div>
+        <div>
+            <div class="font-syne font-bold text-sm" style="color:#F0FFF8;">Message Sent!</div>
+            <div class="font-grotesk text-xs mt-0.5" style="color:rgba(176,228,204,0.5);">We'll get back to you within
+                24 hours.</div>
+        </div>
+    </div>
+
+    <!-- Background -->
+    <div class="bg-grid"></div>
+    <div class="bg-noise"></div>
+    <div class="scanline"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- ============================================================ -->
+    <!-- NAVBAR                                                        -->
+    <!-- ============================================================ -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center relative overflow-hidden group-hover:scale-110 transition-transform duration-300"
+                        style="background:linear-gradient(135deg,#285A48,#408A71);box-shadow:0 4px 15px rgba(40,90,72,0.35);">
+                        <span class="font-syne font-bold text-lg relative z-10" style="color:#B0E4CC;">D</span>
+                        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                            style="background:linear-gradient(135deg,#408A71,#B0E4CC);"></div>
+                    </div>
+                    <div class="hidden sm:block">
+                        <div class="font-syne font-bold text-xl leading-none" style="color:#F0FFF8;">Deve<span
+                                style="color:#408A71;">Pexel</span></div>
+                        <div class="text-xs tracking-widest mt-0.5"
+                            style="color:rgba(176,228,204,0.4);font-family:'Space Grotesk',sans-serif;">CODE AGENCY
+                        </div>
+                    </div>
+                </a>
+
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="services.html" class="nav-link">Services</a>
+                    <a href="contact.html" class="nav-link active">Contact</a>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <div class="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-grotesk"
+                        style="background:rgba(40,90,72,0.1);border:1px solid rgba(64,138,113,0.2);color:rgba(176,228,204,0.7);">
+                        <span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
+                        Available for projects
+                    </div>
+                    <a href="contact.html" class="hidden lg:flex btn-primary text-sm px-6 py-2.5 items-center gap-2"
+                        style="color:#F0FFF8;">
+                        <span>Get Started</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                    <button class="lg:hidden w-9 h-9 glass rounded-xl flex flex-col justify-center items-center gap-1.5"
+                        id="menuBtn">
+                        <span class="w-5 h-0.5 transition-all" style="background:rgba(176,228,204,0.7);" id="b1"></span>
+                        <span class="w-5 h-0.5 transition-all" style="background:rgba(176,228,204,0.7);" id="b2"></span>
+                        <span class="w-3 h-0.5 transition-all" style="background:rgba(176,228,204,0.7);" id="b3"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed top-0 right-0 h-full w-80 z-40 glass-card flex flex-col justify-center px-10"
+        id="mobileMenu">
+        <button class="absolute top-5 right-5 w-8 h-8 flex items-center justify-center"
+            style="color:rgba(176,228,204,0.5);" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="mb-10">
+            <div class="font-syne font-bold text-2xl" style="color:#F0FFF8;">Deve<span
+                    style="color:#408A71;">Pexel</span></div>
+            <div class="text-xs tracking-widest mt-1" style="color:rgba(176,228,204,0.35);">CODE AGENCY</div>
+        </div>
+        <div class="flex flex-col gap-6">
+            <a href="index.html" class="font-grotesk font-semibold text-lg mobile-link"
+                style="color:rgba(176,228,204,0.6);">Home</a>
+            <a href="about.html" class="font-grotesk font-semibold text-lg mobile-link"
+                style="color:rgba(176,228,204,0.6);">About</a>
+            <a href="services.html" class="font-grotesk font-semibold text-lg mobile-link"
+                style="color:rgba(176,228,204,0.6);">Services</a>
+            <a href="contact.html" class="font-grotesk font-semibold text-lg mobile-link"
+                style="color:#B0E4CC;">Contact</a>
+            <a href="contact.html" class="btn-primary mt-4 py-3.5 text-center text-sm" style="color:#F0FFF8;">Get
+                Started →</a>
+        </div>
+    </div>
+    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-30 hidden" id="overlay"></div>
+
+    <!-- ============================================================ -->
+    <!-- HERO SECTION                                                  -->
+    <!-- ============================================================ -->
+    <section class="relative pt-32 pb-16 lg:pt-44 lg:pb-20 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+            <!-- Breadcrumb -->
+            <div class="flex items-center gap-2 mb-8 reveal text-sm font-grotesk" style="color:rgba(176,228,204,0.4);">
+                <a href="index.html" class="hover:text-white transition-colors">Home</a>
+                <i class="fas fa-chevron-right text-xs"></i>
+                <span style="color:#408A71;">Contact Us</span>
+            </div>
+
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="flex items-center gap-3 justify-center mb-6 reveal">
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                    <span class="section-label">Let's Connect</span>
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                </div>
+
+                <h1 class="font-syne font-extrabold mb-6 reveal leading-tight"
+                    style="font-size:clamp(38px,6vw,76px);color:#F0FFF8;transition-delay:.1s;">
+                    Start Your <span class="gradient-text">Project</span> Today
+                </h1>
+
+                <p class="text-base sm:text-lg leading-relaxed mb-8 reveal font-grotesk max-w-2xl mx-auto"
+                    style="color:rgba(176,228,204,0.5);transition-delay:.2s;">
+                    Have a project in mind? We'd love to hear about it. Drop us a message and our team will get back to
+                    you within 24 hours — guaranteed.
+                </p>
+
+                <!-- Quick stats -->
+                <div class="flex flex-wrap items-center justify-center gap-6 mb-6 reveal" style="transition-delay:.3s;">
+                    <div class="flex items-center gap-2">
+                        <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                        <span class="font-grotesk text-sm" style="color:rgba(176,228,204,0.5);">Response within
+                            24h</span>
+                    </div>
+                    <div class="w-1 h-1 rounded-full" style="background:rgba(64,138,113,0.4);"></div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-shield-alt text-xs" style="color:#408A71;"></i>
+                        <span class="font-grotesk text-sm" style="color:rgba(176,228,204,0.5);">Free consultation</span>
+                    </div>
+                    <div class="w-1 h-1 rounded-full" style="background:rgba(64,138,113,0.4);"></div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                        <span class="font-grotesk text-sm" style="color:rgba(176,228,204,0.5);">5.0 rated agency</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- MAIN CONTACT SECTION                                          -->
+    <!-- ============================================================ -->
+    <section class="py-20 lg:py-28 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-5 gap-10 items-start">
+
+                <!-- ── LEFT: Info Panel (2 cols) ── -->
+                <div class="lg:col-span-2 space-y-6 reveal-left">
+
+                    <!-- Availability card -->
+                    <div class="glass-card rounded-2xl p-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                            <span class="font-syne font-semibold text-sm" style="color:#F0FFF8;">Currently
+                                Available</span>
+                        </div>
+                        <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">
+                            We're accepting new projects for Q1 2025. Limited spots available — reach out now to secure
+                            yours.
+                        </p>
+                        <div class="mt-4 h-2 rounded-full overflow-hidden" style="background:rgba(64,138,113,0.1);">
+                            <div class="h-full rounded-full"
+                                style="width:70%;background:linear-gradient(90deg,#285A48,#B0E4CC);"></div>
+                        </div>
+                        <div class="flex justify-between mt-2">
+                            <span class="font-grotesk text-xs" style="color:rgba(176,228,204,0.3);">Capacity used</span>
+                            <span class="font-grotesk text-xs font-semibold" style="color:#408A71;">70%</span>
+                        </div>
+                    </div>
+
+                    <!-- Contact info cards -->
+                    <div class="info-card" onclick="window.location='mailto:hello@devepexel.com'">
+                        <div class="flex items-start gap-4">
+                            <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <div class="font-syne font-semibold text-sm mb-1" style="color:#F0FFF8;">Email Us</div>
+                                <div class="font-grotesk text-sm mb-1" style="color:#408A71;">hello@devepexel.com</div>
+                                <div class="font-grotesk text-xs" style="color:rgba(176,228,204,0.35);">Best for project
+                                    inquiries</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card" onclick="window.open('tel:+1234567890')">
+                        <div class="flex items-start gap-4">
+                            <div class="info-icon"><i class="fas fa-phone"></i></div>
+                            <div>
+                                <div class="font-syne font-semibold text-sm mb-1" style="color:#F0FFF8;">Call Us</div>
+                                <div class="font-grotesk text-sm mb-1" style="color:#408A71;">+1 (234) 567-890</div>
+                                <div class="font-grotesk text-xs" style="color:rgba(176,228,204,0.35);">Mon–Fri, 9AM–6PM
+                                    PST</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="flex items-start gap-4">
+                            <div class="info-icon"><i class="fas fa-clock"></i></div>
+                            <div>
+                                <div class="font-syne font-semibold text-sm mb-1" style="color:#F0FFF8;">Working Hours
+                                </div>
+                                <div class="font-grotesk text-sm mb-1" style="color:#408A71;">Mon – Fri: 9AM – 6PM</div>
+                                <div class="font-grotesk text-xs" style="color:rgba(176,228,204,0.35);">Pacific Standard
+                                    Time (PST)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="flex items-start gap-4">
+                            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div>
+                                <div class="font-syne font-semibold text-sm mb-1" style="color:#F0FFF8;">Location</div>
+                                <div class="font-grotesk text-sm mb-1" style="color:#408A71;">San Francisco, CA</div>
+                                <div class="font-grotesk text-xs" style="color:rgba(176,228,204,0.35);">Remote-first,
+                                    serving globally</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social links -->
+                    <div class="glass-card rounded-2xl p-6">
+                        <div class="font-syne font-semibold text-sm mb-4" style="color:#F0FFF8;">Follow Our Work</div>
+                        <div class="flex gap-3">
+                            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-dribbble"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Map visual -->
+                    <div class="map-block">
+                        <div class="map-grid"></div>
+
+                        <!-- Decorative scattered dots -->
+                        <div class="map-dot" style="top:20%;left:15%;"></div>
+                        <div class="map-dot" style="top:35%;left:70%;"></div>
+                        <div class="map-dot" style="top:60%;left:25%;"></div>
+                        <div class="map-dot" style="top:75%;left:80%;"></div>
+                        <div class="map-dot" style="top:15%;left:85%;"></div>
+                        <div class="map-dot" style="top:85%;left:40%;"></div>
+
+                        <!-- Connection lines SVG -->
+                        <svg class="absolute inset-0 w-full h-full" style="opacity:0.15;">
+                            <line x1="50%" y1="50%" x2="15%" y2="20%" stroke="#408A71" stroke-width="1"
+                                stroke-dasharray="4,4" />
+                            <line x1="50%" y1="50%" x2="70%" y2="35%" stroke="#408A71" stroke-width="1"
+                                stroke-dasharray="4,4" />
+                            <line x1="50%" y1="50%" x2="25%" y2="60%" stroke="#408A71" stroke-width="1"
+                                stroke-dasharray="4,4" />
+                            <line x1="50%" y1="50%" x2="80%" y2="75%" stroke="#408A71" stroke-width="1"
+                                stroke-dasharray="4,4" />
+                            <line x1="50%" y1="50%" x2="85%" y2="15%" stroke="#408A71" stroke-width="1"
+                                stroke-dasharray="4,4" />
+                            <line x1="50%" y1="50%" x2="40%" y2="85%" stroke="#408A71" stroke-width="1"
+                                stroke-dasharray="4,4" />
+                        </svg>
+
+                        <div class="map-center">
+                            <div class="map-pin">
+                                <i class="fas fa-map-marker-alt text-xl" style="color:#F0FFF8;"></i>
+                            </div>
+                            <div class="font-syne font-bold text-sm" style="color:#F0FFF8;">San Francisco</div>
+                            <div class="font-grotesk text-xs mt-1" style="color:rgba(176,228,204,0.4);">Our Home Base
+                            </div>
+                        </div>
+
+                        <!-- Corner badge -->
+                        <div
+                            style="position:absolute;top:16px;right:16px;background:rgba(9,20,19,0.9);border:1px solid rgba(64,138,113,0.25);border-radius:10px;padding:6px 12px;">
+                            <span class="font-grotesk text-xs" style="color:rgba(176,228,204,0.5);">🌍 Global
+                                Clients</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── RIGHT: Contact Form (3 cols) ── -->
+                <div class="lg:col-span-3 reveal-right">
+                    <div class="contact-form-wrap p-8 lg:p-10">
+
+                        <!-- Form header -->
+                        <div class="mb-8">
+                            <h2 class="font-syne font-extrabold text-2xl lg:text-3xl mb-2" style="color:#F0FFF8;">
+                                Tell Us About Your <span class="gradient-text-2">Project</span>
+                            </h2>
+                            <p class="font-grotesk text-sm" style="color:rgba(176,228,204,0.4);">
+                                Fill in the details below and we'll craft a tailored proposal for you.
+                            </p>
+                        </div>
+
+                        <!-- Service selector -->
+                        <div class="mb-8">
+                            <div class="form-label" style="display:block;margin-bottom:12px;">I'm interested in</div>
+                            <div class="flex flex-wrap gap-3" id="servicePills">
+                                <div class="service-pill" data-service="WordPress Development">
+                                    <span class="pill-dot"></span>WordPress
+                                </div>
+                                <div class="service-pill" data-service="Web Development">
+                                    <span class="pill-dot"></span>Web Dev
+                                </div>
+                                <div class="service-pill" data-service="Graphic Design">
+                                    <span class="pill-dot"></span>Design
+                                </div>
+                                <div class="service-pill" data-service="SEO Optimization">
+                                    <span class="pill-dot"></span>SEO
+                                </div>
+                                <div class="service-pill" data-service="Digital Marketing">
+                                    <span class="pill-dot"></span>Marketing
+                                </div>
+                                <div class="service-pill" data-service="Other">
+                                    <span class="pill-dot"></span>Other
+                                </div>
+                            </div>
+                            <input type="hidden" id="selectedService" name="service" value="">
+                        </div>
+
+                        <form id="contactForm" novalidate>
+
+                            <!-- Name + Email row -->
+                            <div class="grid sm:grid-cols-2 gap-6 mb-0">
+                                <div class="form-group">
+                                    <label class="form-label" for="fname">First Name *</label>
+                                    <div class="relative">
+                                        <input type="text" id="fname" name="fname" class="form-input" placeholder="John"
+                                            required>
+                                        <div class="input-border"></div>
+                                    </div>
+                                    <p class="error-msg hidden mt-2 text-xs font-grotesk" style="color:#f87171;"
+                                        id="fname-err">Please enter your first name.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="lname">Last Name *</label>
+                                    <div class="relative">
+                                        <input type="text" id="lname" name="lname" class="form-input" placeholder="Doe"
+                                            required>
+                                        <div class="input-border"></div>
+                                    </div>
+                                    <p class="error-msg hidden mt-2 text-xs font-grotesk" style="color:#f87171;"
+                                        id="lname-err">Please enter your last name.</p>
+                                </div>
+                            </div>
+
+                            <!-- Email + Phone -->
+                            <div class="grid sm:grid-cols-2 gap-6 mb-0">
+                                <div class="form-group">
+                                    <label class="form-label" for="email">Email Address *</label>
+                                    <div class="relative">
+                                        <input type="email" id="email" name="email" class="form-input"
+                                            placeholder="john@company.com" required>
+                                        <div class="input-border"></div>
+                                    </div>
+                                    <p class="error-msg hidden mt-2 text-xs font-grotesk" style="color:#f87171;"
+                                        id="email-err">Please enter a valid email.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="phone">Phone Number</label>
+                                    <div class="relative">
+                                        <input type="tel" id="phone" name="phone" class="form-input"
+                                            placeholder="+1 (234) 567-890">
+                                        <div class="input-border"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Company + Budget -->
+                            <div class="grid sm:grid-cols-2 gap-6 mb-0">
+                                <div class="form-group">
+                                    <label class="form-label" for="company">Company / Brand</label>
+                                    <div class="relative">
+                                        <input type="text" id="company" name="company" class="form-input"
+                                            placeholder="Your Company Inc.">
+                                        <div class="input-border"></div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="budget">Project Budget *</label>
+                                    <select id="budget" name="budget" class="form-select" required>
+                                        <option value="" disabled selected style="color:rgba(176,228,204,0.3);">Select
+                                            range...</option>
+                                        <option value="under-2k">Under $2,000</option>
+                                        <option value="2k-5k">$2,000 – $5,000</option>
+                                        <option value="5k-10k">$5,000 – $10,000</option>
+                                        <option value="10k-25k">$10,000 – $25,000</option>
+                                        <option value="25k-50k">$25,000 – $50,000</option>
+                                        <option value="50k+">$50,000+</option>
+                                        <option value="discuss">Let's Discuss</option>
+                                    </select>
+                                    <p class="error-msg hidden mt-2 text-xs font-grotesk" style="color:#f87171;"
+                                        id="budget-err">Please select a budget range.</p>
+                                </div>
+                            </div>
+
+                            <!-- Timeline -->
+                            <div class="form-group">
+                                <label class="form-label" for="timeline">Project Timeline *</label>
+                                <select id="timeline" name="timeline" class="form-select" required>
+                                    <option value="" disabled selected>When do you need it?</option>
+                                    <option value="asap">ASAP (Rush)</option>
+                                    <option value="1month">Within 1 month</option>
+                                    <option value="3months">1–3 months</option>
+                                    <option value="6months">3–6 months</option>
+                                    <option value="flexible">Flexible / No rush</option>
+                                </select>
+                                <p class="error-msg hidden mt-2 text-xs font-grotesk" style="color:#f87171;"
+                                    id="timeline-err">Please select a timeline.</p>
+                            </div>
+
+                            <!-- Project Details -->
+                            <div class="form-group">
+                                <label class="form-label" for="message">Project Details *</label>
+                                <textarea id="message" name="message" class="form-textarea" maxlength="1000"
+                                    placeholder="Tell us about your project — what you're building, your goals, any specific requirements, and anything else that will help us understand your vision..."
+                                    required></textarea>
+                                <div class="char-counter"><span id="charCount">0</span> / 1000</div>
+                                <p class="error-msg hidden mt-2 text-xs font-grotesk" style="color:#f87171;"
+                                    id="message-err">Please describe your project (min 20 characters).</p>
+                            </div>
+
+                            <!-- How did you hear -->
+                            <div class="form-group">
+                                <label class="form-label" for="source">How did you find us?</label>
+                                <select id="source" name="source" class="form-select">
+                                    <option value="" disabled selected>Select an option...</option>
+                                    <option value="google">Google Search</option>
+                                    <option value="social">Social Media</option>
+                                    <option value="referral">Referral / Friend</option>
+                                    <option value="clutch">Clutch / Agency Listing</option>
+                                    <option value="portfolio">Saw Your Portfolio</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <!-- Consent -->
+                            <div class="flex items-start gap-3 mb-8 p-4 rounded-14 cursor-pointer"
+                                style="background:rgba(40,90,72,0.05);border:1px solid rgba(64,138,113,0.1);border-radius:12px;"
+                                id="consentWrapper">
+                                <div class="w-5 h-5 rounded-md border flex-shrink-0 mt-0.5 flex items-center justify-center transition-all duration-200"
+                                    style="border-color:rgba(64,138,113,0.3);background:rgba(9,20,19,0.8);"
+                                    id="checkbox">
+                                </div>
+                                <p class="font-grotesk text-xs leading-relaxed" style="color:rgba(176,228,204,0.45);">
+                                    I agree to the <a href="#" style="color:#408A71;"
+                                        onmouseover="this.style.color='#B0E4CC'"
+                                        onmouseout="this.style.color='#408A71'">Privacy Policy</a> and consent to
+                                    DevePexel storing my data to respond to my inquiry. No spam, ever.
+                                </p>
+                            </div>
+                            <p class="error-msg hidden mb-4 text-xs font-grotesk" style="color:#f87171;"
+                                id="consent-err">Please accept the privacy policy to continue.</p>
+
+                            <!-- Submit -->
+                            <button type="submit" class="submit-btn" id="submitBtn">
+                                <span class="flex items-center justify-center gap-3">
+                                    <i class="fas fa-paper-plane" id="submitIcon"></i>
+                                    <span id="submitText">Send Message</span>
+                                    <div class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin hidden"
+                                        id="spinner"></div>
+                                </span>
+                            </button>
+
+                            <!-- Trust row -->
+                            <div class="flex flex-wrap items-center justify-center gap-4 mt-6">
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fas fa-lock text-xs" style="color:rgba(64,138,113,0.5);"></i>
+                                    <span class="font-grotesk text-xs" style="color:rgba(176,228,204,0.3);">SSL
+                                        encrypted</span>
+                                </div>
+                                <div class="w-1 h-1 rounded-full" style="background:rgba(64,138,113,0.2);"></div>
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fas fa-shield-alt text-xs" style="color:rgba(64,138,113,0.5);"></i>
+                                    <span class="font-grotesk text-xs" style="color:rgba(176,228,204,0.3);">No spam
+                                        guarantee</span>
+                                </div>
+                                <div class="w-1 h-1 rounded-full" style="background:rgba(64,138,113,0.2);"></div>
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fas fa-clock text-xs" style="color:rgba(64,138,113,0.5);"></i>
+                                    <span class="font-grotesk text-xs" style="color:rgba(176,228,204,0.3);">Reply in
+                                        24h</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- PROCESS SECTION                                               -->
+    <!-- ============================================================ -->
+    <section class="py-20 lg:py-28 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center mb-14 reveal">
+                <div class="flex items-center gap-3 justify-center mb-5">
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                    <span class="section-label">What Happens Next</span>
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                </div>
+                <h2 class="font-syne font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4" style="color:#F0FFF8;">
+                    After You <span class="gradient-text-2">Reach Out</span>
+                </h2>
+                <p class="max-w-xl mx-auto font-grotesk text-sm sm:text-base" style="color:rgba(176,228,204,0.5);">
+                    Here's exactly what happens when you submit your inquiry.
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <div class="process-mini reveal" style="transition-delay:0s;">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4 font-syne font-bold text-sm"
+                        style="background:linear-gradient(135deg,rgba(40,90,72,0.3),rgba(64,138,113,0.2));border:1px solid rgba(64,138,113,0.25);color:#B0E4CC;">
+                        01</div>
+                    <h3 class="font-syne font-bold text-base mb-2" style="color:#F0FFF8;">We Review</h3>
+                    <p class="font-grotesk text-xs leading-relaxed" style="color:rgba(176,228,204,0.45);">Our team
+                        reviews your project details within 2 business hours and assigns the right specialist.</p>
+                    <div class="mt-4 flex items-center gap-2">
+                        <i class="fas fa-clock text-xs" style="color:#408A71;"></i>
+                        <span class="font-grotesk text-xs" style="color:rgba(176,228,204,0.3);">Within 2 hours</span>
+                    </div>
+                </div>
+
+                <div class="process-mini reveal" style="transition-delay:.1s;">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4 font-syne font-bold text-sm"
+                        style="background:linear-gradient(135deg,rgba(40,90,72,0.3),rgba(64,138,113,0.2));border:1px solid rgba(64,138,113,0.25);color:#B0E4CC;">
+                        02</div>
+                    <h3 class="font-syne font-bold text-base mb-2" style="color:#F0FFF8;">Discovery Call</h3>
+                    <p class="font-grotesk text-xs leading-relaxed" style="color:rgba(176,228,204,0.45);">We schedule a
+                        free 30-min video call to dive deeper into your vision, goals, and requirements.</p>
+                    <div class="mt-4 flex items-center gap-2">
+                        <i class="fas fa-video text-xs" style="color:#408A71;"></i>
+                        <span class="font-grotesk text-xs" style="color:rgba(176,228,204,0.3);">Free 30-min call</span>
+                    </div>
+                </div>
+
+                <div class="process-mini reveal" style="transition-delay:.2s;">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4 font-syne font-bold text-sm"
+                        style="background:linear-gradient(135deg,rgba(40,90,72,0.3),rgba(64,138,113,0.2));border:1px solid rgba(64,138,113,0.25);color:#B0E4CC;">
+                        03</div>
+                    <h3 class="font-syne font-bold text-base mb-2" style="color:#F0FFF8;">Custom Proposal</h3>
+                    <p class="font-grotesk text-xs leading-relaxed" style="color:rgba(176,228,204,0.45);">We send a
+                        detailed proposal with timeline, deliverables, pricing, and our approach — tailored to you.</p>
+                    <div class="mt-4 flex items-center gap-2">
+                        <i class="fas fa-file-alt text-xs" style="color:#408A71;"></i>
+                        <span class="font-grotesk text-xs" style="color:rgba(176,228,204,0.3);">Within 24 hours</span>
+                    </div>
+                </div>
+
+                <div class="process-mini reveal" style="transition-delay:.3s;">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4 font-syne font-bold text-sm"
+                        style="background:linear-gradient(135deg,rgba(40,90,72,0.3),rgba(64,138,113,0.2));border:1px solid rgba(64,138,113,0.25);color:#B0E4CC;">
+                        04</div>
+                    <h3 class="font-syne font-bold text-base mb-2" style="color:#F0FFF8;">We Kick Off</h3>
+                    <p class="font-grotesk text-xs leading-relaxed" style="color:rgba(176,228,204,0.45);">Once approved,
+                        we set up your project workspace, sign the agreement, and the magic begins.</p>
+                    <div class="mt-4 flex items-center gap-2">
+                        <i class="fas fa-rocket text-xs" style="color:#408A71;"></i>
+                        <span class="font-grotesk text-xs" style="color:rgba(176,228,204,0.3);">Let's go!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- FAQ SECTION                                                   -->
+    <!-- ============================================================ -->
+    <section class="py-20 lg:py-28 relative z-10">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center mb-14 reveal">
+                <div class="flex items-center gap-3 justify-center mb-5">
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                    <span class="section-label">Quick Answers</span>
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                </div>
+                <h2 class="font-syne font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4" style="color:#F0FFF8;">
+                    Before You <span class="gradient-text-2">Reach Out</span>
+                </h2>
+            </div>
+
+            <div class="reveal">
+                <div class="faq-mini">
+                    <div class="faq-q" onclick="toggleFaq(this)">
+                        <span class="font-syne font-semibold text-sm sm:text-base" style="color:#F0FFF8;">How quickly
+                            will I receive a response?</span>
+                        <i class="fas fa-chevron-down faq-chevron text-sm"></i>
+                    </div>
+                    <div class="faq-a">
+                        <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">We
+                            guarantee a response within 24 business hours. For urgent projects, you can also reach us
+                            via WhatsApp for a faster reply.</p>
+                    </div>
+                </div>
+
+                <div class="faq-mini">
+                    <div class="faq-q" onclick="toggleFaq(this)">
+                        <span class="font-syne font-semibold text-sm sm:text-base" style="color:#F0FFF8;">Is the initial
+                            consultation free?</span>
+                        <i class="fas fa-chevron-down faq-chevron text-sm"></i>
+                    </div>
+                    <div class="faq-a">
+                        <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">Absolutely
+                            — 100% free with no obligation. The discovery call and initial proposal are complimentary.
+                            You only pay once we agree on the project scope and you're ready to proceed.</p>
+                    </div>
+                </div>
+
+                <div class="faq-mini">
+                    <div class="faq-q" onclick="toggleFaq(this)">
+                        <span class="font-syne font-semibold text-sm sm:text-base" style="color:#F0FFF8;">What
+                            information should I prepare before contacting you?</span>
+                        <i class="fas fa-chevron-down faq-chevron text-sm"></i>
+                    </div>
+                    <div class="faq-a">
+                        <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">The more
+                            detail, the better — your goals, target audience, budget range, timeline, and any reference
+                            sites or designs you like. Don't worry if you don't have everything ready; we'll guide you
+                            through the process.</p>
+                    </div>
+                </div>
+
+                <div class="faq-mini">
+                    <div class="faq-q" onclick="toggleFaq(this)">
+                        <span class="font-syne font-semibold text-sm sm:text-base" style="color:#F0FFF8;">Do you work
+                            with international clients?</span>
+                        <i class="fas fa-chevron-down faq-chevron text-sm"></i>
+                    </div>
+                    <div class="faq-a">
+                        <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">Yes! We
+                            work with clients across 30+ countries. All communication happens via video calls, email,
+                            and Slack. Time zone differences are never a barrier — we accommodate your schedule.</p>
+                    </div>
+                </div>
+
+                <div class="faq-mini">
+                    <div class="faq-q" onclick="toggleFaq(this)">
+                        <span class="font-syne font-semibold text-sm sm:text-base" style="color:#F0FFF8;">What payment
+                            methods do you accept?</span>
+                        <i class="fas fa-chevron-down faq-chevron text-sm"></i>
+                    </div>
+                    <div class="faq-a">
+                        <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">Bank
+                            transfer, credit/debit card, PayPal, Wise, and crypto (BTC/ETH/USDT). Projects are typically
+                            split 50% upfront and 50% upon completion, though we can discuss custom arrangements.</p>
+                    </div>
+                </div>
+
+                <div class="faq-mini">
+                    <div class="faq-q" onclick="toggleFaq(this)">
+                        <span class="font-syne font-semibold text-sm sm:text-base" style="color:#F0FFF8;">What if I have
+                            a small budget?</span>
+                        <i class="fas fa-chevron-down faq-chevron text-sm"></i>
+                    </div>
+                    <div class="faq-a">
+                        <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">Reach out
+                            anyway! We work with businesses of all sizes. We'll be honest about what's achievable within
+                            your budget and suggest phased approaches that grow with you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- TESTIMONIAL STRIP                                             -->
+    <!-- ============================================================ -->
+    <section class="py-20 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center mb-12 reveal">
+                <h2 class="font-syne font-extrabold text-2xl sm:text-3xl" style="color:#F0FFF8;">
+                    Trusted by <span class="gradient-text-2">200+ Businesses</span>
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+
+                <div class="glass-card rounded-2xl p-6 reveal" style="transition-delay:0s;">
+                    <div class="flex gap-1 mb-3">
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                    </div>
+                    <p class="font-grotesk text-sm leading-relaxed mb-4" style="color:rgba(176,228,204,0.6);">
+                        "Replied within hours and delivered exactly what they promised. The team at DevePexel are true
+                        professionals."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&q=80&auto=format&fit=crop"
+                            class="w-9 h-9 rounded-full" style="object-fit:cover;" alt="">
+                        <div>
+                            <div class="font-syne font-semibold text-sm" style="color:#F0FFF8;">James W.</div>
+                            <div class="font-grotesk text-xs" style="color:rgba(176,228,204,0.35);">CEO, NovaTech</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 reveal" style="transition-delay:.1s;">
+                    <div class="flex gap-1 mb-3">
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                    </div>
+                    <p class="font-grotesk text-sm leading-relaxed mb-4" style="color:rgba(176,228,204,0.6);">
+                        "The onboarding process was seamless. Within days of first contact we had a clear roadmap and
+                        signed agreement."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=80&q=80&auto=format&fit=crop"
+                            class="w-9 h-9 rounded-full" style="object-fit:cover;" alt="">
+                        <div>
+                            <div class="font-syne font-semibold text-sm" style="color:#F0FFF8;">Lisa C.</div>
+                            <div class="font-grotesk text-xs" style="color:rgba(176,228,204,0.35);">CTO, Luminary Labs
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 reveal" style="transition-delay:.2s;">
+                    <div class="flex gap-1 mb-3">
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                        <i class="fas fa-star text-xs" style="color:#408A71;"></i>
+                    </div>
+                    <p class="font-grotesk text-sm leading-relaxed mb-4" style="color:rgba(176,228,204,0.6);">
+                        "Don't hesitate — just send that message. Best business decision I made in 2023. They
+                        over-delivered on everything."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&q=80&auto=format&fit=crop"
+                            class="w-9 h-9 rounded-full" style="object-fit:cover;" alt="">
+                        <div>
+                            <div class="font-syne font-semibold text-sm" style="color:#F0FFF8;">David O.</div>
+                            <div class="font-grotesk text-xs" style="color:rgba(176,228,204,0.35);">Founder, GrowScale
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER                                                        -->
+    <!-- ============================================================ -->
+    <footer class="relative z-10 pt-16 pb-8"
+        style="background:linear-gradient(180deg,transparent 0%,rgba(4,9,9,0.98) 30%,#040909 100%);border-top:1px solid rgba(64,138,113,0.08);">
+        <div class="divider mb-12"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <div class="lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center"
+                            style="background:linear-gradient(135deg,#285A48,#408A71);box-shadow:0 4px 15px rgba(40,90,72,0.3);">
+                            <span class="font-syne font-bold text-lg" style="color:#B0E4CC;">D</span>
+                        </div>
+                        <div>
+                            <div class="font-syne font-bold text-lg" style="color:#F0FFF8;">Deve<span
+                                    style="color:#408A71;">Pexel</span></div>
+                            <div class="text-xs tracking-widest" style="color:rgba(176,228,204,0.35);">CODE AGENCY</div>
+                        </div>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-6 font-grotesk" style="color:rgba(176,228,204,0.35);">
+                        Professional code agency specializing in WordPress, web development, and digital solutions.</p>
+                    <div class="flex gap-3">
+                        <a href="#"
+                            class="w-9 h-9 glass rounded-xl flex items-center justify-center text-sm transition-all hover:scale-110 hover:-translate-y-1"
+                            style="color:rgba(176,228,204,0.4);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.4)'"><i class="fab fa-github"></i></a>
+                        <a href="#"
+                            class="w-9 h-9 glass rounded-xl flex items-center justify-center text-sm transition-all hover:scale-110 hover:-translate-y-1"
+                            style="color:rgba(176,228,204,0.4);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.4)'"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"
+                            class="w-9 h-9 glass rounded-xl flex items-center justify-center text-sm transition-all hover:scale-110 hover:-translate-y-1"
+                            style="color:rgba(176,228,204,0.4);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.4)'"><i class="fab fa-twitter"></i></a>
+                        <a href="#"
+                            class="w-9 h-9 glass rounded-xl flex items-center justify-center text-sm transition-all hover:scale-110 hover:-translate-y-1"
+                            style="color:rgba(176,228,204,0.4);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.4)'"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-syne font-semibold text-sm mb-5 flex items-center gap-2" style="color:#F0FFF8;">
+                        <span style="color:#408A71;font-size:8px;">✦</span> Services</h4>
+                    <ul class="space-y-3">
+                        <li><a href="services.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">WordPress Development</a></li>
+                        <li><a href="services.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Web Development</a></li>
+                        <li><a href="services.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Graphic Design</a></li>
+                        <li><a href="services.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">SEO Optimization</a></li>
+                        <li><a href="services.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Digital Marketing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-syne font-semibold text-sm mb-5 flex items-center gap-2" style="color:#F0FFF8;">
+                        <span style="color:#408A71;font-size:8px;">✦</span> Company</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Home</a></li>
+                        <li><a href="about.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">About Us</a></li>
+                        <li><a href="services.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Services</a></li>
+                        <li><a href="contact.html" class="text-sm font-grotesk" style="color:#408A71;">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-syne font-semibold text-sm mb-5 flex items-center gap-2" style="color:#F0FFF8;">
+                        <span style="color:#408A71;font-size:8px;">✦</span> Get In Touch</h4>
+                    <div class="space-y-3">
+                        <a href="mailto:hello@devepexel.com" class="text-sm font-grotesk block transition-colors"
+                            style="color:rgba(176,228,204,0.5);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.5)'">
+                            <i class="fas fa-envelope mr-2" style="color:#408A71;"></i>hello@devepexel.com
+                        </a>
+                        <a href="tel:+1234567890" class="text-sm font-grotesk block transition-colors"
+                            style="color:rgba(176,228,204,0.5);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.5)'">
+                            <i class="fas fa-phone mr-2" style="color:#408A71;"></i>+1 (234) 567-890
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="divider mb-6"></div>
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-5 pb-8">
+                <p class="text-xs font-grotesk" style="color:rgba(176,228,204,0.25);">© 2024 <span
+                        style="color:#408A71;">DevePexel</span> · All rights reserved</p>
+                <div class="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-grotesk"
+                    style="background:rgba(40,90,72,0.06);border:1px solid rgba(64,138,113,0.12);">
+                    <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                    <span style="color:rgba(176,228,204,0.4);">Available for new projects</span>
+                </div>
+                <div class="flex items-center gap-5">
+                    <a href="#" class="text-xs font-grotesk transition-colors" style="color:rgba(176,228,204,0.25);"
+                        onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='rgba(176,228,204,0.25)'">Privacy</a>
+                    <a href="#" class="text-xs font-grotesk transition-colors" style="color:rgba(176,228,204,0.25);"
+                        onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='rgba(176,228,204,0.25)'">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT                                                    -->
+    <!-- ============================================================ -->
+    <script>
+        // ── Cursor ────────────────────────────────────────────────────
+        const cursor = document.getElementById('cursor');
+        const cursorDot = document.getElementById('cursorDot');
+        let cx = 0, cy = 0, dx = 0, dy = 0;
+        document.addEventListener('mousemove', e => {
+            cx = e.clientX; cy = e.clientY;
+            cursorDot.style.left = cx - 2.5 + 'px'; cursorDot.style.top = cy - 2.5 + 'px';
+        });
+        (function animCursor() {
+            dx += (cx - dx) * 0.1; dy += (cy - dy) * 0.1;
+            cursor.style.left = dx - 9 + 'px'; cursor.style.top = dy - 9 + 'px';
+            requestAnimationFrame(animCursor);
+        })();
+        document.querySelectorAll('a,button,.info-card,.social-link,.service-pill,.faq-q,.glass-card,.process-mini').forEach(el => {
+            el.addEventListener('mouseenter', () => { cursor.style.transform = 'scale(2.5)'; cursor.style.borderColor = '#B0E4CC'; });
+            el.addEventListener('mouseleave', () => { cursor.style.transform = 'scale(1)'; cursor.style.borderColor = '#408A71'; });
+        });
+
+        // ── Navbar ────────────────────────────────────────────────────
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            const s = window.scrollY > 50;
+            navbar.style.backgroundColor = s ? 'rgba(9,20,19,0.97)' : 'rgba(176,228,204,0.02)';
+            navbar.style.borderBottom = s ? '1px solid rgba(64,138,113,0.12)' : '1px solid rgba(64,138,113,0.1)';
+            navbar.style.boxShadow = s ? '0 4px 30px rgba(9,20,19,0.5)' : 'none';
+            document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 500);
+        });
+
+        // ── Mobile menu ───────────────────────────────────────────────
+        const mobileMenu = document.getElementById('mobileMenu');
+        const overlayEl = document.getElementById('overlay');
+        function openMenu() { mobileMenu.classList.add('open'); overlayEl.classList.remove('hidden'); document.body.style.overflow = 'hidden'; document.getElementById('b1').style.cssText = 'transform:rotate(45deg) translateY(8px);background:#408A71;'; document.getElementById('b2').style.opacity = '0'; document.getElementById('b3').style.cssText = 'transform:rotate(-45deg) translateY(-8px);width:20px;background:#408A71;'; }
+        function closeMenu() { mobileMenu.classList.remove('open'); overlayEl.classList.add('hidden'); document.body.style.overflow = '';['b1', 'b2', 'b3'].forEach(id => document.getElementById(id).style.cssText = ''); }
+        document.getElementById('menuBtn').addEventListener('click', openMenu);
+        document.getElementById('closeMenu').addEventListener('click', closeMenu);
+        overlayEl.addEventListener('click', closeMenu);
+        document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', closeMenu));
+
+        // ── Service pills ─────────────────────────────────────────────
+        document.querySelectorAll('.service-pill').forEach(pill => {
+            pill.addEventListener('click', () => {
+                pill.classList.toggle('selected');
+                const selected = [...document.querySelectorAll('.service-pill.selected')].map(p => p.dataset.service);
+                document.getElementById('selectedService').value = selected.join(', ');
+            });
+        });
+
+        // ── Char counter ──────────────────────────────────────────────
+        const msgArea = document.getElementById('message');
+        const charCount = document.getElementById('charCount');
+        msgArea.addEventListener('input', () => {
+            const len = msgArea.value.length;
+            charCount.textContent = len;
+            charCount.style.color = len > 900 ? '#f87171' : len > 700 ? 'rgba(176,228,204,0.5)' : 'rgba(176,228,204,0.3)';
+        });
+
+        // ── Checkbox ──────────────────────────────────────────────────
+        let consentChecked = false;
+        const checkbox = document.getElementById('checkbox');
+        document.getElementById('consentWrapper').addEventListener('click', () => {
+            consentChecked = !consentChecked;
+            checkbox.innerHTML = consentChecked ? '<svg width="12" height="12" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" fill="none" stroke="#B0E4CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' : '';
+            checkbox.style.background = consentChecked ? 'linear-gradient(135deg,#285A48,#408A71)' : 'rgba(9,20,19,0.8)';
+            checkbox.style.borderColor = consentChecked ? 'transparent' : 'rgba(64,138,113,0.3)';
+            document.getElementById('consent-err').classList.add('hidden');
+        });
+
+        // ── Validation helpers ────────────────────────────────────────
+        function showErr(id) { document.getElementById(id).classList.remove('hidden'); }
+        function hideErr(id) { document.getElementById(id).classList.add('hidden'); }
+        function validateEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+
+        // ── Form submit ───────────────────────────────────────────────
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            let valid = true;
+
+            // First name
+            const fn = document.getElementById('fname').value.trim();
+            if (!fn) { showErr('fname-err'); valid = false; } else { hideErr('fname-err'); }
+
+            // Last name
+            const ln = document.getElementById('lname').value.trim();
+            if (!ln) { showErr('lname-err'); valid = false; } else { hideErr('lname-err'); }
+
+            // Email
+            const em = document.getElementById('email').value.trim();
+            if (!validateEmail(em)) { showErr('email-err'); valid = false; } else { hideErr('email-err'); }
+
+            // Budget
+            const bud = document.getElementById('budget').value;
+            if (!bud) { showErr('budget-err'); valid = false; } else { hideErr('budget-err'); }
+
+            // Timeline
+            const tl = document.getElementById('timeline').value;
+            if (!tl) { showErr('timeline-err'); valid = false; } else { hideErr('timeline-err'); }
+
+            // Message
+            const msg = document.getElementById('message').value.trim();
+            if (msg.length < 20) { showErr('message-err'); valid = false; } else { hideErr('message-err'); }
+
+            // Consent
+            if (!consentChecked) { showErr('consent-err'); valid = false; } else { hideErr('consent-err'); }
+
+            if (!valid) return;
+
+            // Loading state
+            const btn = document.getElementById('submitBtn');
+            const icon = document.getElementById('submitIcon');
+            const text = document.getElementById('submitText');
+            const spin = document.getElementById('spinner');
+            btn.classList.add('loading');
+            icon.classList.add('hidden');
+            spin.classList.remove('hidden');
+            text.textContent = 'Sending...';
+
+            // Simulate send
+            setTimeout(() => {
+                btn.classList.remove('loading');
+                icon.classList.remove('hidden');
+                spin.classList.add('hidden');
+                text.textContent = 'Send Message';
+
+                // Show toast
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 5000);
+
+                // Reset form
+                document.getElementById('contactForm').reset();
+                document.querySelectorAll('.service-pill').forEach(p => p.classList.remove('selected'));
+                document.getElementById('selectedService').value = '';
+                charCount.textContent = '0';
+                consentChecked = false;
+                checkbox.innerHTML = '';
+                checkbox.style.background = 'rgba(9,20,19,0.8)';
+                checkbox.style.borderColor = 'rgba(64,138,113,0.3)';
+            }, 2200);
+        });
+
+        // ── FAQ toggle ────────────────────────────────────────────────
+        function toggleFaq(el) {
+            const item = el.parentElement;
+            const wasOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-mini').forEach(f => f.classList.remove('open'));
+            if (!wasOpen) item.classList.add('open');
+        }
+
+        // ── Scroll reveals ────────────────────────────────────────────
+        const revObs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => revObs.observe(el));
+
+        // ── Smooth scroll ─────────────────────────────────────────────
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                const t = document.querySelector(a.getAttribute('href'));
+                if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            });
+        });
+
+        // ── Initial reveal ────────────────────────────────────────────
+        setTimeout(() => {
+            document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
+            });
+        }, 100);
+
+        // ── Input focus glow fix for selects ─────────────────────────
+        document.querySelectorAll('.form-input,.form-textarea,.form-select').forEach(el => {
+            el.addEventListener('focus', () => el.parentElement.querySelector('.form-label') && (el.closest('.form-group').querySelector('.form-label').style.color = '#B0E4CC'));
+            el.addEventListener('blur', () => el.closest('.form-group').querySelector('.form-label') && (el.closest('.form-group').querySelector('.form-label').style.color = ''));
+        });
+
+        console.log('%c✦ DevePexel — Contact Page Loaded', 'color:#408A71;font-size:14px;font-weight:bold;');
+    </script>
+</body>
+
+</html>

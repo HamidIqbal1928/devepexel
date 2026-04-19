@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services — DevePexel Code Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ========================= */
+        /* ROOT & RESET              */
+        /* ========================= */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --deep: #091413;
+            --primary: #285A48;
+            --mid: #408A71;
+            --light: #B0E4CC;
+            --white: #F0FFF8;
+            --text: rgba(176, 228, 204, 0.7);
+            --border: rgba(64, 138, 113, 0.18);
+            --glow: rgba(40, 90, 72, 0.25);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #091413;
+            color: #B0E4CC;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #091413;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(#285A48, #B0E4CC);
+            border-radius: 10px;
+        }
+
+        /* ========================= */
+        /* BACKGROUND SYSTEM         */
+        /* ========================= */
+
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(64, 138, 113, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(64, 138, 113, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .bg-noise {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .orb-1 {
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(40, 90, 72, 0.14), transparent 70%);
+            top: -250px;
+            left: -200px;
+            animation: orbDrift 16s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, rgba(64, 138, 113, 0.1), transparent 70%);
+            bottom: -150px;
+            right: -150px;
+            animation: orbDrift 20s ease-in-out infinite reverse;
+        }
+
+        @keyframes orbDrift {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(40px, -30px) scale(1.05);
+            }
+
+            66% {
+                transform: translate(-25px, 20px) scale(0.95);
+            }
+        }
+
+        .scanline {
+            position: fixed;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(176, 228, 204, 0.08), rgba(64, 138, 113, 0.12), transparent);
+            z-index: 1;
+            pointer-events: none;
+            animation: scanMove 12s linear infinite;
+        }
+
+        @keyframes scanMove {
+            0% {
+                top: -2px;
+            }
+
+            100% {
+                top: 100vh;
+            }
+        }
+
+        /* ========================= */
+        /* TYPOGRAPHY                */
+        /* ========================= */
+
+        .font-syne {
+            font-family: 'Syne', sans-serif;
+        }
+
+        .font-grotesk {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #F0FFF8 0%, #B0E4CC 30%, #408A71 60%, #285A48 80%, #B0E4CC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% auto;
+            animation: textShimmer 5s linear infinite;
+        }
+
+        .gradient-text-2 {
+            background: linear-gradient(135deg, #B0E4CC, #408A71, #B0E4CC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @keyframes textShimmer {
+            0% {
+                background-position: 0% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        /* ========================= */
+        /* GLASSMORPHISM             */
+        /* ========================= */
+
+        .glass {
+            background: rgba(176, 228, 204, 0.02);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(64, 138, 113, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(9, 20, 19, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(64, 138, 113, 0.15);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(64, 138, 113, 0.45);
+            box-shadow: 0 25px 60px rgba(40, 90, 72, 0.18), 0 0 40px rgba(64, 138, 113, 0.06);
+            transform: translateY(-6px);
+        }
+
+        /* ========================= */
+        /* NAVIGATION                */
+        /* ========================= */
+
+        .nav-link {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: rgba(176, 228, 204, 0.55);
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, #285A48, #B0E4CC);
+            transition: width 0.4s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #B0E4CC;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* ========================= */
+        /* BUTTONS                   */
+        /* ========================= */
+
+        .btn-primary {
+            background: linear-gradient(135deg, #285A48, #408A71);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            transition: all 0.4s ease;
+            border-radius: 12px;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #408A71, #B0E4CC);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: 12px;
+        }
+
+        .btn-primary:hover::before {
+            opacity: 1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(40, 90, 72, 0.4);
+        }
+
+        .btn-primary>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(64, 138, 113, 0.45);
+            color: #B0E4CC;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: rgba(40, 90, 72, 0.15);
+            border-color: rgba(64, 138, 113, 0.8);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(40, 90, 72, 0.2);
+            color: #F0FFF8;
+        }
+
+        /* ========================= */
+        /* SERVICE DETAILS           */
+        /* ========================= */
+
+        .service-detail-card {
+            background: rgba(9, 20, 19, 0.9);
+            border: 1px solid rgba(64, 138, 113, 0.12);
+            border-radius: 24px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-detail-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #285A48, #B0E4CC, #285A48, transparent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s ease;
+        }
+
+        .service-detail-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-detail-card:hover {
+            border-color: rgba(64, 138, 113, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 30px 70px rgba(40, 90, 72, 0.2), 0 0 40px rgba(64, 138, 113, 0.08);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 16px;
+            transition: all 0.5s ease;
+            border: 1px solid rgba(64, 138, 113, 0.1);
+        }
+
+        .service-detail-card:hover .service-image {
+            transform: scale(1.03);
+            border-color: rgba(64, 138, 113, 0.3);
+        }
+
+        /* Image placeholder gradients */
+        .img-placeholder {
+            width: 100%;
+            height: 280px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(64, 138, 113, 0.15);
+        }
+
+        .img-placeholder::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(40, 90, 72, 0.3), rgba(64, 138, 113, 0.15), rgba(176, 228, 204, 0.1));
+        }
+
+        .img-placeholder::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(176, 228, 204, 0.03) 50%, transparent 70%);
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        /* Feature list */
+        .feature-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, rgba(40, 90, 72, 0.3), rgba(64, 138, 113, 0.2));
+            border: 1px solid rgba(64, 138, 113, 0.3);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #B0E4CC;
+            font-weight: bold;
+        }
+
+        /* ========================= */
+        /* PRICING CARDS             */
+        /* ========================= */
+
+        .pricing-card {
+            background: rgba(9, 20, 19, 0.9);
+            border: 1px solid rgba(64, 138, 113, 0.12);
+            border-radius: 24px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card.featured {
+            border-color: rgba(64, 138, 113, 0.4);
+            background: linear-gradient(135deg, rgba(40, 90, 72, 0.15), rgba(64, 138, 113, 0.08));
+        }
+
+        .pricing-card.featured::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: linear-gradient(135deg, #285A48, #408A71);
+            color: #F0FFF8;
+            padding: 4px 40px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            transform: rotate(45deg);
+            box-shadow: 0 4px 15px rgba(40, 90, 72, 0.5);
+        }
+
+        .pricing-card:hover {
+            border-color: rgba(64, 138, 113, 0.4);
+            transform: translateY(-10px);
+            box-shadow: 0 35px 70px rgba(40, 90, 72, 0.2);
+        }
+
+        /* ========================= */
+        /* FAQ ACCORDION             */
+        /* ========================= */
+
+        .faq-item {
+            background: rgba(9, 20, 19, 0.6);
+            border: 1px solid rgba(64, 138, 113, 0.12);
+            border-radius: 16px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active {
+            border-color: rgba(64, 138, 113, 0.3);
+            background: rgba(40, 90, 72, 0.08);
+        }
+
+        .faq-question {
+            padding: 20px 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(40, 90, 72, 0.05);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 24px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 24px 20px 24px;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* ========================= */
+        /* PROCESS TIMELINE          */
+        /* ========================= */
+
+        .timeline-item {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 35px;
+            bottom: -40px;
+            width: 2px;
+            background: linear-gradient(180deg, rgba(64, 138, 113, 0.4), rgba(64, 138, 113, 0.1));
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #285A48, #408A71);
+            border: 3px solid rgba(9, 20, 19, 0.95);
+            box-shadow: 0 0 0 4px rgba(64, 138, 113, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #F0FFF8;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* ========================= */
+        /* SCROLL REVEALS            */
+        /* ========================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal.visible,
+        .reveal-left.visible,
+        .reveal-right.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* ========================= */
+        /* MOBILE MENU               */
+        /* ========================= */
+
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        /* ========================= */
+        /* UTILITIES                 */
+        /* ========================= */
+
+        .cursor {
+            width: 18px;
+            height: 18px;
+            border: 1.5px solid #408A71;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.15s ease;
+        }
+
+        .cursor-dot {
+            width: 5px;
+            height: 5px;
+            background: #B0E4CC;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #285A48, #408A71);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #F0FFF8;
+            cursor: pointer;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(40, 90, 72, 0.4);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-4px) scale(1.1);
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(64, 138, 113, 0.25), rgba(176, 228, 204, 0.15), transparent);
+        }
+
+        .section-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            letter-spacing: 0.18em;
+            color: #408A71;
+            text-transform: uppercase;
+        }
+
+        .num-gradient {
+            background: linear-gradient(135deg, #B0E4CC, #408A71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @media (max-width: 768px) {
+
+            .cursor,
+            .cursor-dot {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <!-- Scroll Top -->
+    <div class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fas fa-arrow-up text-sm"></i>
+    </div>
+
+    <!-- Background layers -->
+    <div class="bg-grid"></div>
+    <div class="bg-noise"></div>
+    <div class="scanline"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <!-- ============================================================ -->
+    <!-- NAVBAR                                                        -->
+    <!-- ============================================================ -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center relative overflow-hidden group-hover:scale-110 transition-transform duration-300"
+                        style="background: linear-gradient(135deg, #285A48, #408A71); box-shadow: 0 4px 15px rgba(40,90,72,0.35);">
+                        <span class="font-syne font-bold text-lg" style="color:#B0E4CC;">D</span>
+                        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                            style="background: linear-gradient(135deg, #408A71, #B0E4CC);"></div>
+                    </div>
+                    <div class="hidden sm:block">
+                        <div class="font-syne font-bold text-xl leading-none" style="color:#F0FFF8;">
+                            Deve<span style="color:#408A71;">Pexel</span>
+                        </div>
+                        <div class="text-xs tracking-widest mt-0.5"
+                            style="color:rgba(176,228,204,0.4); font-family:'Space Grotesk',sans-serif;">CODE AGENCY
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="services.html" class="nav-link active">Services</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <div class="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-grotesk"
+                        style="background:rgba(40,90,72,0.1); border:1px solid rgba(64,138,113,0.2); color:rgba(176,228,204,0.7);">
+                        <span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
+                        Available for projects
+                    </div>
+                    <a href="contact.html" class="hidden lg:flex btn-primary text-sm px-6 py-2.5 items-center gap-2"
+                        style="color:#F0FFF8;">
+                        <span>Get Started</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                    <button class="lg:hidden w-9 h-9 glass rounded-xl flex flex-col justify-center items-center gap-1.5"
+                        id="menuBtn">
+                        <span class="w-5 h-0.5 transition-all" style="background:rgba(176,228,204,0.7);" id="b1"></span>
+                        <span class="w-5 h-0.5 transition-all" style="background:rgba(176,228,204,0.7);" id="b2"></span>
+                        <span class="w-3 h-0.5 transition-all" style="background:rgba(176,228,204,0.7);" id="b3"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed top-0 right-0 h-full w-80 z-40 glass-card flex flex-col justify-center px-10"
+        id="mobileMenu">
+        <button class="absolute top-5 right-5 w-8 h-8 flex items-center justify-center"
+            style="color:rgba(176,228,204,0.5);" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="mb-10">
+            <div class="font-syne font-bold text-2xl" style="color:#F0FFF8;">
+                Deve<span style="color:#408A71;">Pexel</span>
+            </div>
+            <div class="text-xs tracking-widest mt-1" style="color:rgba(176,228,204,0.35);">CODE AGENCY</div>
+        </div>
+        <div class="flex flex-col gap-6">
+            <a href="index.html" class="font-grotesk font-semibold text-lg transition-colors mobile-link"
+                style="color:rgba(176,228,204,0.6);" onmouseover="this.style.color='#B0E4CC'"
+                onmouseout="this.style.color='rgba(176,228,204,0.6)'">Home</a>
+            <a href="services.html" class="font-grotesk font-semibold text-lg transition-colors mobile-link"
+                style="color:#B0E4CC;">Services</a>
+            <a href="contact.html" class="font-grotesk font-semibold text-lg transition-colors mobile-link"
+                style="color:rgba(176,228,204,0.6);" onmouseover="this.style.color='#B0E4CC'"
+                onmouseout="this.style.color='rgba(176,228,204,0.6)'">Contact</a>
+            <a href="contact.html" class="btn-primary mt-4 py-3.5 text-center text-sm" style="color:#F0FFF8;">
+                Get Started →
+            </a>
+        </div>
+    </div>
+    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-30 hidden" id="overlay"></div>
+
+    <!-- ============================================================ -->
+    <!-- HERO SECTION                                                  -->
+    <!-- ============================================================ -->
+    <section class="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+            <!-- Breadcrumb -->
+            <div class="flex items-center gap-2 mb-6 reveal text-sm font-grotesk" style="color:rgba(176,228,204,0.4);">
+                <a href="index.html" class="hover:text-white transition-colors">Home</a>
+                <i class="fas fa-chevron-right text-xs"></i>
+                <span style="color:#408A71;">Services</span>
+            </div>
+
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="flex items-center gap-3 justify-center mb-6 reveal">
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                    <span class="section-label">What We Offer</span>
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                </div>
+
+                <h1 class="font-syne font-extrabold mb-6 reveal leading-tight"
+                    style="font-size:clamp(36px,6vw,72px); color:#F0FFF8; transition-delay:.1s;">
+                    Professional <span class="gradient-text">Code Services</span>
+                </h1>
+
+                <p class="text-base sm:text-lg leading-relaxed mb-10 reveal font-grotesk max-w-2xl mx-auto"
+                    style="color:rgba(176,228,204,0.5); transition-delay:.2s;">
+                    From WordPress websites to full-scale digital marketing campaigns — we deliver excellence in every
+                    line of code and every pixel of design.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center reveal" style="transition-delay:.3s;">
+                    <a href="#services" class="btn-primary px-8 py-4 flex items-center justify-center gap-2 text-sm"
+                        style="color:#F0FFF8;">
+                        <span>Explore Services</span>
+                        <i class="fas fa-arrow-down text-xs"></i>
+                    </a>
+                    <a href="contact.html" class="btn-outline px-8 py-4 flex items-center justify-center gap-2 text-sm">
+                        <i class="fas fa-paper-plane text-xs"></i>
+                        <span>Request Quote</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- SERVICES DETAILED SECTION                                     -->
+    <!-- ============================================================ -->
+    <section id="services" class="py-24 lg:py-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Service 1 — WordPress Development -->
+            <div class="service-detail-card p-8 lg:p-12 mb-12 reveal">
+                <div class="grid lg:grid-cols-2 gap-10 items-center">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center"
+                                style="background:linear-gradient(135deg,rgba(40,90,72,0.3),rgba(64,138,113,0.2)); border:1px solid rgba(64,138,113,0.25);">
+                                <i class="fab fa-wordpress text-xl" style="color:#B0E4CC;"></i>
+                            </div>
+                            <span class="section-label">01 — Premium Service</span>
+                        </div>
+
+                        <h2 class="font-syne font-extrabold text-3xl lg:text-4xl mb-4" style="color:#F0FFF8;">
+                            WordPress Development
+                        </h2>
+
+                        <p class="text-sm sm:text-base leading-relaxed mb-6 font-grotesk"
+                            style="color:rgba(176,228,204,0.5);">
+                            Build powerful, SEO-optimized WordPress websites that convert visitors into customers. From
+                            custom themes to advanced plugin development, we create WordPress solutions that scale with
+                            your business.
+                        </p>
+
+                        <ul class="feature-list font-grotesk text-sm mb-8" style="color:rgba(176,228,204,0.6);">
+                            <li>Custom WordPress theme development from scratch</li>
+                            <li>WooCommerce e-commerce integration & optimization</li>
+                            <li>WordPress plugin development & customization</li>
+                            <li>Performance optimization (sub-2s load times)</li>
+                            <li>Security hardening & malware protection</li>
+                            <li>WordPress multisite & migration services</li>
+                        </ul>
+
+                        <div class="flex flex-wrap gap-3 mb-6">
+                            <span class="px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="background:rgba(40,90,72,0.15); border:1px solid rgba(64,138,113,0.2); color:rgba(176,228,204,0.7);">WordPress</span>
+                            <span class="px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="background:rgba(40,90,72,0.15); border:1px solid rgba(64,138,113,0.2); color:rgba(176,228,204,0.7);">PHP</span>
+                            <span class="px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="background:rgba(40,90,72,0.15); border:1px solid rgba(64,138,113,0.2); color:rgba(176,228,204,0.7);">WooCommerce</span>
+                            <span class="px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="background:rgba(40,90,72,0.15); border:1px solid rgba(64,138,113,0.2); color:rgba(176,228,204,0.7);">ACF</span>
+                            <span class="px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="background:rgba(40,90,72,0.15); border:1px solid rgba(64,138,113,0.2); color:rgba(176,228,204,0.7);">Elementor</span>
+                        </div>
+
+                        <a href="contact.html" class="btn-primary px-6 py-3 inline-flex items-center gap-2 text-sm"
+                            style="color:#F0FFF8;">
+                            <span>Get Started</span>
+                            <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+
+                    <div>
+                        <!-- Replace with actual image -->
+                        <div class="img-placeholder">
+                            <div class="text-center relative z-10">
+                                <i class="fab fa-wordpress text-6xl mb-4" style="color:rgba(176,228,204,0.2);"></i>
+                                <p class="text-sm font-grotesk" style="color:rgba(176,228,204,0.3);">WordPress
+                                    Development Showcase</p>
+                            </div>
+                        </div>
+                        <!-- Uncomment when you have images:
+                        <img src="images/wordpress-service.jpg" alt="WordPress Development" class="service-image">
+                        -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 2 — Web Development -->
+            <div class="service-detail-card p-8 lg:p-12 mb-12 reveal">
+                <div class="grid lg:grid-cols-2 gap-10 items-center">
+                    <div class="order-2 lg:order-1">
+                        <!-- Replace with actual image -->
+                        <div class="img-placeholder">
+                            <div class="text-center relative z-10">
+                                <i class="fas fa-code text-6xl mb-4" style="color:rgba(176,228,204,0.2);"></i>
+                                <p class="text-sm font-grotesk" style="color:rgba(176,228,204,0.3);">Web Development
+                                    Showcase</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-1 lg:order-2">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center"
+                                style="background:linear-gradient(135deg,rgba(40,90,72,0.3),rgba(64,138,113,0.2)); border:1px solid rgba(64,138,113,0.25);">
+                                <i class="fas fa-code text-xl" style="color:#B0E4CC;"></i>
+                            </div>
+                            <span class="section-label">02 — Premium Service</span>
+                        </div>
+
+                        <h2 class="font-syne font-extrabold text-3xl lg:text-4xl mb-4" style="color:#F0FFF8;">
+                            Web Development
+                        </h2>
+
+                        <p class="text-sm sm:text-base leading-relaxed mb-6 font-grotesk"
+                            style="color:rgba(176,228,204,0.5);">
+                            Modern web applications built with cutting-edge technologies. We create scalable,
+                            responsive,
+                            and lightning-fast web solutions using React, Next.js, and Node.js.
+                        </p>
+
+                        <ul class="feature-list font-grotesk text-sm mb-8" style="color:rgba(176,228,204,0.6);">
+                            <li>Custom web application development (React, Next.js)</li>
+                            <li>Progressive Web Apps (PWA) with offline support</li>
+                            <li>RESTful API & GraphQL backend development</li>
+                            <li>Headless CMS integration (Strapi, Contentful)</li>
+                            <li>Real-time features with WebSockets & Firebase</li>
+                            <li>Server-side rendering (SSR) & static generation (SSG)</li>
+                        </ul>
+
+                        <div class="flex flex-wrap gap-3 mb-6">
+                            <span class="px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="background:rgba(40,90,72,0.15); border:1px solid rgba(64,138,113,0.2); color:rgba(176,228,204,0.7);">React</span>
+                            <span class="px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="background:rgba(40,90,72,0.15); border:1px solid rgba(64,138,113,0.2); color:rgba(176,228,204,0.7);">Next.js</span>
+                            <span class="px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="background:rgba(40,90,72,0.15); border:1px solid rgba(64,138,113,0.2); color:rgba(176,228,204,0.7);">Node.js</span>
+                            <span class="px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="background:rgba(40,90,72,0.15); border:1px solid rgba(64,138,113,0.2); color:rgba(176,228,204,0.7);">TypeScript</span>
+                        </div>
+
+                        <a href="contact.html" class="btn-primary px-6 py-3 inline-flex items-center gap-2 text-sm"
+                            style="color:#F0FFF8;">
+                            <span>Get Started</span>
+                            <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 3 — Graphic Design -->
+            <div class="service-detail-card p-8 lg:p-12 mb-12 reveal">
+                <div class="grid lg:grid-cols-2 gap-10 items-center">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center"
+                                style="background:linear-gradient(135deg,rgba(40,90,72,0.3),rgba(64,138,113,0.2)); border:1px solid rgba(64,138,113,0.25);">
+                                <i class="fas fa-palette text-xl" style="color:#B0E4CC;"></i>
+                            </div>
+                            <span class="section-label">03 — Premium Service</span>
+                        </div>
+
+                        <h2 class="font-syne font-extrabold text-3xl lg:text-4xl mb-4" style="color:#F0FFF8;">
+                            Graphic Design
+                        </h2>
+
+                        <p class="text-sm sm:text-base leading-relaxed mb-6 font-grotesk"
+                            style="color:rgba(176,228,204,0.5);">
+                            Stunning visual identities and user interfaces that capture attention and drive engagement.
+                            From brand identity to UI/UX design, we create designs that tell your story.
+                        </p>
+
+                        <ul class="feature-list font-grotesk text-sm mb-8" style="color:rgba(176,228,204,0.6);">
+                            <li>Brand identity & logo design systems</li>
+                            <li>UI/UX design for web & mobile applications</li>
+                            <li>Marketing materials (brochures, flyers, banners)</li>
+                            <li>Social media graphics & ad creatives</li>
+                            <li>Infographics & data visualization</li>
+                            <li>Design system creation & style guides</li>
+                        </ul>
+
+                        <div class="flex flex-wrap gap-3 mb-6">
+                            <span class="px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="background:rgba(40,90,72,0.15); border:1px solid rgba(64,138,113,0.2); color:rgba(176,228,204,0.7);">Figma</span>
+                            <span class="px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="background:rgba(40,90,72,0.15); border:1px solid rgba(64,138,113,0.2); color:rgba(176,228,204,0.7);">Adobe
+                                CC</span>
+                            <span class="px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="background:rgba(40,90,72,0.15); border:1px solid rgba(64,138,113,0.2); color:rgba(176,228,204,0.7);">Sketch</span>
+                            <span class="px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="background:rgba(40,90,72,0.15); border:1px solid rgba(64,138,113,0.2); color:rgba(176,228,204,0.7);">UI/UX</span>
+                        </div>
+
+                        <a href="contact.html" class="btn-primary px-6 py-3 inline-flex items-center gap-2 text-sm"
+                            style="color:#F0FFF8;">
+                            <span>Get Started</span>
+                            <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+
+                    <div>
+                        <div class="img-placeholder">
+                            <div class="text-center relative z-10">
+                                <i class="fas fa-palette text-6xl mb-4" style="color:rgba(176,228,204,0.2);"></i>
+                                <p class="text-sm font-grotesk" style="color:rgba(176,228,204,0.3);">Graphic Design
+                                    Showcase</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 4 — SEO Optimization -->
+            <div class="service-detail-card p-8 lg:p-12 mb-12 reveal">
+                <div class="grid lg:grid-cols-2 gap-10 items-center">
+                    <div class="order-2 lg:order-1">
+                        <div class="img-placeholder">
+                            <div class="text-center relative z-10">
+                                <i class="fas fa-search text-6xl mb-4" style="color:rgba(176,228,204,0.2);"></i>
+                                <p class="text-sm font-grotesk" style="color:rgba(176,228,204,0.3);">SEO Optimization
+                                    Showcase</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-1 lg:order-2">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center"
+                                style="background:linear-gradient(135deg,rgba(40,90,72,0.3),rgba(64,138,113,0.2)); border:1px solid rgba(64,138,113,0.25);">
+                                <i class="fas fa-search text-xl" style="color:#B0E4CC;"></i>
+                            </div>
+                            <span class="section-label">04 — Premium Service</span>
+                        </div>
+
+                        <h2 class="font-syne font-extrabold text-3xl lg:text-4xl mb-4" style="color:#F0FFF8;">
+                            SEO Optimization
+                        </h2>
+
+                        <p class="text-sm sm:text-base leading-relaxed mb-6 font-grotesk"
+                            style="color:rgba(176,228,204,0.5);">
+                            Rank higher on Google and drive organic traffic that converts. Our data-driven SEO
+                            strategies
+                            help you dominate search results and grow your online presence.
+                        </p>
+
+                        <ul class="feature-list font-grotesk text-sm mb-8" style="color:rgba(176,228,204,0.6);">
+                            <li>Technical SEO audit & optimization</li>
+                            <li>Keyword research & competitive analysis</li>
+                            <li>On-page SEO (meta tags, schema markup, internal linking)</li>
+                            <li>Content optimization & SEO copywriting</li>
+                            <li>Local SEO & Google My Business optimization</li>
+                            <li>Backlink building & off-page SEO strategies</li>
+                        </ul>
+
+                        <div class="flex flex-wrap gap-3 mb-6">
+                            <span class="px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="background:rgba(40,90,72,0.15); border:1px solid rgba(64,138,113,0.2); color:rgba(176,228,204,0.7);">Technical
+                                SEO</span>
+                            <span class="px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="background:rgba(40,90,72,0.15); border:1px solid rgba(64,138,113,0.2); color:rgba(176,228,204,0.7);">Analytics</span>
+                            <span class="px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="background:rgba(40,90,72,0.15); border:1px solid rgba(64,138,113,0.2); color:rgba(176,228,204,0.7);">Keywords</span>
+                            <span class="px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="background:rgba(40,90,72,0.15); border:1px solid rgba(64,138,113,0.2); color:rgba(176,228,204,0.7);">Backlinks</span>
+                        </div>
+
+                        <a href="contact.html" class="btn-primary px-6 py-3 inline-flex items-center gap-2 text-sm"
+                            style="color:#F0FFF8;">
+                            <span>Get Started</span>
+                            <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 5 — Digital Marketing -->
+            <div class="service-detail-card p-8 lg:p-12 reveal">
+                <div class="grid lg:grid-cols-2 gap-10 items-center">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center"
+                                style="background:linear-gradient(135deg,rgba(40,90,72,0.3),rgba(64,138,113,0.2)); border:1px solid rgba(64,138,113,0.25);">
+                                <i class="fas fa-bullhorn text-xl" style="color:#B0E4CC;"></i>
+                            </div>
+                            <span class="section-label">05 — Premium Service</span>
+                        </div>
+
+                        <h2 class="font-syne font-extrabold text-3xl lg:text-4xl mb-4" style="color:#F0FFF8;">
+                            Digital Marketing
+                        </h2>
+
+                        <p class="text-sm sm:text-base leading-relaxed mb-6 font-grotesk"
+                            style="color:rgba(176,228,204,0.5);">
+                            Comprehensive digital marketing strategies that drive real business results. From social
+                            media
+                            to PPC campaigns, we help you reach your target audience and maximize ROI.
+                        </p>
+
+                        <ul class="feature-list font-grotesk text-sm mb-8" style="color:rgba(176,228,204,0.6);">
+                            <li>Social media marketing & management</li>
+                            <li>PPC advertising (Google Ads, Facebook Ads)</li>
+                            <li>Email marketing campaigns & automation</li>
+                            <li>Content marketing & copywriting</li>
+                            <li>Influencer marketing & outreach</li>
+                            <li>Analytics, reporting & conversion optimization</li>
+                        </ul>
+
+                        <div class="flex flex-wrap gap-3 mb-6">
+                            <span class="px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="background:rgba(40,90,72,0.15); border:1px solid rgba(64,138,113,0.2); color:rgba(176,228,204,0.7);">Social
+                                Media</span>
+                            <span class="px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="background:rgba(40,90,72,0.15); border:1px solid rgba(64,138,113,0.2); color:rgba(176,228,204,0.7);">PPC</span>
+                            <span class="px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="background:rgba(40,90,72,0.15); border:1px solid rgba(64,138,113,0.2); color:rgba(176,228,204,0.7);">Email</span>
+                            <span class="px-4 py-2 rounded-lg text-xs font-grotesk font-semibold"
+                                style="background:rgba(40,90,72,0.15); border:1px solid rgba(64,138,113,0.2); color:rgba(176,228,204,0.7);">Analytics</span>
+                        </div>
+
+                        <a href="contact.html" class="btn-primary px-6 py-3 inline-flex items-center gap-2 text-sm"
+                            style="color:#F0FFF8;">
+                            <span>Get Started</span>
+                            <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+
+                    <div>
+                        <div class="img-placeholder">
+                            <div class="text-center relative z-10">
+                                <i class="fas fa-bullhorn text-6xl mb-4" style="color:rgba(176,228,204,0.2);"></i>
+                                <p class="text-sm font-grotesk" style="color:rgba(176,228,204,0.3);">Digital Marketing
+                                    Showcase</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- PRICING SECTION                                               -->
+    <!-- ============================================================ -->
+    <section id="pricing" class="py-24 lg:py-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center mb-16 reveal">
+                <div class="flex items-center gap-3 justify-center mb-5">
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                    <span class="section-label">Investment Plans</span>
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                </div>
+                <h2 class="font-syne font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4" style="color:#F0FFF8;">
+                    Transparent <span class="gradient-text-2">Pricing</span>
+                </h2>
+                <p class="max-w-2xl mx-auto text-sm sm:text-base font-grotesk" style="color:rgba(176,228,204,0.5);">
+                    Choose the perfect package for your needs. All plans include premium support and maintenance.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+
+                <!-- Starter Plan -->
+                <div class="pricing-card p-8 reveal" style="transition-delay:.0s;">
+                    <div class="mb-6">
+                        <h3 class="font-syne font-bold text-xl mb-2" style="color:#F0FFF8;">Starter</h3>
+                        <p class="text-sm font-grotesk" style="color:rgba(176,228,204,0.4);">Perfect for small
+                            businesses
+                        </p>
+                    </div>
+
+                    <div class="mb-6">
+                        <div class="flex items-baseline gap-2">
+                            <span class="font-syne font-extrabold text-4xl num-gradient">29,999</span>
+                            <span class="text-sm font-grotesk" style="color:rgba(176,228,204,0.4);">one-time</span>
+                        </div>
+                    </div>
+
+                    <ul class="space-y-3 mb-8 font-grotesk text-sm" style="color:rgba(176,228,204,0.6);">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-xs" style="color:#408A71;"></i>
+                            5-page WordPress website
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-xs" style="color:#408A71;"></i>
+                            Mobile responsive design
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-xs" style="color:#408A71;"></i>
+                            Basic SEO optimization
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-xs" style="color:#408A71;"></i>
+                            Contact form integration
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-xs" style="color:#408A71;"></i>
+                            30 days support
+                        </li>
+                    </ul>
+
+                    <a href="contact.html" class="btn-outline w-full py-3 text-center text-sm">
+                        Get Started
+                    </a>
+                </div>
+
+                <!-- Professional Plan (Featured) -->
+                <div class="pricing-card featured p-8 reveal" style="transition-delay:.1s;">
+                    <div class="mb-6">
+                        <h3 class="font-syne font-bold text-xl mb-2" style="color:#F0FFF8;">Professional</h3>
+                        <p class="text-sm font-grotesk" style="color:rgba(176,228,204,0.4);">For growing businesses</p>
+                    </div>
+
+                    <div class="mb-6">
+                        <div class="flex items-baseline gap-2">
+                            <span class="font-syne font-extrabold text-4xl num-gradient">49,999</span>
+                            <span class="text-sm font-grotesk" style="color:rgba(176,228,204,0.4);">one-time</span>
+                        </div>
+                    </div>
+
+                    <ul class="space-y-3 mb-8 font-grotesk text-sm" style="color:rgba(176,228,204,0.6);">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-xs" style="color:#408A71;"></i>
+                            10-page custom website
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-xs" style="color:#408A71;"></i>
+                            Advanced SEO optimization
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-xs" style="color:#408A71;"></i>
+                            E-commerce integration
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-xs" style="color:#408A71;"></i>
+                            Custom graphics & branding
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-xs" style="color:#408A71;"></i>
+                            90 days premium support
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-xs" style="color:#408A71;"></i>
+                            Performance optimization
+                        </li>
+                    </ul>
+
+                    <a href="contact.html" class="btn-primary w-full py-3 px-3 text-center text-sm" style="color:#F0FFF8; ">
+                        Get Started
+                    </a>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="pricing-card p-8 reveal" style="transition-delay:.2s;">
+                    <div class="mb-6">
+                        <h3 class="font-syne font-bold text-xl mb-2" style="color:#F0FFF8;">Enterprise</h3>
+                        <p class="text-sm font-grotesk" style="color:rgba(176,228,204,0.4);">For large-scale projects
+                        </p>
+                    </div>
+
+                    <div class="mb-6">
+                        <div class="flex items-baseline gap-2">
+                            <span class="font-syne font-extrabold text-4xl num-gradient">Custom</span>
+                        </div>
+                    </div>
+
+                    <ul class="space-y-3 mb-8 font-grotesk text-sm" style="color:rgba(176,228,204,0.6);">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-xs" style="color:#408A71;"></i>
+                            Unlimited pages & features
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-xs" style="color:#408A71;"></i>
+                            Custom web application
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-xs" style="color:#408A71;"></i>
+                            Full digital marketing suite
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-xs" style="color:#408A71;"></i>
+                            Dedicated project manager
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-xs" style="color:#408A71;"></i>
+                            Priority 24/7 support
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-xs" style="color:#408A71;"></i>
+                            SLA & custom agreements
+                        </li>
+                    </ul>
+
+                    <a href="contact.html" class="btn-outline w-full py-3 text-center text-sm">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+
+            <div class="text-center mt-12 reveal">
+                <p class="text-sm font-grotesk" style="color:rgba(176,228,204,0.4);">
+                    Need a custom solution? <a href="contact.html" class="font-semibold transition-colors"
+                        style="color:#408A71;" onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='#408A71'">Let's talk</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- PROCESS TIMELINE                                              -->
+    <!-- ============================================================ -->
+    <section class="py-24 lg:py-32 relative z-10">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center mb-16 reveal">
+                <div class="flex items-center gap-3 justify-center mb-5">
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                    <span class="section-label">Our Workflow</span>
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                </div>
+                <h2 class="font-syne font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4" style="color:#F0FFF8;">
+                    How We <span class="gradient-text-2">Work</span>
+                </h2>
+                <p class="max-w-2xl mx-auto text-sm sm:text-base font-grotesk" style="color:rgba(176,228,204,0.5);">
+                    A proven process that ensures quality, transparency, and timely delivery.
+                </p>
+            </div>
+
+            <div class="reveal">
+                <div class="timeline-item">
+                    <div class="timeline-dot">1</div>
+                    <h3 class="font-syne font-bold text-xl mb-2" style="color:#F0FFF8;">Discovery Call</h3>
+                    <p class="text-sm font-grotesk leading-relaxed" style="color:rgba(176,228,204,0.5);">
+                        We start with a free consultation to understand your business goals, target audience, and
+                        project
+                        requirements. This helps us create a tailored strategy.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot">2</div>
+                    <h3 class="font-syne font-bold text-xl mb-2" style="color:#F0FFF8;">Proposal & Agreement</h3>
+                    <p class="text-sm font-grotesk leading-relaxed" style="color:rgba(176,228,204,0.5);">
+                        Receive a detailed proposal with timeline, deliverables, and pricing. Once approved, we sign an
+                        agreement and kick off the project.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot">3</div>
+                    <h3 class="font-syne font-bold text-xl mb-2" style="color:#F0FFF8;">Design & Development</h3>
+                    <p class="text-sm font-grotesk leading-relaxed" style="color:rgba(176,228,204,0.5);">
+                        Our team creates wireframes, mockups, and prototypes for your approval. Once design is
+                        finalized,
+                        we move into development with regular updates.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot">4</div>
+                    <h3 class="font-syne font-bold text-xl mb-2" style="color:#F0FFF8;">Testing & Review</h3>
+                    <p class="text-sm font-grotesk leading-relaxed" style="color:rgba(176,228,204,0.5);">
+                        Rigorous QA testing across devices and browsers. You review the final product and request any
+                        revisions before launch.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot">5</div>
+                    <h3 class="font-syne font-bold text-xl mb-2" style="color:#F0FFF8;">Launch & Support</h3>
+                    <p class="text-sm font-grotesk leading-relaxed" style="color:rgba(176,228,204,0.5);">
+                        We deploy your project to production and monitor performance. Ongoing support and maintenance
+                        ensure everything runs smoothly.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- FAQ SECTION                                                   -->
+    <!-- ============================================================ -->
+    <section class="py-24 lg:py-32 relative z-10">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center mb-16 reveal">
+                <div class="flex items-center gap-3 justify-center mb-5">
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                    <span class="section-label">Got Questions?</span>
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                </div>
+                <h2 class="font-syne font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4" style="color:#F0FFF8;">
+                    Frequently Asked <span class="gradient-text-2">Questions</span>
+                </h2>
+            </div>
+
+            <div class="reveal">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3 class="font-syne font-semibold text-base sm:text-lg" style="color:#F0FFF8;">
+                            How long does a typical project take?
+                        </h3>
+                        <i class="fas fa-chevron-down faq-icon" style="color:#408A71;"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-sm font-grotesk leading-relaxed" style="color:rgba(176,228,204,0.5);">
+                            Project timelines vary based on scope. A simple WordPress site takes 2-3 weeks, while custom
+                            web applications can take 6-12 weeks. We provide detailed timelines in our proposals.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3 class="font-syne font-semibold text-base sm:text-lg" style="color:#F0FFF8;">
+                            Do you offer ongoing maintenance?
+                        </h3>
+                        <i class="fas fa-chevron-down faq-icon" style="color:#408A71;"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-sm font-grotesk leading-relaxed" style="color:rgba(176,228,204,0.5);">
+                            Yes! All our packages include post-launch support. We offer monthly maintenance plans
+                            starting
+                            at $199/month covering updates, security, backups, and technical support.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3 class="font-syne font-semibold text-base sm:text-lg" style="color:#F0FFF8;">
+                            What if I need changes after launch?
+                        </h3>
+                        <i class="fas fa-chevron-down faq-icon" style="color:#408A71;"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-sm font-grotesk leading-relaxed" style="color:rgba(176,228,204,0.5);">
+                            We offer 2 rounds of revisions included in all packages. Additional changes can be handled
+                            through our hourly rate ($99/hr) or monthly retainer agreements.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3 class="font-syne font-semibold text-base sm:text-lg" style="color:#F0FFF8;">
+                            Do you work with clients outside your location?
+                        </h3>
+                        <i class="fas fa-chevron-down faq-icon" style="color:#408A71;"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-sm font-grotesk leading-relaxed" style="color:rgba(176,228,204,0.5);">
+                            Absolutely! We work with clients globally. All communication happens via video calls, email,
+                            and project management tools for seamless collaboration.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3 class="font-syne font-semibold text-base sm:text-lg" style="color:#F0FFF8;">
+                            What payment methods do you accept?
+                        </h3>
+                        <i class="fas fa-chevron-down faq-icon" style="color:#408A71;"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-sm font-grotesk leading-relaxed" style="color:rgba(176,228,204,0.5);">
+                            We accept bank transfers, credit cards, PayPal, and cryptocurrency. Projects are typically
+                            split: 50% upfront, 50% upon completion.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3 class="font-syne font-semibold text-base sm:text-lg" style="color:#F0FFF8;">
+                            Can you help with content creation?
+                        </h3>
+                        <i class="fas fa-chevron-down faq-icon" style="color:#408A71;"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-sm font-grotesk leading-relaxed" style="color:rgba(176,228,204,0.5);">
+                            Yes! We have professional copywriters and content strategists on our team who can create
+                            SEO-optimized content, blog posts, and marketing materials.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- CTA SECTION                                                   -->
+    <!-- ============================================================ -->
+    <section class="py-24 relative z-10">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-10 lg:p-16 text-center reveal relative overflow-hidden">
+                <div class="absolute inset-0 opacity-5"
+                    style="background:linear-gradient(135deg,rgba(40,90,72,0.3),rgba(64,138,113,0.15));"></div>
+                <div class="relative z-10">
+                    <div class="flex items-center gap-3 justify-center mb-5">
+                        <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                        <span class="section-label">Ready to Start?</span>
+                        <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                    </div>
+
+                    <h2 class="font-syne font-extrabold mb-4 leading-tight"
+                        style="font-size:clamp(28px,5vw,56px); color:#F0FFF8;">
+                        Let's Build Something <span class="gradient-text-2">Amazing</span> Together
+                    </h2>
+                    <p class="max-w-xl mx-auto mb-10 font-grotesk text-sm sm:text-base"
+                        style="color:rgba(176,228,204,0.5);">
+                        Get a free consultation and custom quote for your project. No commitment, no pressure — just
+                        honest
+                        advice from code experts.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="contact.html"
+                            class="btn-primary px-8 py-4 flex items-center justify-center gap-2 text-sm"
+                            style="color:#F0FFF8;">
+                            <i class="fas fa-rocket text-xs"></i>
+                            <span>Start Your Project</span>
+                        </a>
+                        <a href="index.html#work"
+                            class="btn-outline px-8 py-4 flex items-center justify-center gap-2 text-sm">
+                            <i class="fas fa-images text-xs"></i>
+                            <span>View Our Work</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER                                                        -->
+    <!-- ============================================================ -->
+    <footer class="relative z-10 pt-16 pb-8"
+        style="background:linear-gradient(180deg,transparent 0%,rgba(4,9,9,0.98) 30%,#040909 100%); border-top:1px solid rgba(64,138,113,0.08);">
+
+        <div class="divider mb-12"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+                <!-- Brand -->
+                <div class="lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center"
+                            style="background:linear-gradient(135deg,#285A48,#408A71); box-shadow:0 4px 15px rgba(40,90,72,0.3);">
+                            <span class="font-syne font-bold text-lg" style="color:#B0E4CC;">D</span>
+                        </div>
+                        <div>
+                            <div class="font-syne font-bold text-lg" style="color:#F0FFF8;">Deve<span
+                                    style="color:#408A71;">Pexel</span></div>
+                            <div class="text-xs tracking-widest" style="color:rgba(176,228,204,0.35);">CODE AGENCY
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-6 font-grotesk" style="color:rgba(176,228,204,0.35);">
+                        Professional code agency specializing in WordPress, web development, and digital solutions.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="#"
+                            class="w-9 h-9 glass rounded-xl flex items-center justify-center text-sm transition-all hover:scale-110 hover:-translate-y-1"
+                            style="color:rgba(176,228,204,0.4);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.4)'">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#"
+                            class="w-9 h-9 glass rounded-xl flex items-center justify-center text-sm transition-all hover:scale-110 hover:-translate-y-1"
+                            style="color:rgba(176,228,204,0.4);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.4)'">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#"
+                            class="w-9 h-9 glass rounded-xl flex items-center justify-center text-sm transition-all hover:scale-110 hover:-translate-y-1"
+                            style="color:rgba(176,228,204,0.4);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.4)'">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#"
+                            class="w-9 h-9 glass rounded-xl flex items-center justify-center text-sm transition-all hover:scale-110 hover:-translate-y-1"
+                            style="color:rgba(176,228,204,0.4);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.4)'">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="font-syne font-semibold text-sm mb-5 flex items-center gap-2" style="color:#F0FFF8;">
+                        <span style="color:#408A71; font-size:8px;">✦</span> Services
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="#services" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">WordPress Development</a></li>
+                        <li><a href="#services" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Web Development</a></li>
+                        <li><a href="#services" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Graphic Design</a></li>
+                        <li><a href="#services" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">SEO Optimization</a></li>
+                        <li><a href="#services" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Digital Marketing</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company -->
+                <div>
+                    <h4 class="font-syne font-semibold text-sm mb-5 flex items-center gap-2" style="color:#F0FFF8;">
+                        <span style="color:#408A71; font-size:8px;">✦</span> Company
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Home</a></li>
+                        <li><a href="services.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Services</a></li>
+                        <li><a href="contact.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="font-syne font-semibold text-sm mb-5 flex items-center gap-2" style="color:#F0FFF8;">
+                        <span style="color:#408A71; font-size:8px;">✦</span> Get In Touch
+                    </h4>
+                    <div class="space-y-3">
+                        <a href="mailto:hello@devepexel.com" class="text-sm font-grotesk block transition-colors"
+                            style="color:rgba(176,228,204,0.5);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.5)'">
+                            <i class="fas fa-envelope mr-2" style="color:#408A71;"></i>
+                            hello@devepexel.com
+                        </a>
+                        <a href="tel:+1234567890" class="text-sm font-grotesk block transition-colors"
+                            style="color:rgba(176,228,204,0.5);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.5)'">
+                            <i class="fas fa-phone mr-2" style="color:#408A71;"></i>
+                            +1 (234) 567-890
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer bottom -->
+            <div class="divider mb-6"></div>
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-5 pb-8">
+
+                <p class="text-xs font-grotesk" style="color:rgba(176,228,204,0.25);">
+                    © 2024 <span style="color:#408A71;">DevePexel</span> · All rights reserved
+                </p>
+
+                <div class="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-grotesk"
+                    style="background:rgba(40,90,72,0.06); border:1px solid rgba(64,138,113,0.12);">
+                    <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                    <span style="color:rgba(176,228,204,0.4);">Available for new projects</span>
+                </div>
+
+                <div class="flex items-center gap-5">
+                    <a href="#" class="text-xs font-grotesk transition-colors" style="color:rgba(176,228,204,0.25);"
+                        onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='rgba(176,228,204,0.25)'">Privacy</a>
+                    <a href="#" class="text-xs font-grotesk transition-colors" style="color:rgba(176,228,204,0.25);"
+                        onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='rgba(176,228,204,0.25)'">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT                                                    -->
+    <!-- ============================================================ -->
+    <script>
+        // ── Custom cursor ──────────────────────────────────────────────
+        const cursor = document.getElementById('cursor');
+        const cursorDot = document.getElementById('cursorDot');
+        let cx = 0, cy = 0, dx = 0, dy = 0;
+
+        document.addEventListener('mousemove', e => {
+            cx = e.clientX; cy = e.clientY;
+            cursorDot.style.left = cx - 2.5 + 'px';
+            cursorDot.style.top = cy - 2.5 + 'px';
+        });
+        (function animCursor() {
+            dx += (cx - dx) * 0.1;
+            dy += (cy - dy) * 0.1;
+            cursor.style.left = dx - 9 + 'px';
+            cursor.style.top = dy - 9 + 'px';
+            requestAnimationFrame(animCursor);
+        })();
+
+        document.querySelectorAll('a, button, .glass-card, .service-detail-card, .pricing-card, .faq-question').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(2.5)';
+                cursor.style.borderColor = '#B0E4CC';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.borderColor = '#408A71';
+            });
+        });
+
+        // ── Navbar scroll ──────────────────────────────────────────────
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            const s = window.scrollY > 50;
+            navbar.style.backgroundColor = s ? 'rgba(9,20,19,0.97)' : 'rgba(176,228,204,0.02)';
+            navbar.style.borderBottom = s ? '1px solid rgba(64,138,113,0.12)' : '1px solid rgba(64,138,113,0.1)';
+            navbar.style.boxShadow = s ? '0 4px 30px rgba(9,20,19,0.5)' : 'none';
+
+            document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 500);
+        });
+
+        // ── Mobile menu ────────────────────────────────────────────────
+        const mobileMenu = document.getElementById('mobileMenu');
+        const overlayEl = document.getElementById('overlay');
+
+        function openMenu() {
+            mobileMenu.classList.add('open'); overlayEl.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            document.getElementById('b1').style.cssText = 'transform:rotate(45deg) translateY(8px); background:#408A71;';
+            document.getElementById('b2').style.opacity = '0';
+            document.getElementById('b3').style.cssText = 'transform:rotate(-45deg) translateY(-8px); width:20px; background:#408A71;';
+        }
+        function closeMenu() {
+            mobileMenu.classList.remove('open'); overlayEl.classList.add('hidden');
+            document.body.style.overflow = '';
+            ['b1', 'b2', 'b3'].forEach(id => document.getElementById(id).style.cssText = '');
+        }
+
+        document.getElementById('menuBtn').addEventListener('click', openMenu);
+        document.getElementById('closeMenu').addEventListener('click', closeMenu);
+        overlayEl.addEventListener('click', closeMenu);
+        document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', closeMenu));
+
+        // ── Scroll reveals ─────────────────────────────────────────────
+        const revealObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('visible');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObs.observe(el));
+
+        // ── FAQ Toggle ─────────────────────────────────────────────────
+        function toggleFaq(el) {
+            const item = el.parentElement;
+            const wasActive = item.classList.contains('active');
+
+            // Close all
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+
+            // Open clicked if it wasn't active
+            if (!wasActive) item.classList.add('active');
+        }
+
+        // ── Smooth scroll ──────────────────────────────────────────────
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                const t = document.querySelector(a.getAttribute('href'));
+                if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            });
+        });
+
+        // ── Initial reveal ─────────────────────────────────────────────
+        setTimeout(() => {
+            document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
+            });
+        }, 100);
+
+        console.log('%c✦ DevePexel — Services Page Loaded', 'color:#408A71; font-size:14px; font-weight:bold;');
+    </script>
+</body>
+
+</html>
