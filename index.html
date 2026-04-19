@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevePexel — Digital Agency</title>
-    <link rel="shortcut icon" href="./logo/favicom.png" type="image/png">
+    <link rel="shortcut icon" href="./logo/favicon.png" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -1188,16 +1188,44 @@
             <!-- Services grid -->
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-                <!-- Service 1 -->
+                <!-- Service 1 — WordPress -->
                 <div class="service-card p-8 reveal" style="transition-delay:.0s;">
+                    <div class="icon-box mb-6">
+                        <i class="fab fa-wordpress text-xl" style="color:#B0E4CC;"></i>
+                    </div>
+                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">WordPress Development</h3>
+                    <p class="text-sm leading-relaxed mb-6"
+                        style="color:rgba(176,228,204,0.5); font-family:'Space Grotesk',sans-serif;">
+                        Custom WordPress themes, plugins, and full-site builds. Fast, secure, and SEO-optimized from day
+                        one.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">WordPress</span>
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">PHP</span>
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">WooCommerce</span>
+                    </div>
+                    <a href="#contact"
+                        class="flex items-center gap-2 text-sm font-grotesk font-semibold transition-all group"
+                        style="color:#408A71;" onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='#408A71'">
+                        Learn more
+                        <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 2 — Web Dev -->
+                <div class="service-card p-8 reveal" style="transition-delay:.1s;">
                     <div class="icon-box mb-6">
                         <i class="fas fa-code text-xl" style="color:#B0E4CC;"></i>
                     </div>
                     <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">Web Development</h3>
                     <p class="text-sm leading-relaxed mb-6"
                         style="color:rgba(176,228,204,0.5); font-family:'Space Grotesk',sans-serif;">
-                        High-performance web applications built with React, Next.js, and Node.js. Scalable architecture
-                        that grows with your business.
+                        Modern web applications built with React, Next.js, and Node.js. Scalable architecture for
+                        growing businesses.
                     </p>
                     <div class="flex flex-wrap gap-2 mb-6">
                         <span class="tech-pill text-xs px-3 py-1 font-grotesk"
@@ -1216,80 +1244,24 @@
                     </a>
                 </div>
 
-                <!-- Service 2 -->
-                <div class="service-card p-8 reveal" style="transition-delay:.1s;">
-                    <div class="icon-box mb-6">
-                        <i class="fas fa-mobile-alt text-xl" style="color:#B0E4CC;"></i>
-                    </div>
-                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">Mobile Applications</h3>
-                    <p class="text-sm leading-relaxed mb-6"
-                        style="color:rgba(176,228,204,0.5); font-family:'Space Grotesk',sans-serif;">
-                        Native and cross-platform mobile apps for iOS and Android. Seamless user experiences with
-                        Flutter and React Native.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
-                            style="color:rgba(176,228,204,0.65);">Flutter</span>
-                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
-                            style="color:rgba(176,228,204,0.65);">React Native</span>
-                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
-                            style="color:rgba(176,228,204,0.65);">Swift</span>
-                    </div>
-                    <a href="#contact"
-                        class="flex items-center gap-2 text-sm font-grotesk font-semibold transition-all group"
-                        style="color:#408A71;" onmouseover="this.style.color='#B0E4CC'"
-                        onmouseout="this.style.color='#408A71'">
-                        Learn more
-                        <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
-                    </a>
-                </div>
-
-                <!-- Service 3 -->
+                <!-- Service 3 — Graphic Design -->
                 <div class="service-card p-8 reveal" style="transition-delay:.2s;">
-                    <div class="icon-box mb-6">
-                        <i class="fas fa-brain text-xl" style="color:#B0E4CC;"></i>
-                    </div>
-                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">AI & Machine Learning</h3>
-                    <p class="text-sm leading-relaxed mb-6"
-                        style="color:rgba(176,228,204,0.5); font-family:'Space Grotesk',sans-serif;">
-                        Intelligent systems, predictive analytics, and AI integrations that automate workflows and
-                        unlock business insights.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
-                            style="color:rgba(176,228,204,0.65);">Python</span>
-                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
-                            style="color:rgba(176,228,204,0.65);">TensorFlow</span>
-                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
-                            style="color:rgba(176,228,204,0.65);">OpenAI</span>
-                    </div>
-                    <a href="#contact"
-                        class="flex items-center gap-2 text-sm font-grotesk font-semibold transition-all group"
-                        style="color:#408A71;" onmouseover="this.style.color='#B0E4CC'"
-                        onmouseout="this.style.color='#408A71'">
-                        Learn more
-                        <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
-                    </a>
-                </div>
-
-                <!-- Service 4 -->
-                <div class="service-card p-8 reveal" style="transition-delay:.3s;">
                     <div class="icon-box mb-6">
                         <i class="fas fa-palette text-xl" style="color:#B0E4CC;"></i>
                     </div>
-                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">UI/UX Design</h3>
+                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">Graphic Design</h3>
                     <p class="text-sm leading-relaxed mb-6"
                         style="color:rgba(176,228,204,0.5); font-family:'Space Grotesk',sans-serif;">
-                        Human-centered design that converts. We create intuitive interfaces backed by research, data,
-                        and pixel-perfect execution.
+                        Brand identity, UI/UX design, and visual content that converts. Pixel-perfect designs that tell
+                        your story.
                     </p>
                     <div class="flex flex-wrap gap-2 mb-6">
                         <span class="tech-pill text-xs px-3 py-1 font-grotesk"
                             style="color:rgba(176,228,204,0.65);">Figma</span>
                         <span class="tech-pill text-xs px-3 py-1 font-grotesk"
-                            style="color:rgba(176,228,204,0.65);">Adobe XD</span>
+                            style="color:rgba(176,228,204,0.65);">Adobe CC</span>
                         <span class="tech-pill text-xs px-3 py-1 font-grotesk"
-                            style="color:rgba(176,228,204,0.65);">Framer</span>
+                            style="color:rgba(176,228,204,0.65);">UI/UX</span>
                     </div>
                     <a href="#contact"
                         class="flex items-center gap-2 text-sm font-grotesk font-semibold transition-all group"
@@ -1300,24 +1272,52 @@
                     </a>
                 </div>
 
-                <!-- Service 5 -->
-                <div class="service-card p-8 reveal" style="transition-delay:.4s;">
+                <!-- Service 4 — SEO -->
+                <div class="service-card p-8 reveal" style="transition-delay:.3s;">
                     <div class="icon-box mb-6">
-                        <i class="fas fa-cloud text-xl" style="color:#B0E4CC;"></i>
+                        <i class="fas fa-search text-xl" style="color:#B0E4CC;"></i>
                     </div>
-                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">Cloud & DevOps</h3>
+                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">SEO Optimization</h3>
                     <p class="text-sm leading-relaxed mb-6"
                         style="color:rgba(176,228,204,0.5); font-family:'Space Grotesk',sans-serif;">
-                        Robust cloud infrastructure, CI/CD pipelines, and DevOps automation on AWS, GCP, and Azure for
-                        maximum reliability.
+                        Technical SEO, keyword research, and on-page optimization that gets you ranking on page 1 of
+                        Google.
                     </p>
                     <div class="flex flex-wrap gap-2 mb-6">
                         <span class="tech-pill text-xs px-3 py-1 font-grotesk"
-                            style="color:rgba(176,228,204,0.65);">AWS</span>
+                            style="color:rgba(176,228,204,0.65);">Technical SEO</span>
                         <span class="tech-pill text-xs px-3 py-1 font-grotesk"
-                            style="color:rgba(176,228,204,0.65);">Docker</span>
+                            style="color:rgba(176,228,204,0.65);">Analytics</span>
                         <span class="tech-pill text-xs px-3 py-1 font-grotesk"
-                            style="color:rgba(176,228,204,0.65);">Kubernetes</span>
+                            style="color:rgba(176,228,204,0.65);">Keywords</span>
+                    </div>
+                    <a href="#contact"
+                        class="flex items-center gap-2 text-sm font-grotesk font-semibold transition-all group"
+                        style="color:#408A71;" onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='#408A71'">
+                        Learn more
+                        <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 5 — Digital Marketing -->
+                <div class="service-card p-8 reveal" style="transition-delay:.4s;">
+                    <div class="icon-box mb-6">
+                        <i class="fas fa-bullhorn text-xl" style="color:#B0E4CC;"></i>
+                    </div>
+                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">Digital Marketing</h3>
+                    <p class="text-sm leading-relaxed mb-6"
+                        style="color:rgba(176,228,204,0.5); font-family:'Space Grotesk',sans-serif;">
+                        Social media campaigns, PPC advertising, email marketing, and content strategy that drives
+                        conversions.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">Social Media</span>
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">PPC</span>
+                        <span class="tech-pill text-xs px-3 py-1 font-grotesk"
+                            style="color:rgba(176,228,204,0.65);">Email</span>
                     </div>
                     <a href="#contact"
                         class="flex items-center gap-2 text-sm font-grotesk font-semibold transition-all group"
@@ -1335,11 +1335,10 @@
                         style="background:radial-gradient(circle at 70% 30%, #B0E4CC, transparent 60%);"></div>
                     <div class="relative z-10">
                         <div class="text-4xl mb-5">💬</div>
-                        <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">Have a Custom Idea?</h3>
+                        <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">Need Something Custom?</h3>
                         <p class="text-sm leading-relaxed mb-6"
                             style="color:rgba(176,228,204,0.5); font-family:'Space Grotesk',sans-serif;">
-                            We love unique challenges. Tell us your vision and we'll craft the perfect solution tailored
-                            just for you.
+                            We love unique challenges. Tell us your vision and we'll code the perfect solution for you.
                         </p>
                         <a href="#contact" class="btn-primary px-6 py-3 inline-flex items-center gap-2 text-sm"
                             style="color:#F0FFF8;">
@@ -1385,8 +1384,10 @@
                     <div class="h-72 flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0"
                             style="background:linear-gradient(135deg,rgba(40,90,72,0.3),rgba(64,138,113,0.15));"></div>
-                        <div class="relative z-10 text-center p-8">
-                            <div class="text-6xl mb-4">🏦</div>
+                        <div class="relative z-10 text-center ">
+                            <div class="text-6xl mb-4">
+                                <img src="./images/filmlane.png" alt="">
+                            </div>
                             <p class="font-syne font-bold text-xl" style="color:#F0FFF8;">FinFlow Platform</p>
                             <p class="text-sm mt-1" style="color:#408A71;">FinTech · Web App · AI Dashboard</p>
                         </div>
@@ -1419,12 +1420,14 @@
                         <div class="absolute inset-0"
                             style="background:linear-gradient(135deg,rgba(40,90,72,0.2),rgba(64,138,113,0.1));"></div>
                         <div class="relative z-10 text-center p-6">
-                            <div class="text-5xl mb-3">🛒</div>
+                            <div class="text-5xl mb-3">
+                                <img src="./images/HealthFirst.png" alt="">
+                            </div>
                             <p class="font-syne font-bold text-lg" style="color:#F0FFF8;">NexMart</p>
                             <p class="text-xs mt-1" style="color:#408A71;">E-Commerce · Mobile</p>
                         </div>
                     </div>
-                    <div class="port-overlay">
+                    <!-- <div class="port-overlay">
                         <p class="font-grotesk text-xs" style="color:rgba(176,228,204,0.7);">E-Commerce Platform</p>
                         <h3 class="font-syne font-bold text-xl text-white">NexMart</h3>
                         <p class="text-xs text-center px-4" style="color:rgba(176,228,204,0.65);">Multi-vendor
@@ -1432,7 +1435,7 @@
                         <button class="px-4 py-2 rounded-lg text-xs font-grotesk"
                             style="background:rgba(64,138,113,0.3); color:#B0E4CC; border:1px solid rgba(64,138,113,0.4);">View
                             Project</button>
-                    </div>
+                    </div> -->
                 </div>
 
                 <!-- Project 3 -->
