@@ -1,0 +1,1651 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio — DevePexel Code Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --deep: #091413;
+            --primary: #285A48;
+            --mid: #408A71;
+            --light: #B0E4CC;
+            --white: #F0FFF8;
+            --text: rgba(176, 228, 204, 0.7);
+            --border: rgba(64, 138, 113, 0.18);
+            --glow: rgba(40, 90, 72, 0.25);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #091413;
+            color: #B0E4CC;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #091413;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(#285A48, #B0E4CC);
+            border-radius: 10px;
+        }
+
+        /* Background */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image: linear-gradient(rgba(64, 138, 113, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(64, 138, 113, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .bg-noise {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .orb-1 {
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(40, 90, 72, 0.14), transparent 70%);
+            top: -250px;
+            left: -200px;
+            animation: orbDrift 16s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, rgba(64, 138, 113, 0.1), transparent 70%);
+            bottom: -150px;
+            right: -150px;
+            animation: orbDrift 20s ease-in-out infinite reverse;
+        }
+
+        .orb-3 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(176, 228, 204, 0.05), transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: orbDrift 25s ease-in-out infinite;
+        }
+
+        @keyframes orbDrift {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(40px, -30px) scale(1.05);
+            }
+
+            66% {
+                transform: translate(-25px, 20px) scale(0.95);
+            }
+        }
+
+        .scanline {
+            position: fixed;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(176, 228, 204, 0.08), rgba(64, 138, 113, 0.12), transparent);
+            z-index: 1;
+            pointer-events: none;
+            animation: scanMove 12s linear infinite;
+        }
+
+        @keyframes scanMove {
+            0% {
+                top: -2px;
+            }
+
+            100% {
+                top: 100vh;
+            }
+        }
+
+        /* Typography */
+        .font-syne {
+            font-family: 'Syne', sans-serif;
+        }
+
+        .font-grotesk {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #F0FFF8 0%, #B0E4CC 30%, #408A71 60%, #285A48 80%, #B0E4CC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% auto;
+            animation: textShimmer 5s linear infinite;
+        }
+
+        .gradient-text-2 {
+            background: linear-gradient(135deg, #B0E4CC, #408A71, #B0E4CC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @keyframes textShimmer {
+            0% {
+                background-position: 0% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        /* Glass */
+        .glass {
+            background: rgba(176, 228, 204, 0.02);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(64, 138, 113, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(9, 20, 19, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(64, 138, 113, 0.15);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(64, 138, 113, 0.45);
+            box-shadow: 0 25px 60px rgba(40, 90, 72, 0.18), 0 0 40px rgba(64, 138, 113, 0.06);
+            transform: translateY(-6px);
+        }
+
+        /* Nav */
+        .nav-link {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: rgba(176, 228, 204, 0.55);
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, #285A48, #B0E4CC);
+            transition: width 0.4s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #B0E4CC;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #285A48, #408A71);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            transition: all 0.4s ease;
+            border-radius: 12px;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #408A71, #B0E4CC);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: 12px;
+        }
+
+        .btn-primary:hover::before {
+            opacity: 1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(40, 90, 72, 0.4);
+        }
+
+        .btn-primary>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(64, 138, 113, 0.45);
+            color: #B0E4CC;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: rgba(40, 90, 72, 0.15);
+            border-color: rgba(64, 138, 113, 0.8);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(40, 90, 72, 0.2);
+            color: #F0FFF8;
+        }
+
+        /* Reveals */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal.visible,
+        .reveal-left.visible,
+        .reveal-right.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        /* Cursor */
+        .cursor {
+            width: 18px;
+            height: 18px;
+            border: 1.5px solid #408A71;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.15s ease;
+        }
+
+        .cursor-dot {
+            width: 5px;
+            height: 5px;
+            background: #B0E4CC;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #285A48, #408A71);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #F0FFF8;
+            cursor: pointer;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(40, 90, 72, 0.4);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-4px) scale(1.1);
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(64, 138, 113, 0.25), rgba(176, 228, 204, 0.15), transparent);
+        }
+
+        .section-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            letter-spacing: 0.18em;
+            color: #408A71;
+            text-transform: uppercase;
+        }
+
+        /* ===== PORTFOLIO SPECIFIC ===== */
+
+        /* Filter buttons */
+        .filter-btn {
+            padding: 10px 24px;
+            border-radius: 12px;
+            background: rgba(9, 20, 19, 0.8);
+            border: 1px solid rgba(64, 138, 113, 0.15);
+            color: rgba(176, 228, 204, 0.6);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #285A48, #408A71);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .filter-btn:hover::before,
+        .filter-btn.active::before {
+            opacity: 1;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            border-color: rgba(64, 138, 113, 0.4);
+            color: #F0FFF8;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(40, 90, 72, 0.25);
+        }
+
+        .filter-btn>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Portfolio card */
+        .portfolio-card {
+            background: rgba(9, 20, 19, 0.85);
+            border: 1px solid rgba(64, 138, 113, 0.12);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .portfolio-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #285A48, #B0E4CC, #285A48, transparent);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .portfolio-card:hover {
+            border-color: rgba(64, 138, 113, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 30px 70px rgba(40, 90, 72, 0.2);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 280px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(40, 90, 72, 0.2), rgba(64, 138, 113, 0.1));
+        }
+
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .portfolio-card:hover .portfolio-image img {
+            transform: scale(1.08);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(40, 90, 72, 0.95), rgba(64, 138, 113, 0.9));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .portfolio-card:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .overlay-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #F0FFF8;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .overlay-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .portfolio-content {
+            padding: 24px;
+        }
+
+        .portfolio-category {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 8px;
+            background: rgba(64, 138, 113, 0.15);
+            border: 1px solid rgba(64, 138, 113, 0.25);
+            color: #408A71;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 12px;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 12px;
+        }
+
+        .tag {
+            padding: 5px 12px;
+            border-radius: 8px;
+            background: rgba(40, 90, 72, 0.12);
+            border: 1px solid rgba(64, 138, 113, 0.15);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            color: rgba(176, 228, 204, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: rgba(40, 90, 72, 0.2);
+            border-color: rgba(64, 138, 113, 0.3);
+            color: #B0E4CC;
+        }
+
+        /* Project Modal */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(9, 20, 19, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-content {
+            background: rgba(9, 20, 19, 0.95);
+            border: 1px solid rgba(64, 138, 113, 0.2);
+            border-radius: 24px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(40, 90, 72, 0.3);
+            border: 1px solid rgba(64, 138, 113, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #B0E4CC;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: rgba(40, 90, 72, 0.5);
+            transform: rotate(90deg);
+        }
+
+        /* Load more animation */
+        .load-more {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .load-more-btn {
+            padding: 14px 32px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #285A48, #408A71);
+            color: #F0FFF8;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .load-more-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #408A71, #B0E4CC);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .load-more-btn:hover::before {
+            opacity: 1;
+        }
+
+        .load-more-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(40, 90, 72, 0.3);
+        }
+
+        .load-more-btn>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hidden class for filtering */
+        .hidden-item {
+            display: none !important;
+        }
+
+        @media(max-width:768px) {
+
+            .cursor,
+            .cursor-dot {
+                display: none;
+            }
+
+            .portfolio-image {
+                height: 220px;
+            }
+
+            .filter-btns {
+                gap: 8px !important;
+            }
+
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <!-- Scroll Top -->
+    <div class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fas fa-arrow-up text-sm"></i>
+    </div>
+
+    <!-- Background -->
+    <div class="bg-grid"></div>
+    <div class="bg-noise"></div>
+    <div class="scanline"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- ============================================================ -->
+    <!-- NAVBAR                                                        -->
+    <!-- ============================================================ -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center relative overflow-hidden group-hover:scale-110 transition-transform duration-300"
+                        style="background:linear-gradient(135deg,#285A48,#408A71);box-shadow:0 4px 15px rgba(40,90,72,0.35);">
+                        <span class="font-syne font-bold text-lg relative z-10" style="color:#B0E4CC;">D</span>
+                        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                            style="background:linear-gradient(135deg,#408A71,#B0E4CC);"></div>
+                    </div>
+                    <div class="hidden sm:block">
+                        <div class="font-syne font-bold text-xl leading-none" style="color:#F0FFF8;">Deve<span
+                                style="color:#408A71;">Pexel</span></div>
+                        <div class="text-xs tracking-widest mt-0.5"
+                            style="color:rgba(176,228,204,0.4);font-family:'Space Grotesk',sans-serif;">CODE AGENCY
+                        </div>
+                    </div>
+                </a>
+
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="portfolio.html" class="nav-link active">Portfolio</a>
+                    <a href="services.html" class="nav-link">Services</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <div class="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-grotesk"
+                        style="background:rgba(40,90,72,0.1);border:1px solid rgba(64,138,113,0.2);color:rgba(176,228,204,0.7);">
+                        <span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
+                        Available for projects
+                    </div>
+                    <a href="contact.html" class="hidden lg:flex btn-primary text-sm px-6 py-2.5 items-center gap-2"
+                        style="color:#F0FFF8;">
+                        <span>Get Started</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                    <button class="lg:hidden w-9 h-9 glass rounded-xl flex flex-col justify-center items-center gap-1.5"
+                        id="menuBtn">
+                        <span class="w-5 h-0.5 transition-all" style="background:rgba(176,228,204,0.7);" id="b1"></span>
+                        <span class="w-5 h-0.5 transition-all" style="background:rgba(176,228,204,0.7);" id="b2"></span>
+                        <span class="w-3 h-0.5 transition-all" style="background:rgba(176,228,204,0.7);" id="b3"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed top-0 right-0 h-full w-80 z-40 glass-card flex flex-col justify-center px-10"
+        id="mobileMenu">
+        <button class="absolute top-5 right-5 w-8 h-8 flex items-center justify-center"
+            style="color:rgba(176,228,204,0.5);" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="mb-10">
+            <div class="font-syne font-bold text-2xl" style="color:#F0FFF8;">Deve<span
+                    style="color:#408A71;">Pexel</span></div>
+            <div class="text-xs tracking-widest mt-1" style="color:rgba(176,228,204,0.35);">CODE AGENCY</div>
+        </div>
+        <div class="flex flex-col gap-6">
+            <a href="index.html" class="font-grotesk font-semibold text-lg mobile-link"
+                style="color:rgba(176,228,204,0.6);">Home</a>
+            <a href="about.html" class="font-grotesk font-semibold text-lg mobile-link"
+                style="color:rgba(176,228,204,0.6);">About</a>
+            <a href="portfolio.html" class="font-grotesk font-semibold text-lg mobile-link"
+                style="color:#B0E4CC;">Portfolio</a>
+            <a href="services.html" class="font-grotesk font-semibold text-lg mobile-link"
+                style="color:rgba(176,228,204,0.6);">Services</a>
+            <a href="contact.html" class="font-grotesk font-semibold text-lg mobile-link"
+                style="color:rgba(176,228,204,0.6);">Contact</a>
+            <a href="contact.html" class="btn-primary mt-4 py-3.5 text-center text-sm" style="color:#F0FFF8;">Get
+                Started →</a>
+        </div>
+    </div>
+    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-30 hidden" id="overlay"></div>
+
+    <!-- ============================================================ -->
+    <!-- HERO SECTION                                                  -->
+    <!-- ============================================================ -->
+    <section class="relative pt-32 pb-16 lg:pt-44 lg:pb-24 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+            <!-- Breadcrumb -->
+            <div class="flex items-center gap-2 mb-8 reveal text-sm font-grotesk" style="color:rgba(176,228,204,0.4);">
+                <a href="index.html" class="hover:text-white transition-colors">Home</a>
+                <i class="fas fa-chevron-right text-xs"></i>
+                <span style="color:#408A71;">Portfolio</span>
+            </div>
+
+            <!-- Hero Content -->
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="flex items-center gap-3 justify-center mb-6 reveal">
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                    <span class="section-label">Our Work</span>
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                </div>
+
+                <h1 class="font-syne font-extrabold mb-6 reveal leading-tight"
+                    style="font-size:clamp(38px,5.5vw,70px);color:#F0FFF8;transition-delay:.1s;">
+                    Crafting Digital <span class="gradient-text">Excellence</span>
+                </h1>
+
+                <p class="text-base sm:text-lg leading-relaxed mb-8 reveal font-grotesk max-w-2xl mx-auto"
+                    style="color:rgba(176,228,204,0.5);transition-delay:.2s;">
+                    Explore our portfolio of innovative projects — where cutting-edge technology meets stunning design.
+                    Each project tells a unique story of transformation and success.
+                </p>
+
+                <!-- Stats -->
+                <div class="grid grid-cols-3 gap-4 sm:gap-8 max-w-2xl mx-auto reveal" style="transition-delay:.3s;">
+                    <div class="text-center">
+                        <div class="font-syne font-extrabold text-3xl sm:text-4xl gradient-text-2 mb-1">500+</div>
+                        <div class="font-grotesk text-xs sm:text-sm" style="color:rgba(176,228,204,0.4);">Projects
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="font-syne font-extrabold text-3xl sm:text-4xl gradient-text-2 mb-1">200+</div>
+                        <div class="font-grotesk text-xs sm:text-sm" style="color:rgba(176,228,204,0.4);">Clients</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="font-syne font-extrabold text-3xl sm:text-4xl gradient-text-2 mb-1">98%</div>
+                        <div class="font-grotesk text-xs sm:text-sm" style="color:rgba(176,228,204,0.4);">Satisfaction
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- FILTER SECTION                                                -->
+    <!-- ============================================================ -->
+    <section class="py-12 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="filter-btns flex flex-wrap justify-center gap-3 reveal">
+                <button class="filter-btn active" data-filter="all">
+                    <span><i class="fas fa-th mr-2"></i>All Projects</span>
+                </button>
+                <button class="filter-btn" data-filter="web">
+                    <span><i class="fas fa-code mr-2"></i>Web Development</span>
+                </button>
+                <button class="filter-btn" data-filter="mobile">
+                    <span><i class="fas fa-mobile-alt mr-2"></i>Mobile Apps</span>
+                </button>
+                <button class="filter-btn" data-filter="design">
+                    <span><i class="fas fa-palette mr-2"></i>UI/UX Design</span>
+                </button>
+                <button class="filter-btn" data-filter="wordpress">
+                    <span><i class="fab fa-wordpress mr-2"></i>WordPress</span>
+                </button>
+                <button class="filter-btn" data-filter="ecommerce">
+                    <span><i class="fas fa-shopping-cart mr-2"></i>E-Commerce</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- PORTFOLIO GRID                                                -->
+    <!-- ============================================================ -->
+    <section class="py-8 pb-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolioGrid">
+
+                <!-- Portfolio Item 1 -->
+                <div class="portfolio-card reveal" data-category="web ecommerce" style="transition-delay:0s;">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80&auto=format&fit=crop"
+                            alt="E-Commerce Platform" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <button class="overlay-btn" onclick="openModal('project1')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <a href="#" class="overlay-btn">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">E-Commerce</span>
+                        <h3 class="font-syne font-bold text-xl mb-2" style="color:#F0FFF8;">Luxury Fashion Store</h3>
+                        <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">
+                            High-end e-commerce platform with advanced filtering, AR try-on, and seamless checkout
+                            experience.
+                        </p>
+                        <div class="portfolio-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">Stripe</span>
+                            <span class="tag">AR.js</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 2 -->
+                <div class="portfolio-card reveal" data-category="mobile" style="transition-delay:.1s;">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&q=80&auto=format&fit=crop"
+                            alt="Fitness App" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <button class="overlay-btn" onclick="openModal('project2')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <a href="#" class="overlay-btn">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">Mobile App</span>
+                        <h3 class="font-syne font-bold text-xl mb-2" style="color:#F0FFF8;">FitTrack Pro</h3>
+                        <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">
+                            AI-powered fitness tracking app with personalized workout plans and nutrition guidance.
+                        </p>
+                        <div class="portfolio-tags">
+                            <span class="tag">React Native</span>
+                            <span class="tag">Firebase</span>
+                            <span class="tag">TensorFlow</span>
+                            <span class="tag">HealthKit</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 3 -->
+                <div class="portfolio-card reveal" data-category="design" style="transition-delay:.2s;">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80&auto=format&fit=crop"
+                            alt="Banking Dashboard" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <button class="overlay-btn" onclick="openModal('project3')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <a href="#" class="overlay-btn">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">UI/UX Design</span>
+                        <h3 class="font-syne font-bold text-xl mb-2" style="color:#F0FFF8;">FinVest Dashboard</h3>
+                        <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">
+                            Modern financial dashboard with real-time analytics, portfolio tracking, and market
+                            insights.
+                        </p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Figma</span>
+                            <span class="tag">UI/UX</span>
+                            <span class="tag">Prototyping</span>
+                            <span class="tag">Design System</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 4 -->
+                <div class="portfolio-card reveal" data-category="wordpress" style="transition-delay:.3s;">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&q=80&auto=format&fit=crop"
+                            alt="Blog Platform" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <button class="overlay-btn" onclick="openModal('project4')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <a href="#" class="overlay-btn">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">WordPress</span>
+                        <h3 class="font-syne font-bold text-xl mb-2" style="color:#F0FFF8;">TechBlog Magazine</h3>
+                        <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">
+                            Custom WordPress theme for tech magazine with membership system and premium content.
+                        </p>
+                        <div class="portfolio-tags">
+                            <span class="tag">WordPress</span>
+                            <span class="tag">PHP</span>
+                            <span class="tag">Gutenberg</span>
+                            <span class="tag">WooCommerce</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 5 -->
+                <div class="portfolio-card reveal" data-category="web" style="transition-delay:.4s;">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&q=80&auto=format&fit=crop"
+                            alt="Real Estate" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <button class="overlay-btn" onclick="openModal('project5')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <a href="#" class="overlay-btn">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">Web Development</span>
+                        <h3 class="font-syne font-bold text-xl mb-2" style="color:#F0FFF8;">Prestige Properties</h3>
+                        <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">
+                            Luxury real estate platform with 3D tours, map integration, and CRM system.
+                        </p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Vue.js</span>
+                            <span class="tag">Laravel</span>
+                            <span class="tag">Maps API</span>
+                            <span class="tag">3D</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 6 -->
+                <div class="portfolio-card reveal" data-category="mobile" style="transition-delay:.5s;">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80&auto=format&fit=crop"
+                            alt="Food Delivery" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <button class="overlay-btn" onclick="openModal('project6')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <a href="#" class="overlay-btn">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">Mobile App</span>
+                        <h3 class="font-syne font-bold text-xl mb-2" style="color:#F0FFF8;">QuickBite Delivery</h3>
+                        <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">
+                            On-demand food delivery app with real-time tracking and AI-powered recommendations.
+                        </p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Flutter</span>
+                            <span class="tag">Firebase</span>
+                            <span class="tag">Maps API</span>
+                            <span class="tag">Payment</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 7 -->
+                <div class="portfolio-card reveal" data-category="design web" style="transition-delay:0s;">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&q=80&auto=format&fit=crop"
+                            alt="SaaS Platform" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <button class="overlay-btn" onclick="openModal('project7')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <a href="#" class="overlay-btn">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">SaaS Platform</span>
+                        <h3 class="font-syne font-bold text-xl mb-2" style="color:#F0FFF8;">ProjectFlow</h3>
+                        <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">
+                            Complete project management SaaS with team collaboration and time tracking features.
+                        </p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Next.js</span>
+                            <span class="tag">PostgreSQL</span>
+                            <span class="tag">AWS</span>
+                            <span class="tag">WebSocket</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 8 -->
+                <div class="portfolio-card reveal" data-category="ecommerce wordpress" style="transition-delay:.1s;">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80&auto=format&fit=crop"
+                            alt="Fashion Store" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <button class="overlay-btn" onclick="openModal('project8')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <a href="#" class="overlay-btn">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">WooCommerce</span>
+                        <h3 class="font-syne font-bold text-xl mb-2" style="color:#F0FFF8;">StyleHub Boutique</h3>
+                        <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">
+                            Custom WooCommerce store with wishlist, size guide, and virtual fitting room features.
+                        </p>
+                        <div class="portfolio-tags">
+                            <span class="tag">WooCommerce</span>
+                            <span class="tag">WordPress</span>
+                            <span class="tag">Elementor</span>
+                            <span class="tag">Payment Gateway</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 9 -->
+                <div class="portfolio-card reveal" data-category="web design" style="transition-delay:.2s;">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&q=80&auto=format&fit=crop"
+                            alt="Learning Platform" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <button class="overlay-btn" onclick="openModal('project9')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <a href="#" class="overlay-btn">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">EdTech</span>
+                        <h3 class="font-syne font-bold text-xl mb-2" style="color:#F0FFF8;">EduMaster Academy</h3>
+                        <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">
+                            Online learning platform with video courses, quizzes, certificates, and live sessions.
+                        </p>
+                        <div class="portfolio-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Django</span>
+                            <span class="tag">WebRTC</span>
+                            <span class="tag">AWS S3</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Load More -->
+            <div class="load-more reveal">
+                <button class="load-more-btn" id="loadMoreBtn">
+                    <span><i class="fas fa-plus-circle mr-2"></i>Load More Projects</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- PROCESS SECTION                                               -->
+    <!-- ============================================================ -->
+    <section class="py-24 lg:py-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <div class="flex items-center gap-3 justify-center mb-5">
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                    <span class="section-label">How We Work</span>
+                    <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                </div>
+                <h2 class="font-syne font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4" style="color:#F0FFF8;">
+                    Our <span class="gradient-text-2">Process</span>
+                </h2>
+                <p class="max-w-2xl mx-auto text-sm sm:text-base font-grotesk" style="color:rgba(176,228,204,0.5);">
+                    A proven methodology that transforms ideas into exceptional digital products.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Step 1 -->
+                <div class="glass-card rounded-2xl p-8 text-center reveal" style="transition-delay:0s;">
+                    <div class="w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center"
+                        style="background:linear-gradient(135deg,rgba(40,90,72,0.3),rgba(64,138,113,0.2));border:1px solid rgba(64,138,113,0.25);">
+                        <i class="fas fa-lightbulb text-2xl" style="color:#B0E4CC;"></i>
+                    </div>
+                    <div class="font-syne font-bold text-sm mb-2" style="color:#408A71;">Step 01</div>
+                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">Discovery</h3>
+                    <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">
+                        We dive deep into your vision, goals, and target audience to craft the perfect strategy.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="glass-card rounded-2xl p-8 text-center reveal" style="transition-delay:.1s;">
+                    <div class="w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center"
+                        style="background:linear-gradient(135deg,rgba(40,90,72,0.3),rgba(64,138,113,0.2));border:1px solid rgba(64,138,113,0.25);">
+                        <i class="fas fa-pencil-ruler text-2xl" style="color:#B0E4CC;"></i>
+                    </div>
+                    <div class="font-syne font-bold text-sm mb-2" style="color:#408A71;">Step 02</div>
+                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">Design</h3>
+                    <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">
+                        Our designers create stunning, user-centric interfaces that captivate and convert.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="glass-card rounded-2xl p-8 text-center reveal" style="transition-delay:.2s;">
+                    <div class="w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center"
+                        style="background:linear-gradient(135deg,rgba(40,90,72,0.3),rgba(64,138,113,0.2));border:1px solid rgba(64,138,113,0.25);">
+                        <i class="fas fa-code text-2xl" style="color:#B0E4CC;"></i>
+                    </div>
+                    <div class="font-syne font-bold text-sm mb-2" style="color:#408A71;">Step 03</div>
+                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">Development</h3>
+                    <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">
+                        Clean, scalable code meets cutting-edge technology to bring your vision to life.
+                    </p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="glass-card rounded-2xl p-8 text-center reveal" style="transition-delay:.3s;">
+                    <div class="w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center"
+                        style="background:linear-gradient(135deg,rgba(40,90,72,0.3),rgba(64,138,113,0.2));border:1px solid rgba(64,138,113,0.25);">
+                        <i class="fas fa-rocket text-2xl" style="color:#B0E4CC;"></i>
+                    </div>
+                    <div class="font-syne font-bold text-sm mb-2" style="color:#408A71;">Step 04</div>
+                    <h3 class="font-syne font-bold text-xl mb-3" style="color:#F0FFF8;">Launch</h3>
+                    <p class="font-grotesk text-sm leading-relaxed" style="color:rgba(176,228,204,0.5);">
+                        Rigorous testing, optimization, and a smooth deployment to ensure flawless performance.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- CTA SECTION                                                   -->
+    <!-- ============================================================ -->
+    <section class="py-24 relative z-10">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-10 lg:p-16 text-center reveal relative overflow-hidden">
+                <div class="absolute inset-0"
+                    style="background:linear-gradient(135deg,rgba(40,90,72,0.08),rgba(64,138,113,0.04));"></div>
+                <div class="absolute top-0 left-0 right-0 h-1"
+                    style="background:linear-gradient(90deg,transparent,#285A48,#B0E4CC,#285A48,transparent);"></div>
+
+                <div class="relative z-10">
+                    <div class="flex items-center gap-3 justify-center mb-5">
+                        <div class="w-8 h-px" style="background:linear-gradient(90deg,transparent,#285A48);"></div>
+                        <span class="section-label">Start Your Project</span>
+                        <div class="w-8 h-px" style="background:linear-gradient(90deg,#285A48,transparent);"></div>
+                    </div>
+
+                    <h2 class="font-syne font-extrabold mb-4 leading-tight"
+                        style="font-size:clamp(28px,5vw,56px);color:#F0FFF8;">
+                        Ready to Build Your <span class="gradient-text-2">Next Project?</span>
+                    </h2>
+                    <p class="max-w-xl mx-auto mb-10 font-grotesk text-sm sm:text-base"
+                        style="color:rgba(176,228,204,0.5);">
+                        Let's turn your vision into reality. Our team is ready to craft a digital experience that
+                        exceeds your expectations.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                        <a href="contact.html"
+                            class="btn-primary px-8 py-4 flex items-center justify-center gap-2 text-sm"
+                            style="color:#F0FFF8;">
+                            <i class="fas fa-paper-plane text-xs"></i>
+                            <span>Get Free Consultation</span>
+                        </a>
+                        <a href="about.html"
+                            class="btn-outline px-8 py-4 flex items-center justify-center gap-2 text-sm">
+                            <i class="fas fa-users text-xs"></i>
+                            <span>Meet Our Team</span>
+                        </a>
+                    </div>
+
+                    <div class="flex flex-wrap items-center justify-center gap-6">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-xs" style="color:#408A71;"></i>
+                            <span class="font-grotesk text-xs" style="color:rgba(176,228,204,0.4);">Free
+                                Consultation</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-clock text-xs" style="color:#408A71;"></i>
+                            <span class="font-grotesk text-xs" style="color:rgba(176,228,204,0.4);">Quick
+                                Response</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-award text-xs" style="color:#408A71;"></i>
+                            <span class="font-grotesk text-xs" style="color:rgba(176,228,204,0.4);">Award-Winning
+                                Team</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER                                                        -->
+    <!-- ============================================================ -->
+    <footer class="relative z-10 pt-16 pb-8"
+        style="background:linear-gradient(180deg,transparent 0%,rgba(4,9,9,0.98) 30%,#040909 100%);border-top:1px solid rgba(64,138,113,0.08);">
+
+        <div class="divider mb-12"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+                <div class="lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center"
+                            style="background:linear-gradient(135deg,#285A48,#408A71);box-shadow:0 4px 15px rgba(40,90,72,0.3);">
+                            <span class="font-syne font-bold text-lg" style="color:#B0E4CC;">D</span>
+                        </div>
+                        <div>
+                            <div class="font-syne font-bold text-lg" style="color:#F0FFF8;">Deve<span
+                                    style="color:#408A71;">Pexel</span></div>
+                            <div class="text-xs tracking-widest" style="color:rgba(176,228,204,0.35);">CODE AGENCY</div>
+                        </div>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-6 font-grotesk" style="color:rgba(176,228,204,0.35);">
+                        Professional code agency specializing in WordPress, web development, and digital solutions.</p>
+                    <div class="flex gap-3">
+                        <a href="#"
+                            class="w-9 h-9 glass rounded-xl flex items-center justify-center text-sm transition-all hover:scale-110 hover:-translate-y-1"
+                            style="color:rgba(176,228,204,0.4);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.4)'"><i class="fab fa-github"></i></a>
+                        <a href="#"
+                            class="w-9 h-9 glass rounded-xl flex items-center justify-center text-sm transition-all hover:scale-110 hover:-translate-y-1"
+                            style="color:rgba(176,228,204,0.4);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.4)'"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"
+                            class="w-9 h-9 glass rounded-xl flex items-center justify-center text-sm transition-all hover:scale-110 hover:-translate-y-1"
+                            style="color:rgba(176,228,204,0.4);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.4)'"><i class="fab fa-twitter"></i></a>
+                        <a href="#"
+                            class="w-9 h-9 glass rounded-xl flex items-center justify-center text-sm transition-all hover:scale-110 hover:-translate-y-1"
+                            style="color:rgba(176,228,204,0.4);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.4)'"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-syne font-semibold text-sm mb-5 flex items-center gap-2" style="color:#F0FFF8;">
+                        <span style="color:#408A71;font-size:8px;">✦</span> Services
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="services.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">WordPress Development</a></li>
+                        <li><a href="services.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Web Development</a></li>
+                        <li><a href="services.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Graphic Design</a></li>
+                        <li><a href="services.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">SEO Optimization</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-syne font-semibold text-sm mb-5 flex items-center gap-2" style="color:#F0FFF8;">
+                        <span style="color:#408A71;font-size:8px;">✦</span> Company
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Home</a></li>
+                        <li><a href="about.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">About Us</a></li>
+                        <li><a href="portfolio.html" class="text-sm font-grotesk transition-colors"
+                                style="color:#408A71;" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='#408A71'">Portfolio</a></li>
+                        <li><a href="contact.html" class="text-sm font-grotesk transition-colors"
+                                style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-syne font-semibold text-sm mb-5 flex items-center gap-2" style="color:#F0FFF8;">
+                        <span style="color:#408A71;font-size:8px;">✦</span> Get In Touch
+                    </h4>
+                    <div class="space-y-3">
+                        <a href="mailto:hello@devepexel.com" class="text-sm font-grotesk block transition-colors"
+                            style="color:rgba(176,228,204,0.5);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.5)'">
+                            <i class="fas fa-envelope mr-2" style="color:#408A71;"></i>hello@devepexel.com
+                        </a>
+                        <a href="tel:+1234567890" class="text-sm font-grotesk block transition-colors"
+                            style="color:rgba(176,228,204,0.5);" onmouseover="this.style.color='#B0E4CC'"
+                            onmouseout="this.style.color='rgba(176,228,204,0.5)'">
+                            <i class="fas fa-phone mr-2" style="color:#408A71;"></i>+1 (234) 567-890
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider mb-6"></div>
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-5 pb-8">
+                <p class="text-xs font-grotesk" style="color:rgba(176,228,204,0.25);">© 2024 <span
+                        style="color:#408A71;">DevePexel</span> · All rights reserved</p>
+                <div class="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-grotesk"
+                    style="background:rgba(40,90,72,0.06);border:1px solid rgba(64,138,113,0.12);">
+                    <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                    <span style="color:rgba(176,228,204,0.4);">Available for new projects</span>
+                </div>
+                <div class="flex items-center gap-5">
+                    <a href="#" class="text-xs font-grotesk transition-colors" style="color:rgba(176,228,204,0.25);"
+                        onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='rgba(176,228,204,0.25)'">Privacy</a>
+                    <a href="#" class="text-xs font-grotesk transition-colors" style="color:rgba(176,228,204,0.25);"
+                        onmouseover="this.style.color='#B0E4CC'"
+                        onmouseout="this.style.color='rgba(176,228,204,0.25)'">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- PROJECT MODAL                                                 -->
+    <!-- ============================================================ -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </div>
+
+            <div class="p-8" id="modalContent">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT                                                    -->
+    <!-- ============================================================ -->
+    <script>
+        // Cursor
+        const cursor = document.getElementById('cursor');
+        const cursorDot = document.getElementById('cursorDot');
+
+        if (cursor && cursorDot) {
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                cursorDot.style.left = e.clientX + 'px';
+                cursorDot.style.top = e.clientY + 'px';
+            });
+        }
+
+        // Scroll Top Button
+        const scrollTop = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        // Mobile Menu
+        const menuBtn = document.getElementById('menuBtn');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const overlay = document.getElementById('overlay');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('open');
+            overlay.classList.remove('hidden');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            overlay.classList.add('hidden');
+        });
+
+        overlay.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            overlay.classList.add('hidden');
+        });
+
+        // Reveal on Scroll
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Portfolio Filter
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active from all
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active to clicked
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                portfolioItems.forEach(item => {
+                    const categories = item.getAttribute('data-category');
+
+                    if (filter === 'all') {
+                        item.classList.remove('hidden-item');
+                    } else {
+                        if (categories.includes(filter)) {
+                            item.classList.remove('hidden-item');
+                        } else {
+                            item.classList.add('hidden-item');
+                        }
+                    }
+                });
+            });
+        });
+
+        // Load More
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        loadMoreBtn.addEventListener('click', () => {
+            alert('Loading more projects... (This is a demo)');
+        });
+
+        // Modal Functions
+        function openModal(projectId) {
+            const modal = document.getElementById('projectModal');
+            const modalContent = document.getElementById('modalContent');
+
+            // Sample project data
+            const projects = {
+                project1: {
+                    title: 'Luxury Fashion Store',
+                    category: 'E-Commerce',
+                    description: 'A premium e-commerce platform built for a high-end fashion brand. Features include AR virtual try-on, advanced product filtering, wishlist functionality, and seamless checkout experience with multiple payment gateways.',
+                    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80',
+                    client: 'Fashion Elite Inc.',
+                    duration: '4 months',
+                    technologies: ['React', 'Node.js', 'MongoDB', 'Stripe', 'AR.js', 'AWS'],
+                    results: ['340% increase in conversions', '2.5M+ monthly visitors', '4.8/5 customer rating']
+                }
+                // Add more projects as needed
+            };
+
+            const project = projects[projectId] || projects.project1;
+
+            modalContent.innerHTML = `
+                <img src="${project.image}" alt="${project.title}" class="w-full h-80 object-cover rounded-2xl mb-6">
+                
+                <span class="portfolio-category">${project.category}</span>
+                <h2 class="font-syne font-extrabold text-3xl sm:text-4xl mb-4 mt-3" style="color:#F0FFF8;">${project.title}</h2>
+                
+                <p class="font-grotesk text-base leading-relaxed mb-8" style="color:rgba(176,228,204,0.6);">${project.description}</p>
+                
+                <div class="grid sm:grid-cols-3 gap-6 mb-8">
+                    <div class="p-5 rounded-xl" style="background:rgba(40,90,72,0.08);border:1px solid rgba(64,138,113,0.15);">
+                        <div class="font-grotesk text-xs mb-1" style="color:rgba(176,228,204,0.4);">Client</div>
+                        <div class="font-syne font-semibold" style="color:#F0FFF8;">${project.client}</div>
+                    </div>
+                    <div class="p-5 rounded-xl" style="background:rgba(40,90,72,0.08);border:1px solid rgba(64,138,113,0.15);">
+                        <div class="font-grotesk text-xs mb-1" style="color:rgba(176,228,204,0.4);">Duration</div>
+                        <div class="font-syne font-semibold" style="color:#F0FFF8;">${project.duration}</div>
+                    </div>
+                    <div class="p-5 rounded-xl" style="background:rgba(40,90,72,0.08);border:1px solid rgba(64,138,113,0.15);">
+                        <div class="font-grotesk text-xs mb-1" style="color:rgba(176,228,204,0.4);">Status</div>
+                        <div class="font-syne font-semibold" style="color:#F0FFF8;">Completed</div>
+                    </div>
+                </div>
+                
+                <div class="mb-8">
+                    <h3 class="font-syne font-bold text-xl mb-4" style="color:#F0FFF8;">Technologies Used</h3>
+                    <div class="flex flex-wrap gap-3">
+                        ${project.technologies.map(tech => `<span class="tag">${tech}</span>`).join('')}
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="font-syne font-bold text-xl mb-4" style="color:#F0FFF8;">Key Results</h3>
+                    <ul class="space-y-3">
+                        ${project.results.map(result => `
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle mt-1" style="color:#408A71;"></i>
+                                <span class="font-grotesk text-sm" style="color:rgba(176,228,204,0.6);">${result}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+                
+                <div class="flex gap-4">
+                    <a href="#" class="btn-primary px-6 py-3 flex items-center gap-2 text-sm" style="color:#F0FFF8;">
+                        <i class="fas fa-external-link-alt text-xs"></i>
+                        <span>Visit Live Site</span>
+                    </a>
+                    <a href="contact.html" class="btn-outline px-6 py-3 flex items-center gap-2 text-sm">
+                        <i class="fas fa-paper-plane text-xs"></i>
+                        <span>Start Your Project</span>
+                    </a>
+                </div>
+            `;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Close modal on outside click
+        document.getElementById('projectModal').addEventListener('click', (e) => {
+            if (e.target.id === 'projectModal') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+
+</html>
