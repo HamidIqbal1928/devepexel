@@ -571,6 +571,64 @@
         }
 
         /* ========================= */
+        /* Team Card Container */
+        /* ========================= */
+
+        /* Responsive Grid for Team */
+        .team-grid-layout {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-auto-rows: 200px;
+            /* Fixed height for consistency */
+            gap: 16px;
+        }
+
+        .team-card-big {
+            grid-row: span 2;
+            /* Yeh card lamba hoga */
+        }
+
+        .team-card-small {
+            grid-row: span 1;
+            /* Yeh card chota hoga */
+        }
+
+        .member-img-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 24px;
+        }
+
+        .member-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .member-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(13, 3, 3, 0.95), rgba(155, 142, 199, 0.2));
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .member-card:hover .member-overlay {
+            opacity: 1;
+        }
+
+        .member-card:hover img {
+            transform: scale(1.1);
+        }
+
+        /* ========================= */
         /* SCROLL REVEALS            */
         /* ========================= */
 
@@ -837,12 +895,12 @@
 
                 <!-- Desktop Nav -->
                 <div class="hidden lg:flex items-center gap-8">
-                    <a href="#home" class="nav-link active">Home</a>
-                    <a href="#services" class="nav-link">Services</a>
-                    <a href="#work" class="nav-link">Our Work</a>
-                    <a href="#process" class="nav-link">Process</a>
-                    <a href="#about" class="nav-link">About</a>
-                    <a href="#contact" class="nav-link">Contact</a>
+                    <a href="/index.html" class="nav-link active">Home</a>
+                    <a href="/about.html" class="nav-link">About</a>
+                    <a href="/services.html" class="nav-link">Services</a>
+                    <a href="/portfolio.html" class="nav-link">Our Portfolio</a>
+                    <a href="/team.html" class="nav-link">Team</a>
+                    <a href="/contact us.html" class="nav-link">Contact</a>
                 </div>
 
                 <div class="flex items-center gap-4">
@@ -883,25 +941,26 @@
             <div class="text-xs tracking-widest mt-1" style="color:rgba(176,228,204,0.35);">DIGITAL AGENCY</div>
         </div>
         <div class="flex flex-col gap-6">
-            <a href="#home" class="font-grotesk font-semibold text-lg transition-colors mobile-link"
+            <a href="/index.html" class="font-grotesk font-semibold text-lg transition-colors mobile-link"
                 style="color:rgba(176,228,204,0.6);" onmouseover="this.style.color='#B0E4CC'"
                 onmouseout="this.style.color='rgba(176,228,204,0.6)'">Home</a>
-            <a href="#services" class="font-grotesk font-semibold text-lg transition-colors mobile-link"
-                style="color:rgba(176,228,204,0.6);" onmouseover="this.style.color='#B0E4CC'"
-                onmouseout="this.style.color='rgba(176,228,204,0.6)'">Services</a>
-            <a href="#work" class="font-grotesk font-semibold text-lg transition-colors mobile-link"
-                style="color:rgba(176,228,204,0.6);" onmouseover="this.style.color='#B0E4CC'"
-                onmouseout="this.style.color='rgba(176,228,204,0.6)'">Our Work</a>
-            <a href="#process" class="font-grotesk font-semibold text-lg transition-colors mobile-link"
-                style="color:rgba(176,228,204,0.6);" onmouseover="this.style.color='#B0E4CC'"
-                onmouseout="this.style.color='rgba(176,228,204,0.6)'">Process</a>
-            <a href="#about" class="font-grotesk font-semibold text-lg transition-colors mobile-link"
+                 <a href="about.html" class="font-grotesk font-semibold text-lg transition-colors mobile-link"
                 style="color:rgba(176,228,204,0.6);" onmouseover="this.style.color='#B0E4CC'"
                 onmouseout="this.style.color='rgba(176,228,204,0.6)'">About</a>
-            <a href="#contact" class="font-grotesk font-semibold text-lg transition-colors mobile-link"
+            <a href="/services.html" class="font-grotesk font-semibold text-lg transition-colors mobile-link"
+                style="color:rgba(176,228,204,0.6);" onmouseover="this.style.color='#B0E4CC'"
+                onmouseout="this.style.color='rgba(176,228,204,0.6)'">Services</a>
+            <a href="/portfolio.html" class="font-grotesk font-semibold text-lg transition-colors mobile-link"
+                style="color:rgba(176,228,204,0.6);" onmouseover="this.style.color='#B0E4CC'"
+                onmouseout="this.style.color='rgba(176,228,204,0.6)'">Our Portfolio</a>
+            <a href="team.html" class="font-grotesk font-semibold text-lg transition-colors mobile-link"
+                style="color:rgba(176,228,204,0.6);" onmouseover="this.style.color='#B0E4CC'"
+                onmouseout="this.style.color='rgba(176,228,204,0.6)'">Team</a>
+           
+            <a href="/contact us.html" class="font-grotesk font-semibold text-lg transition-colors mobile-link"
                 style="color:rgba(176,228,204,0.6);" onmouseover="this.style.color='#B0E4CC'"
                 onmouseout="this.style.color='rgba(176,228,204,0.6)'">Contact</a>
-            <a href="#contact" class="btn-primary mt-4 py-3.5 text-center text-sm" style="color:#F0FFF8;">
+            <a href="/contact us.html" class="btn-primary mt-4 py-3.5 text-center text-sm" style="color:#F0FFF8;">
                 Get Started →
             </a>
         </div>
@@ -956,12 +1015,14 @@
                     <!-- CTA buttons -->
                     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12 reveal"
                         style="transition-delay:.4s;">
-                        <a href="/contact us.html" class="btn-primary px-8 py-4 flex items-center justify-center gap-2 text-sm"
+                        <a href="/contact us.html"
+                            class="btn-primary px-8 py-4 flex items-center justify-center gap-2 text-sm"
                             style="color:#F0FFF8;">
                             <span>Start Your Project</span>
                             <i class="fas fa-arrow-right text-xs"></i>
                         </a>
-                        <a href="/portfolio.html" class="btn-outline px-8 py-4 flex items-center justify-center gap-2 text-sm">
+                        <a href="/portfolio.html"
+                            class="btn-outline px-8 py-4 flex items-center justify-center gap-2 text-sm">
                             <i class="fas fa-play-circle text-xs"></i>
                             <span>View Our Work</span>
                         </a>
@@ -1725,63 +1786,122 @@
                 </div>
 
                 <!-- Right — Team grid -->
+                <!-- Right — Dynamic Team Grid -->
                 <div class="reveal-right">
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="team-grid-layout">
 
-                        <div class="glass-card rounded-2xl p-6 text-center">
-                            <div class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center text-3xl overflow-hidden"
-                                style="background:linear-gradient(135deg,rgba(40,90,72,0.4),rgba(64,138,113,0.2)); border:1px solid rgba(64,138,113,0.25);">
+                        <!-- Card 1 (Big) -->
+                        <div class="member-card team-card-big relative overflow-hidden rounded-3xl">
+                            <div class="member-img-container">
+                                <img src="./Team/nafeesa.webp" alt="Nafeesa Bibi">
+                                <div class="member-overlay">
+                                    <h3 class="text-xl font-bold text-[#F2EAE0]">Nafeesa Bibi</h3>
+                                    <p class="text-[#B4D3D9] text-xs uppercase tracking-widest">VISUAL_ARTIST</p>
+                                    <!-- SOCIAL ICONS -->
+                                    <div class="flex gap-4 mt-4">
 
-                                <img src="./Team/Hamid_Iqbal.webp" alt="Team Member" class="w-full h-full object-cover">
+                                        <!-- LinkedIn -->
+                                        <a href="https://linkedin.com/in/your-profile" target="_blank"
+                                            class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-blue-500 transition duration-300">
+                                            <i class="fab fa-linkedin"></i>
+                                        </a>
 
-                            </div>
-                            <div class="font-syne font-bold text-sm" style="color:#F0FFF8;">Hamid Iqbal</div>
-                            <div class="text-xs mt-1 font-grotesk" style="color:#408A71;">CEO & Founder</div>
-                        </div>
+                                        <!-- GitHub -->
+                                        <a href="https://github.com/your-profile" target="_blank"
+                                            class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-gray-800 transition duration-300">
+                                            <i class="fab fa-behance"></i>
+                                        </a>
 
-                        <div class="glass-card rounded-2xl p-6 text-center">
-                            <div class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center text-3xl overflow-hidden"
-                                style="background:linear-gradient(135deg,rgba(40,90,72,0.4),rgba(64,138,113,0.2)); border:1px solid rgba(64,138,113,0.25);">
-
-                                <img src="./Team/nafesa.webp" alt="Team Member" class="w-full h-full object-cover">
-
-                            </div>
-                            <div class="font-syne font-bold text-sm" style="color:#F0FFF8;">Nafeesa Bibi</div>
-                            <div class="text-xs mt-1 font-grotesk" style="color:#408A71;">Head of Design</div>
-                        </div>
-
-                        <div class="glass-card rounded-2xl p-6 text-center">
-                            <div class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center text-3xl overflow-hidden"
-                                style="background:linear-gradient(135deg,rgba(40,90,72,0.4),rgba(64,138,113,0.2)); border:1px solid rgba(64,138,113,0.25);">
-
-                                <img src="./Team/Haseeb_Altaf.webp" alt="Team Member" class="w-full h-full object-cover">
-
-                            </div>
-                            <div class="font-syne font-bold text-sm" style="color:#F0FFF8;">Haseeb Altaf</div>
-                            <div class="text-xs mt-1 font-grotesk" style="color:#408A71;">Lead Engineer</div>
-                        </div>
-
-                        <div class="glass-card rounded-2xl p-6 text-center">
-                            <div class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center text-3xl overflow-hidden"
-                                style="background:linear-gradient(135deg,rgba(40,90,72,0.4),rgba(64,138,113,0.2)); border:1px solid rgba(64,138,113,0.25);">
-
-                                <img src="./Team/Aziz-Rehman.webp" alt="Team Member" class="w-full h-full object-cover">
-
-                            </div>
-                            <div class="font-syne font-bold text-sm" style="color:#F0FFF8;">Aziz-ur-Rehman</div>
-                            <div class="text-xs mt-1 font-grotesk" style="color:#408A71;">Web Master</div>
-                        </div>
-
-                        <!-- Team stat -->
-                        <div class="col-span-2 glass-card rounded-2xl p-5 flex items-center gap-4"
-                            style="background:linear-gradient(135deg,rgba(40,90,72,0.1),rgba(64,138,113,0.05));">
-                            <div class="text-4xl">🌍</div>
-                            <div>
-                                <div class="font-syne font-bold text-lg" style="color:#F0FFF8;">50+ Team Members</div>
-                                <div class="text-sm font-grotesk" style="color:rgba(176,228,204,0.5);">Across 8
-                                    countries · Remote-first culture</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- Card 2 (Small) -->
+                        <div class="member-card team-card-small relative overflow-hidden rounded-3xl">
+                            <div class="member-img-container">
+                                <img src="./Team/Aziz-Rehman.webp" alt="Aziz-ur-Rehman"
+                                    class="w-full h-full object-cover object-top">
+                                <div class="member-overlay">
+                                    <h3 class="text-lg font-bold text-[#F2EAE0]">Aziz-ur-Rehman</h3>
+                                    <p class="text-[#B4D3D9] text-xs uppercase tracking-widest">Web Master</p>
+                                    <!-- SOCIAL ICONS -->
+                                    <div class="flex gap-4 mt-4">
+
+                                        <!-- LinkedIn -->
+                                        <a href="https://linkedin.com/in/your-profile" target="_blank"
+                                            class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-blue-500 transition duration-300">
+                                            <i class="fab fa-linkedin"></i>
+                                        </a>
+
+                                        <!-- GitHub -->
+                                        <a href="https://github.com/your-profile" target="_blank"
+                                            class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-gray-800 transition duration-300">
+                                            <i class="fab fa-github"></i>
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 4 (Big) -->
+                        <div class="member-card team-card-big relative overflow-hidden rounded-3xl">
+                            <div class="member-img-container">
+                                <img src="./Team/Hamid_Iqbal.webp" alt="Hamid Iqbal">
+                                <div class="member-overlay">
+                                    <h3 class="text-xl font-bold text-[#F2EAE0]">Hamid Iqbal</h3>
+                                    <p class="text-[#B4D3D9] text-xs uppercase tracking-widest">CEO & Founder </p>
+
+                                    <!-- SOCIAL ICONS -->
+                                    <div class="flex gap-4 mt-4">
+
+                                        <!-- LinkedIn -->
+                                        <a href="https://linkedin.com/in/your-profile" target="_blank"
+                                            class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-blue-500 transition duration-300">
+                                            <i class="fab fa-linkedin"></i>
+                                        </a>
+
+                                        <!-- GitHub -->
+                                        <a href="https://github.com/your-profile" target="_blank"
+                                            class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-gray-800 transition duration-300">
+                                            <i class="fab fa-github"></i>
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 (Small) -->
+                        <div class="member-card team-card-small relative overflow-hidden rounded-3xl">
+                            <div class="member-img-container">
+                                <img src="./Team/Haseeb_Altaf.webp" alt="Haseeb Altaf"
+                                    class="w-full h-full object-cover object-top">
+                                <div class="member-overlay">
+                                    <h3 class="text-lg font-bold text-[#F2EAE0]">Haseeb Altaf</h3>
+                                    <p class="text-[#B4D3D9] text-xs uppercase tracking-widest">Wordpress Developer</p>
+                                    <!-- SOCIAL ICONS -->
+                                    <div class="flex gap-4 mt-4">
+
+                                        <!-- LinkedIn -->
+                                        <a href="https://linkedin.com/in/your-profile" target="_blank"
+                                            class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-blue-500 transition duration-300">
+                                            <i class="fab fa-linkedin"></i>
+                                        </a>
+
+                                        <!-- GitHub -->
+                                        <a href="https://github.com/your-profile" target="_blank"
+                                            class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-gray-800 transition duration-300">
+                                            <i class="fab fa-github"></i>
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
                     </div>
                 </div>
             </div>
@@ -1820,9 +1940,9 @@
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm overflow-hidden"
                             style="background:linear-gradient(135deg,#285A48,#408A71);">
-                       <img src="./Team/Hamid_Iqbal.webp" alt="Client" class="w-full h-full object-cover">
-                       
-                    </div>
+                            <img src="./Team/Hamid_Iqbal.webp" alt="Client" class="w-full h-full object-cover">
+
+                        </div>
                         <div>
                             <div class="font-syne font-semibold text-sm" style="color:#F0FFF8;">James Whitmore</div>
                             <div class="text-xs font-grotesk" style="color:rgba(176,228,204,0.4);">CTO, TechCorp Global
@@ -1841,11 +1961,12 @@
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm"
                             style="background:linear-gradient(135deg,#408A71,#B0E4CC);">
-                         <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm overflow-hidden"
-                            style="background:linear-gradient(135deg,#285A48,#408A71);">
-                       <img src="./Team/nafeesa.webp" alt="Client" class="w-full h-full object-cover">
-                       
-                    </div></div>
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm overflow-hidden"
+                                style="background:linear-gradient(135deg,#285A48,#408A71);">
+                                <img src="./Team/nafeesa.webp" alt="Client" class="w-full h-full object-cover">
+
+                            </div>
+                        </div>
                         <div>
                             <div class="font-syne font-semibold text-sm" style="color:#F0FFF8;">Aisha Rahman</div>
                             <div class="text-xs font-grotesk" style="color:rgba(176,228,204,0.4);">CEO, Veridia Startup
@@ -1864,11 +1985,12 @@
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm"
                             style="background:linear-gradient(135deg,#285A48,#408A71);">
-                         <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm overflow-hidden"
-                            style="background:linear-gradient(135deg,#285A48,#408A71);">
-                       <img src="./Team/Aziz-Rehman.webp" alt="Client" class="w-full h-full object-cover">
-                       
-                    </div></div>
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm overflow-hidden"
+                                style="background:linear-gradient(135deg,#285A48,#408A71);">
+                                <img src="./Team/Aziz-Rehman.webp" alt="Client" class="w-full h-full object-cover">
+
+                            </div>
+                        </div>
                         <div>
                             <div class="font-syne font-semibold text-sm" style="color:#F0FFF8;">Marco DeVito</div>
                             <div class="text-xs font-grotesk" style="color:rgba(176,228,204,0.4);">Founder, NexMart
@@ -1925,7 +2047,7 @@
                             <div class="text-2xl mb-2">📧</div>
                             <div class="text-xs font-grotesk mb-1" style="color:rgba(176,228,204,0.4);">Email Us</div>
                             <div class="text-sm font-grotesk font-semibold" style="color:#B0E4CC;">
-                               info@devpexel.com
+                                info@devpexel.com
                             </div>
                         </div>
                         <div class="glass-card rounded-2xl p-5 text-center">
@@ -1937,7 +2059,8 @@
                         <div class="glass-card rounded-2xl p-5 text-center">
                             <div class="text-2xl mb-2">📍</div>
                             <div class="text-xs font-grotesk mb-1" style="color:rgba(176,228,204,0.4);">Office</div>
-                            <div class="text-sm font-grotesk font-semibold" style="color:#B0E4CC;">vehari,punjab,Pakistan</div>
+                            <div class="text-sm font-grotesk font-semibold" style="color:#B0E4CC;">
+                                vehari,punjab,Pakistan</div>
                         </div>
                     </div>
                 </div>
@@ -1960,8 +2083,7 @@
                 <!-- Brand -->
                 <div class="lg:col-span-1">
                     <div class="flex items-center gap-3 mb-5">
-                        <div class="w-10 h-10 rounded-xl flex items-center justify-center"
-                          >
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center">
                             <span class="font-syne font-bold text-lg" style="color:#B0E4CC;">
                                 <img src="./logo/devpexel.png" alt="">
                             </span>
@@ -2024,11 +2146,12 @@
                                 onmouseout="this.style.color='rgba(176,228,204,0.35)'">Wordpress Development</a></li>
                         <li><a href="#" class="text-sm font-grotesk transition-colors"
                                 style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
-                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Graphic & Product Designer</a></li>                      
+                                onmouseout="this.style.color='rgba(176,228,204,0.35)'">Graphic & Product Designer</a>
+                        </li>
                         <li><a href="#" class="text-sm font-grotesk transition-colors"
                                 style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
                                 onmouseout="this.style.color='rgba(176,228,204,0.35)'">SEO Optimization</a></li>
-                                 <li><a href="#" class="text-sm font-grotesk transition-colors"
+                        <li><a href="#" class="text-sm font-grotesk transition-colors"
                                 style="color:rgba(176,228,204,0.35);" onmouseover="this.style.color='#B0E4CC'"
                                 onmouseout="this.style.color='rgba(176,228,204,0.35)'">Digital Marketing</a></li>
                     </ul>
